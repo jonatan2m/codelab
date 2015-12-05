@@ -31,3 +31,5 @@ objB.name = 'new B';
 objB.say();
 
 objC.say();
+
+console.log(Object.getPrototypeOf(objB) === objA);
