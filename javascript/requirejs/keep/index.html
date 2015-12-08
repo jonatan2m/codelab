@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title></title>	
+	<script type="text/javascript" src="scripts/require.js"></script>
+
+</head>
+<body>
+<p>requirejs.undef('dep')</p>
+<p>require('hello-world').showDep()</p>
+<p>require('dep').show()</p>
+<p>require(['dep'], function (d){d.show()})</p>
+<script type="text/javascript">
+	require(['hello-world'], function (h){
+		
+	});
+</script>
+
+</body>
+</html>
