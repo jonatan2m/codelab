@@ -1,22 +1,19 @@
 Fundamentos do RequireJS
 - Web Module
 - É uma implementação para construir aplicações usando o padrão Asynchronous Module Definition (AMD)
-Problemas que resolve
-	- Web sites são se tornando Web apps
-	- Complexidade do código aumenta conforme o site vai aumentando
-	- Trabalhar com assemblies é dificil (Module.Custom.Implementation)
-	- Queremos separar bem as responsabilidades
-	- Otimizar o deploy do código fonte em uma ou poucas chamadas HTTP
+- Problemas que resolve
+	- Web sites estão se tornando Web apps;
+	- Complexidade do código aumenta conforme o site vai aumentando;
+	- Trabalhar com assemblies é dificil (Module.Custom.Implementation);
+	- Queremos separar bem as responsabilidades;
+	- Otimizar o deploy do código fonte em uma ou poucas chamadas HTTP;
 
 - Apenas um módulo definido por arquivo.
 [EXEMPLO SIMPLE]
 criação de módulo com e sem dependência.
 
-Quem sabe como carregar um script na página?
-
 #http://requirejs.org/docs/why.html
 #http://requirejs.org/docs/whyamd.html
-
 
 - Retirando as dependências do Módulo do RequireJS
 [Exemplo Sugar]
