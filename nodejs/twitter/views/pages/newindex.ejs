@@ -1,0 +1,15 @@
+ <% layout('boilerplate') -%>
+ <main>
+        <div class="jumbotron">
+            <h1>This is great</h1>
+            <p>Welcome to templating using EJS + EJS-Mate</p>
+            <h2>Variable</h2>
+            <p><%= tagline %></p>
+            <h2>Loop</h2>
+            <ul>    
+                <% drinks.forEach(function(drink) { %>
+                    <li><%= drink.name %> - <%= drink.drunkness %></li>
+                <% }); %>
+            </ul>
+        </div>
+    </main>
