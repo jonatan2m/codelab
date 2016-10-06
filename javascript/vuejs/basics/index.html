@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VueJS Basics</title>
+	<script src="https://unpkg.com/vue@next/dist/vue.js"></script>
+</head>
+
+<body>
+	<div id="app">
+		<p>{{ message }}</p>
+	</div>
+
+	<div id='app-2'>
+		<span v-bind:title="message">
+			Hover your mouse over me for a few seconds to see my dynamically bound title!
+		</span>
+	</div>
+
+	<div id="app-3">
+		<p v-if="seen">Now you see me</p>
+	</div>
+
+	<div id="app-4">
+		<ol>
+			<li v-for="todo in todos">
+				{{todo.text}}
+			</li>
+		</ol>
+	</div>
+
+	<div id="app-5">
+		<p>{{message}}</p>
+		<button v-on:click="reverseMessage">Reverse Message</button>
+	</div>
+
+	<div id="app-6">
+		<p>{{message}}</p>
+		<input type="text" v-model="message">
+	</div>
+	<div id="app-7">
+		<ol>
+			<todo-item v-for="todo in todos" v-bind:todo="todo"></todo-item>
+		</ol>
+	</div>
+
+	<script type="text/javascript">
+		Vue.component('todo-item', {
+		// The todo-item component now accepts a
+  		// "prop", which is like a custom attribute.
+  		// This prop is called todo.
+  		props:['todo'],
+  		template: '<li>{{todo.text}}</li>'	
+  	});
+
+		var app7 = new Vue({
+			el: '#app-7',
+			data:{
+				todos:[
+				{ text: 'Learn JavaScript' },
+				{ text: 'Learn Vue' },
+				{ text: 'Build something awesome' }
+				]
+			}
+		});
+
+		var app6 = new Vue({
+			el: '#app-6',
+			data:{
+				message: 'Hello Vue!'
+			}
+		});
+		var app5 = new Vue({
+			el: '#app-5',
+			data:{
+				message: 'Hello Vue.js'
+			},
+			methods:{
+				reverseMessage: function() {
+					this.message = this.message.split('').reverse().join('');
+				}
+			}
+		});
+		var app4 = new Vue({
+			el: '#app-4',
+			data:{
+				todos:[
+				{ text: 'Learn JavaScript' },
+				{ text: 'Learn Vue' },
+				{ text: 'Build something awesome' }
+				]
+			}
+		});
+
+		var app3 = new Vue({
+			el: '#app-3',
+			data:{
+				seen: true
+			}
+		});
+
+		var app2 = new Vue({
+			el: '#app-2',
+			data: {
+				message: 'You loaded this page on ' + new Date()
+			}
+		});
+
+		var app = new Vue({
+			el: '#app',
+			data: {
+				message: 'Hello Vue.js!'
+			}
+		});		
+	</script>
+</body>
+</html>

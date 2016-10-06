@@ -1,0 +1,108 @@
+<html>
+<head>
+	<title>Vue Template Syntax</title>
+	<script src="https://unpkg.com/vue@next/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<p>Message: {{msg}}</p>				
+		<p v-once>This will never change: {{msg}}</p>
+		<div v-html="msgHTML"></div>
+		<div v-bind:id="dynamicId">{{dynamicId}}</div>
+		<p>Vue.js actually supports the full power of JavaScript expressions inside all data bindings</p>
+		<button v-bind:disabled="someDynamicCondition">Button ({{someDynamicCondition ? 'YES' : 'NO'}})</button>
+		<p>Filters: Vue.js allows you to define filters that can be used to apply common text formatting. Filters should be appended to the end of a mustache interpolation, denoted by the “pipe” symbol:</p>
+		<p>{{msg | capitalize}}</p>
+		<p>Filters can be chained:</p>
+		<p>{{msg | capitalize | undescore}}</p>
+		<p>Filters are JavaScript functions, therefore they can take arguments:</p>
+		<p>{{msg | capitalize | concat('Jonatan') | undescore}}</p>
+		<a v-on:click="showAlert">Click to Show Alert</a>
+		<p>Therefore, Vue.js provides special shorthands for two of the most often used directives, v-bind and v-on:</p>		
+		<a :href="url">Shorthand</a>
+		<a @click="showAlert">Click to Show Alert (Shorthand)</a>
+		<br>
+		<br>
+		<br>
+		
+	</div>
+	<div id="app-2">
+		<h1>###Computed Properties</h1>		
+		<h4>Computed does cache but method doesn't. if you need realize a expensive operation, you should use a computed property instead</h4>
+		<p>Original Message: {{message}}</p>
+		<p>Computed reversed message: "{{reversedMessage}}"</p>
+		<br>
+		<h4>Computed vs Watched Property. Vue does provide a more generic way to observe and react to data changes on a Vue instance: watch properties. But, you should use computed properties instead.</h4>
+		<p>Full Name: {{fullName}}</p>
+		<div><input type="text" v-model="fullName"></div>
+	</div>
+
+	<script type="text/javascript">
+		var id = (Math.random(0,1) *100).toFixed(0);
+		var app = new Vue({
+			el: '#app',
+			data:{
+				msg: 'my message',
+				msgHTML: '<h1>My HTML</h1>',
+				dynamicId: id,
+				someDynamicCondition: id > 30,
+				url: '#app'
+			},
+			methods:{
+				showAlert: function(){
+					alert('Go!');
+				}
+			},
+			filters:{
+				capitalize: function(value){
+					if(!value) 
+						return '';
+
+					value = value.toString();
+					return value.charAt(0).toUpperCase() + value.slice(1);
+				},
+				undescore: function (value){
+					if(!value) 
+						return '';
+
+					value = value.toString();
+					while(value.indexOf(' ') !== -1)
+						value = value.replace(' ', '_');
+					return value;
+				},
+				concat: function(value, name){
+					if(!value) 
+						return '';
+
+					return value.toString().concat(" " + name);					
+				}
+			}
+		});
+
+		var app2 = new Vue({
+			el: '#app-2',
+			data:{
+				message: 'Hello',				
+				firstName: 'Jonatan',
+				lastName: 'Machado'
+			},
+			computed: {
+				reversedMessage: function(){
+					// `this` points to the vm instance
+					return this.message.split('').reverse().join('');
+				},
+				fullName: {
+					get: function(){
+						return this.firstName + ' ' + this.lastName;
+					},
+					set: function(newValue){
+						var names = newValue.split(' ');
+						this.firstName = names[0];
+						this.lastName = names[names.length - 1];
+					}
+				}
+			}
+		});
+	</script>
+</body>
+</html>

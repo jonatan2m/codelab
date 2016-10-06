@@ -1,0 +1,49 @@
+<html>
+<head>
+	<title>Vue Instance</title>
+	<script src="https://unpkg.com/vue@next/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<p>{{a}}</p>				
+	</div>
+
+	<script type="text/javascript">
+		var data = {a: 1}
+		var app = new Vue({
+			el: '#app',
+			data: data,
+			//lifecycle hooks
+			beforeCreate: function(){
+				console.log("a has no data yet... " + this.a);
+			},
+			created: function (){
+				console.log('a is: ' + this.a);
+			}
+		});
+		/*
+			vm.a === data.a // -> true
+			// setting the property also affects original data
+			vm.a = 2
+			data.a // -> 2
+			// ... and vice-versa
+			data.a = 3
+			vm.a // -> 3
+		*/
+
+
+		/*In addition to data properties, Vue instances expose a number of useful instance properties and methods. These properties and methods are prefixed with $ to differentiate them from proxied data properties. */
+		function addProperty(name, value){
+			//change the original object
+			app.$data[name] = value;
+		}
+
+
+		var MyComponent = Vue.extend({
+
+		});
+
+		var myComponentInstance = new MyComponent();
+	</script>
+</body>
+</html>
