@@ -11,16 +11,22 @@
 		<div v-bind:id="dynamicId">{{dynamicId}}</div>
 		<p>Vue.js actually supports the full power of JavaScript expressions inside all data bindings</p>
 		<button v-bind:disabled="someDynamicCondition">Button ({{someDynamicCondition ? 'YES' : 'NO'}})</button>
+		
 		<p>Filters: Vue.js allows you to define filters that can be used to apply common text formatting. Filters should be appended to the end of a mustache interpolation, denoted by the “pipe” symbol:</p>
 		<p>{{msg | capitalize}}</p>
+		
 		<p>Filters can be chained:</p>
 		<p>{{msg | capitalize | undescore}}</p>
+		
 		<p>Filters are JavaScript functions, therefore they can take arguments:</p>
 		<p>{{msg | capitalize | concat('Jonatan') | undescore}}</p>
+		
 		<a v-on:click="showAlert">Click to Show Alert</a>
+		
 		<p>Therefore, Vue.js provides special shorthands for two of the most often used directives, v-bind and v-on:</p>		
 		<a :href="url">Shorthand</a>
 		<a @click="showAlert">Click to Show Alert (Shorthand)</a>
+		
 		<br>
 		<br>
 		<br>

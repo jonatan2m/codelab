@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VueJS Class and Style Bindings</title>
+	<script src="https://unpkg.com/vue@next/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<h1>Binding HTML Classes - Object Syntax</h1>
+		<div class="static" v-bind:class="{active: isActive, 'text-danger': hasError}">Div</div>
+		<br><br>
+		<div v-bind:class="classObject">New Div</div>
+	</div>
+
+	<div id="app-2" v-bind:class="[activeClass, errorClass]">
+		<h1>Array Syntax</h1>
+		<div v-bind:class="[activeClass, errorClass]">
+			Div App 2
+		</div>
+		<div v-bind:class="[isActive ? activeClass: '', errorClass]">
+			Ternary Operator
+		</div>
+		<div v-bind:class="[{active: isActive}, errorClass]">
+			object syntax inside array syntax
+		</div>
+	</div>
+
+	<div id="app-3">
+		<h1>Binding Inline Styles - Object Syntax</h1>
+		<div v-bind:style="{color: activeColor, fontSize: fontSize + 'px'}">
+			Inline CSS
+		</div>
+		<div v-bind:style="styleObject">
+			Inline Style with object
+		</div>
+		<div v-bind:style="[baseStyles, overridingStyles]">
+			Array Syntax
+			The array syntax for v-bind:style allows you to apply multiple style objects to the same element:
+		</div>
+		<div><h2>Auto-prefixing</h2> When you use a CSS property that requires vendor prefixes in v-bind:style, for example transform, Vue will automatically detect and add appropriate prefixes to the applied styles.</div>		
+	</div>
+	<script type="text/javascript">
+		var app3 = new Vue({
+			el: '#app-3',
+			data:{
+				activeColor: 'red',
+				fontSize: 30,
+				styleObject:{
+					color: 'red',
+					fontSize: '13px'
+				},
+				baseStyles:{
+					fontSize: '10px'
+				},
+				overridingStyles:{
+					fontSize: '30px'
+				}
+			}
+		});
+
+		var app2 = new Vue({
+			el: '#app-2',
+			data:{
+				isActive: true,
+				activeClass: 'active',
+				errorClass: 'text-danger'
+			}
+		});
+
+		var app = new Vue({
+			el: '#app',
+			data:{
+				isActive: true,
+				hasError: false,
+				error: null
+			},
+			computed: {
+				classObject: function(){
+					return {
+						active: this.isActive && !this.error,
+						'text-danger': this.error && this.error.type === 'fatal'
+					};
+				}
+			}
+		});
+
+		
+	</script>
+</body>
+</html>

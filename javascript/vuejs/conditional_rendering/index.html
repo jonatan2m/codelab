@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VueJS Conditional and List Rendering</title>
+	<script src="https://unpkg.com/vue@next/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<h1 v-if="ok">Yes</h1>
+		<h1 v-else>No</h1>
+		<p>The v-else element must immediately follow the v-if element - otherwise it will not be recognized.</p>
+		<template v-if="ok">
+			<h1>Title</h1>
+			<p>Paragraph 1</p>
+			<p>Paragraph 2</p>
+		</template>
+		<h1 v-show="ok">v-show Hello!</h1>
+		<p>v-show is another option. The difference is that an element with v-show will always be rendered and remain inthe DOM, like display CSS property</p>
+		<p>Generally speaking, v-if has higher toggle costs while v-show has higher initial render costs. So prefer v-show if you need to toggle something very often, and prefer v-if if the condition is unlikely to change at runtime.</p>
+	</div>
+	<div id="app-2">
+		<h1>List Rendenring</h1>
+		<ul>
+			<li v-for="item in items">{{item.message}}</li>
+		</ul>
+		<ul>
+			<li v-for="(item, index) in items">
+				{{ parentMessage }} - {{index}} - {{item.message}}
+			</li>
+		</ul>
+		<input type="text" v-model.lazy="parentMessage">
+	</div>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: '#app',
+			data:{
+				ok: true
+			}
+		});
+
+		var app2 = new Vue({
+			el: '#app-2',
+			data:{
+				parentMessage: 'Parent',
+				items:[
+				{message:'Foo'},
+				{message:'Bar'}]
+			}			
+		});
+
+	</script>
+</body>
+</html>

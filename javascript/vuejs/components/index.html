@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VueJS Components</title>
+	<script src="https://unpkg.com/vue@next/dist/vue.js"></script>
+</head>
+<body>
+	<div id="example">
+		<h1>Registration</h1>		
+		<my-component></my-component>
+
+		<!--It works only #app-2-->
+		<only-component></only-component>
+	</div>
+	<div id="app-2">
+		<h1>LocalRegistration</h1>
+		<only-component></only-component>
+	</div>
+	<div id="app-3">
+		<h1>Composing Components</h1>
+		<p>In Vue.js, the parent-child component relationship can be summarized as props down, events up. The parent passes data down to the child via props, and the child sends messages to the parent via events. Let’s see how they work next.</p>
+		<h3>this is a message: {{msg}}</h3>
+		<input v-model="msg">
+		<child v-bind:message="msg"></child>
+		<child message="child component!"></child>
+	</div>
+
+	<script type="text/javascript">
+		var myObj = {message: 'hello'};
+
+	//register component	
+	Vue.component('my-component',{
+		template: '<div>A custom component! {{message}}</div>',
+		// data is technically a function, so Vue won't
+  		// complain, but we return the same object
+  		// reference for each component instance
+  		data: function(){
+  			return myObj;
+  		}
+  	});
+	
+	new Vue({
+		el: "#example"		
+	});
+
+	var Child = {
+		template: '<div>A custom component!</div>'
+	};
+	new Vue({
+		el: '#app-2',
+		components:{
+			//will only be available in parent's template
+			'only-component': Child
+		}
+	})
+
+	Vue.component('child',{
+		// declare the props
+		props:{
+			message: [Number, String],
+			required: true
+		},
+		// just like data, the prop can be used inside templates
+  		// and is also made available in the vm as this.message
+  		template: '<p>{{message}}</p>'
+  	});
+	new Vue({
+		el:'#app-3',
+		data:{
+			msg: 'Message newer.'
+		}
+	})
+
+</script>
+</body>
+</html>
