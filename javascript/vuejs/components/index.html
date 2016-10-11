@@ -18,59 +18,138 @@
 	</div>
 	<div id="app-3">
 		<h1>Composing Components</h1>
-		<p>In Vue.js, the parent-child component relationship can be summarized as props down, events up. The parent passes data down to the child via props, and the child sends messages to the parent via events. Let’s see how they work next.</p>
+		<p>In Vue.js, the parent-child component relationship can be summarized as props down, events up. The parent passes data down to the child via props, and the child sends messages to the parent via events. Let's see how they work next.</p>
 		<h3>this is a message: {{msg}}</h3>
 		<input v-model="msg">
 		<child v-bind:message="msg"></child>
 		<child message="child component!"></child>
 	</div>
+	<div>
+		<h1>Custom Events - Child send message to parent</h1>
+		<ul>
+			<li>
+				Listen to an event using <code>$on(eventName)</code>
+			</li>
+			<li>Trigger an event using <code>$emit(eventName)</code></li>
+		</ul>
+		<div id="counter-event-example">
+			<p>{{ total }}</p>
+			<button-counter v-on:increment="incrementTotal"></button-counter>
+			<button-counter v-on:increment="incrementTotal"></button-counter>
+			<button-counter v-on:click.native="showAlert"></button-counter>
+		</div>
+		<div id="v-model-example">
+			<p>{{message.info}} - {{ message.title }}</p>
+			<my-input label="Message" v-model="message.title"></my-input>
+			<my-input label="Info" v-model="message.info"></my-input>
+		</div>
+		<h1>Non Parent-Child Communication</h1>
+		<p>
+		Sometimes two components may need to communicate with one-another but they are not parent/child to each other. In simple scenarios, you can use an empty Vue instance as a central event bus:</p>	
+	</div>
+
+
+
 
 	<script type="text/javascript">
 		var myObj = {message: 'hello'};
 
-	//register component	
-	Vue.component('my-component',{
-		template: '<div>A custom component! {{message}}</div>',
-		// data is technically a function, so Vue won't
-  		// complain, but we return the same object
-  		// reference for each component instance
-  		data: function(){
-  			return myObj;
-  		}
-  	});
-	
-	new Vue({
-		el: "#example"		
-	});
+		//register component	
+		Vue.component('my-component',{
+			template: '<div>A custom component! {{message}}</div>',
+			// data is technically a function, so Vue won't
+  			// complain, but we return the same object
+  			// reference for each component instance
+  			data: function(){
+  				return myObj;
+  			}
+  		});
 
-	var Child = {
-		template: '<div>A custom component!</div>'
-	};
-	new Vue({
-		el: '#app-2',
-		components:{
-			//will only be available in parent's template
-			'only-component': Child
-		}
-	})
+		new Vue({el: "#example"});
 
-	Vue.component('child',{
-		// declare the props
-		props:{
-			message: [Number, String],
-			required: true
-		},
-		// just like data, the prop can be used inside templates
-  		// and is also made available in the vm as this.message
-  		template: '<p>{{message}}</p>'
-  	});
-	new Vue({
-		el:'#app-3',
-		data:{
-			msg: 'Message newer.'
-		}
-	})
+		var Child = {template: '<div>A custom component!</div>'};
+		new Vue({
+			el: '#app-2',
+			components:{
+				//will only be available in parent's template
+				'only-component': Child
+			}
+		});
 
-</script>
+		Vue.component('child',{
+			// declare the props
+			props:{
+				message: [Number, String],
+				required: true
+			},
+			// just like data, the prop can be used inside templates
+  			// and is also made available in the vm as this.message
+  			template: '<p>{{message}}</p>'
+  		});
+		new Vue({
+			el:'#app-3',
+			data:{
+				msg: 'Message newer.'
+			}
+		});
+		//CustomEvents
+		Vue.component('button-counter',{
+			template: '<button v-on:click="increment">{{ counter }}</button>',
+			data:function(){
+				return {
+					counter: 0
+				}
+			},
+			methods: {
+				increment:function(){
+					this.counter += 1;
+					this.$emit('increment');
+				}				
+			}
+		});
+		new Vue({
+			el:'#counter-event-example',
+			data: {
+				total: 0
+			},
+			methods:{
+				incrementTotal: function(){
+					this.total += 1;
+				},
+				showAlert: function(){
+					alert('click');
+				}
+			}
+		});
+
+		Vue.component('my-input', {
+			template: '\
+			<div class="form-group">\
+				<label v-bind:for="randomId">{{ label }}:</label>\
+				<input v-bind:id="randomId" v-bind:value="value" v-on:input="onInput">\
+			</div>\
+			',
+			props: ['value', 'label'],
+			data: function () {
+				return {
+					randomId: 'input-' + Math.random()
+				}
+			},
+			methods: {
+				onInput: function (event) {					
+					this.$emit('input', event.target.value);
+				}
+			},
+		});
+		new Vue({
+			el: '#v-model-example',
+			data: {
+				message:{
+					title: 'hello',
+					info: 'some information'
+				}
+			}
+		});		
+	</script>
 </body>
 </html>
