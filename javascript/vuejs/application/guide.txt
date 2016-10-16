@@ -1,0 +1,63 @@
+webpack
+webpack can be installed through npm:
+
+$ npm install webpack -g
+
+Vue-CLI
+	$ npm install -g vue-cli
+Usage
+	$ vue init <template-name> <project-name>
+Example:
+	$ vue init webpack my-project
+
+*for run ES6, this fix is necessary:
+You have three options:
+
+Run node.js with --harmony_generators flag set.
+node --harmony_generators my_script.js
+Using package.json: "scripts": {"start": "node --harmony_generators my_script.js"}. Run with npm run
+npm install harmonize and require before Metalsmith is used. e.g. require("harmonize")(["harmony-generators"]);
+>>>>Use Metalsmith v1.7. Put "metalsmith": "^1.7.0" in your package.json and npm install that version.
+
+instalar as dependencias
+npm install
+npm run (dev|lint|build)
+
+Sempre que roda o "npm run dev" uma nova janela é aberta, para que isso não aconteça, editar o arquivo
+build/dev-server.js e retirar a opção "opn", como mostrado abaixo:
+ 
+-- var opn = require('opn')
+-- opn(uri)
+e pode retirar tb do package.json
+
+------------------------------
+Colocar o bootstrap no projeto
+
+Templates gratuitos para bootstrap
+https://bootswatch.com/
+instalando...
+npm i bootstrap-sass --save
+é necessário instalar mais duas dependencias por causa do sass.
+node-sass: compila o sass
+sass-loader: permite que o webpack entenda como compilar o sass
+
+O template usado é o Lumen.
+https://bootswatch.com/lumen/
+
+Pegar os arquivos:
+https://bootswatch.com/lumen/_variables.scss
+https://bootswatch.com/lumen/_bootswatch.scss
+
+cria o _bootstrap.scss para customizar o bootstrap original.
+vai na pasta no node_modules, copia todo o conteudo e altera
+o sass não processa arquivos que começam com "_"
+
+ctrl+d seleciona todas as referencias.
+se quer editar multiplas linhas, seleciona a primeira e depois mantem ctrl+d
+para selecionar todos os campos.
+
+dentro do arquivo App.vue, define o lang como "sass".
+
+*existe um problema pra fazer funcionar o build com o glyphicons que não sei o que pode ser
+
+
