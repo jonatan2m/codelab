@@ -7,6 +7,7 @@ var la = console.log;
 var evens = [0,2,4,6,8];
 l('The resources can find on http://es6-features.org/')
 l('and https://hacks.mozilla.org/category/es6-in-depth/')
+l('All examples: https://jsbin.com/niduqowovu/4/edit?js,console')
 ln()
 l('Constans')
 const PI = 3.141593;
@@ -15,11 +16,11 @@ ln();
 l('Scoping: Block-Scoped Variables:')
 ln();
 
-function testLet(){  
+function testLet(){
   if(true){
     let i = 1;
-    var i1 = 1;    
-  }  
+    var i1 = 1;
+  }
   l('    i is not defined. ' + 'value i1 is ' + i1);
 }
 testLet();
@@ -44,12 +45,12 @@ l('Extended Parameter Handling: ' + 'Default Parameter Values')
 function f(x, y = 7, z = 42){return x+y+z;}
 l(f(1))
 l('Extended Parameter Handling: ' + 'Rest Parameter (similar ao arguments)')
-function g(x,y,...a){ 
+function g(x,y,...a){
   return (x+y)*a.length;
 }
 l(g(1,2,'hello', true,7))
 l('Extended Parameter Handling: ' + 'Spread Operator')
-function g1(a,...b){  
+function g1(a,...b){
   return a;
 }
 var _g1 = [2,...evens, 2]
@@ -193,7 +194,7 @@ class Circle extends Shape{
 l`Classes: Class Inheritance, From Expressions`
 
 console.log`Support for mixin-style inheritance by extending
-from expressions yielding function objects. 
+from expressions yielding function objects.
 [Notice: the generic aggregation function
 is usually provided by a library like this one, of course]`
 l`read more: http://es6-features.org/#ClassInheritanceFromExpressions`
@@ -202,7 +203,7 @@ l`Classes: Base Class Access (the same way in Java super.[prop|method])`
 
 l`Classes: Static Members`
 
-class Circle1 extends Shape {    
+class Circle1 extends Shape {
     static defaultCircle () {
         return new Circle1("default", 0, 0, 100)
     }
@@ -270,13 +271,13 @@ var countFiveIterator = {
   [Symbol.iterator]: function (){
     return this;
   },
-  next: function (){    
+  next: function (){
     return {done: this.counter > 5, value: this.counter++};
   },
-  return: function (){    
+  return: function (){
     this.lastCounter = this.counter
     this.counter = 1
-    l(this.lastCounter) 
+    l(this.lastCounter)
     return {done: true, value: this.counter};
   },
   throw: function (exc){
@@ -286,15 +287,15 @@ var countFiveIterator = {
 };
 
 for(let v of countFiveIterator){
-  l(v)  
+  l(v)
   break;
 }
 for(let v of countFiveIterator){
-  l(v)    
+  l(v)
   //throw new Error('Crashed!')
 }
 for(let v of countFiveIterator){
-  l(v)    
+  l(v)
 }
 l`Generators: Generator Function, Iterator Protocol`
 l`read more: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators`
@@ -306,7 +307,7 @@ function* idMaker(){
   var index = 0;
   while(true)
     yield index++;
-} 
+}
 
 var gen = idMaker();
 l(gen.next().value)
@@ -339,7 +340,7 @@ l `Advanced generators: Here is the fibonacci generator using next(x) to restart
 function* fibonacci(){
   var fn1 = 0;
   var fn2 = 1;
-  while(true){    
+  while(true){
     [fn1, fn2] = [fn2, fn1 + fn2];
     var reset = yield fn2;
     if(reset){
@@ -362,8 +363,8 @@ function* range(start, end, step){
   while(start < end){
     yield start
     start += step
-  } 
-} 
+  }
+}
 for(let i of range(0,10,2)){
   l(i)
 }
