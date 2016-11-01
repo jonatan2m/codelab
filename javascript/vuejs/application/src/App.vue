@@ -1,9 +1,11 @@
 <template>
   <div id="app">
     <img class="logo" src="./assets/logo.png">
-    <hello></hello>
+    <!-- <hello></hello> -->
+    <Header></Header>
     <p>
       Welcome to your Vue.js app!
+
     </p>
     <p>
       To get a better understanding of how this boilerplate works, check out
@@ -23,13 +25,14 @@
 </template>
 
 <script>
-import Hello from './components/Hello'
+import Header from './components/root/Header.vue'
 
 export default {
   components: {
-    Hello
+    Header
   }
 }
+
 </script>
 
 <style src="assets/sass/app.scss" lang="sass"></style>
