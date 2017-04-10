@@ -1,0 +1,128 @@
+<html>
+	<head>
+		<script src="https://unpkg.com/vue/dist/vue.js"></script>
+		<style type="text/css">
+			.demo{
+				width: 100px;
+				height: 100px;
+				background-color: gray;
+				display: inline-block;
+				margin: 10px;
+			}
+			.red{
+				background-color: red;
+			}
+			.green{
+				background-color: green;
+			}
+			.blue{
+				background-color: blue;
+			}
+		</style>
+	</head>
+	<body>
+<!-- 	Module Resources & Useful Links
+Section 5, Lecture 77
+JSFiddle:
+
+The Vue Instance Code: https://jsfiddle.net/smax/9a2k6cja/2/
+The VueJS Instance Lifecycle: https://jsfiddle.net/smax/jcgw7ak8/
+Useful Links:
+
+Official Docs - The Vue Instance: http://vuejs.org/guide/instance.html
+Official Docs - Reactivity in Depth: http://vuejs.org/guide/reactivity.html -->
+		<ul>
+			<li>Using multiple Vue instances</li>
+			<li>learn more about Vue API on vuejs.org/api</li>		
+			<li>mounting a template</li>
+			<li>using a component</li>
+		</ul>\
+		<div id="app">
+			<h1 ref="heading">
+				{{title}}
+			</h1>				
+			<p v-show="showParagraph">This is not always visible</p>
+			<button @click="show" ref="myButton">Show paragraph!</button>
+		</div>
+
+		<div id="app2">
+			<h1>
+				{{title}} 
+			</h1>	
+			<button @click="onChange">Change something in Vue 1</button>
+			<hello></hello>
+			<hello></hello>
+		</div>
+		<div id="app3">
+		</div>
+		
+		
+	</body>
+	<script>
+
+	Vue.component('hello', {
+			template:'<h1>Hello, component!</h1>'
+	})	;
+
+	//This object is manipulation by Vue
+	var data = {
+		title: 'First Instance',
+		showParagraph: false
+	};
+
+		var vm1 = new Vue({			
+			data: data,
+			methods: {
+				show: function () {
+					this.showParagraph = true;
+					//When we put the ref attribute on element, we can access it via $refs, as shown below 
+					this.$refs.myButton.innerText = 'Test!';
+				}
+			},
+			watch: {
+				title: function(value){
+					document.body.append(value);
+				}
+			}
+		});
+		
+		//rendering view lately
+		vm1.$mount('#app');
+
+		setTimeout(() => {
+			vm1.title = "Changed by Timer!";
+		}, 3000);
+		
+		console.log(vm1.$data.title);
+		console.log(vm1.title);
+		console.log(vm1.$data === data);
+		vm1.$refs.heading.innerText = "Waiting for a timer...";
+
+		var vm2 = new Vue({
+			el: '#app2',
+			data: {
+				title: 'Second Instance'
+			},
+			methods: {
+				onChange: function () {
+					vm1.title = "Changed!";
+				}
+			}
+		});
+
+		var vm3 = new Vue({
+			template: '<h1>Hello!</h1>'
+		});
+
+		//instancing vue and append the template on page.
+		//vm3.$mount("#app3");
+		//or
+		//append the template inside the div, because vuejs replaced older div#app3
+		vm3.$mount();		
+		document.querySelector('#app3').appendChild(vm3.$el);
+
+			
+
+
+	</script>
+</html>

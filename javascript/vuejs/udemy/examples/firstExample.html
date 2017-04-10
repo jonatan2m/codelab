@@ -1,0 +1,211 @@
+<html>
+	<head>
+		<script src="https://unpkg.com/vue/dist/vue.js"></script>
+		<style type="text/css">
+			.demo{
+				width: 100px;
+				height: 100px;
+				background-color: gray;
+				display: inline-block;
+				margin: 10px;
+			}
+			.red{
+				background-color: red;
+			}
+			.green{
+				background-color: green;
+			}
+			.blue{
+				background-color: blue;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<code>
+				el: connect to DOM
+				data: Store Data to be used
+				methods: Methods of this Vue instance
+				computed: Dependent Properies
+				watch: Execute code upon data changes
+			</code>
+			<!--
+			JSFiddle Links:
+
+Getting Started: https://jsfiddle.net/smax/pcjtcmdm/
+Template Syntax: https://jsfiddle.net/smax/bkk97b7g/
+Events: https://jsfiddle.net/smax/7zdak05g/
+Two-Way-Binding: https://jsfiddle.net/smax/ut0tsbcu/
+Computed Properties & Watch: https://jsfiddle.net/smax/yLjqxmw0/
+Dynamic Classes: https://jsfiddle.net/smax/gowg40ym/
+Dynamic Styles: https://jsfiddle.net/smax/3rvdLq5y/
+Further Links:
+
+Official Docs - Getting Started: http://vuejs.org/guide/
+Official Docs - Template Syntax: http://vuejs.org/guide/syntax.html
+Official Docs - Events: http://vuejs.org/guide/events.html
+Official Docs - Computed Properties & Watchers: http://vuejs.org/guide/computed.html
+Official Docs - Class and Style Binding: http://vuejs.org/guide/class-and-style.html-->
+			<h1 v-once>{{ title }}</h1>
+			<input type="text" v-on:input="changeTitle">
+			<p>{{ title }}</p>
+			<p>{{ sayHello() }} - <a v-bind:href="link">Google</a> </p>
+			<hr>
+			<p v-html="finishedLink"></p>
+
+			<button v-on:click="increase(2, $event)">Click me</button>
+			<button v-on:click="counter++">Click me</button>
+			<p>{{ counter * 2 > 10 ? 'Greater than 10' : 'Smaller than 10' }}</p>
+			<p v-on:mousemove="updateCoordinates">
+				Coordinates: {{ x }} / {{ y }}
+				- <span v-on:mousemove="dummy">DEAD SPOT</span>
+				- <span v-on:mousemove.stop="">OTHER DEAD SPOT</span>
+			</p>
+			<input type="text" v-on:keyup.enter.space="alertMe">
+			<hr>
+			<input type="text" v-model="name">
+			<p>{{name}}</p>
+			<hr>
+			<button v-on:click="counter++">Increase</button>
+			<button v-on:click="counter--">Decrease</button>
+			<button v-on:click="secondCounter++">Increase Second</button>
+			<p>{{ counter }} | {{ secondCounter }}</p> 
+			<p>{{ result() }} | {{ output }}</p> 
+			<div class="demo" 
+				v-on:click="attachRed = !attachRed"
+				v-bind:class="divClasses">				
+			</div>
+			<div class="demo"
+				v-bind:class="{red: attachRed}"></div>
+			<div class="demo" :class="color"></div>
+			<div class="demo" :class="[color, {red: attachRed}]"></div>
+			<div class="demo" :style="{backgroundColor: color}"></div>
+			<div class="demo" :style="myStyle"></div>
+			<hr>
+			<input type="text" v-model="color">
+			<input type="text" v-model="width">
+			<hr>
+			<p v-if="ifShow">Primeiro paragrafo</p>
+			<!--If you're using Vue.js version 2.1 or higher, you now actually have access to a v-else-if  directive.-->
+			<p v-else>Else do primeiro paragrafo</p>
+			<template v-if="ifShow">
+				<h1>Heading</h1>
+				<p>Inside a template</p>
+			</template>
+			<p v-show="ifShow">Segundo paragrafo</p>
+			<button v-on:click="ifShow=!ifShow">switch</button>
+			<hr>
+			<ul>
+				<li v-for="(ingredient, i) in forExample.ingredients" v-bind:key="ingredient">
+					{{ ingredient }} ({{ i }})
+				</li>
+			</ul>
+			<button @click="forExample.ingredients.push('spices')">Add New</button>
+			<hr>
+			<template v-for="(ingredient, index) in forExample.ingredients">
+				<h1> {{ ingredient }} </h1>
+				<p> {{ index }} </p>
+			</template>
+			<hr>
+			<ul>
+				<li v-for="person in forExample.people">
+					{{ person.name }}
+					<div v-for="(value, key, index) in person">
+						{{ key }}: {{ value }} ({{index}})
+					</div>
+				</li>
+			</ul>
+			<span v-for="n in 10">{{ n }}</span>
+			<!-- JSFiddle:
+
+Conditionals (v-if and v-show): https://jsfiddle.net/smax/hoc719j5/
+Lists: https://jsfiddle.net/smax/o7uy2g0u/
+Useful Links:
+
+Official Docs - Conditionals: http://vuejs.org/guide/conditional.html
+Official Docs - Lists: http://vuejs.org/guide/list.html		 -->	
+
+		</div>
+	</body>
+	<script>
+		new Vue({
+			el: '#app',
+			data: {
+				title: 'Hello World',
+				link: "http://google.com",
+				finishedLink: '<a href="http://google.com">Google</a>',
+				counter: 0,
+				x: 0,
+				y: 0,
+				name: 'Jonatan',
+				secondCounter: 0,
+				attachRed: false,
+				color: "green",
+				width: 120,
+				ifShow: true,
+				forExample: {
+					ingredients: ['meat', 'fruit', 'cookies'],
+					people: [
+						{name: 'Max', age: 27, color: 'red'},
+						{name: 'Anna', age: 'unknown', color: 'blue'}
+					]
+				}
+			},
+			computed: {
+				output: function () {
+					//só é executado caso a propriedade que manipula sofre alteração
+					console.log('Computed');
+					return this.counter > 5 ? 'Greater 5' : 'Smaller than 5';
+				},
+				divClasses: function () {
+					return {
+						red: this.attachRed,
+						blue: !this.attachRed
+					};
+				},
+				myStyle: function () {
+					return {
+						backgroundColor: this.color,
+						width: this.width + "px"
+					}
+				}
+			},
+			watch: {
+				counter: function (value) {
+					var vm = this;
+					setTimeout(function(){
+						vm.counter = 0;
+					}, 2000);
+				}
+			},
+			methods: {
+				changeTitle: function (event) {					
+					this.title = event.target.value;
+				},
+				sayHello: function () {
+					//return "Hello!";
+					this.title = "Hello!";
+					return this.title;
+				},
+				increase: function (step, event) {
+					this.counter += 2;
+				},
+				updateCoordinates: function (event) {
+					this.x = event.clientX;
+					this.y = event.clientY;
+				},
+				dummy: function (event) {
+					event.stopPropagation();
+				},
+				alertMe: function () {
+					alert('Alert!');
+				},
+				result: function () {
+					// sempre é executado
+					console.log('Method');
+					return this.counter > 5 ? 'Greater 5' : 'Smaller than 5';
+				}
+			}
+		});
+	</script>
+</html>
