@@ -13,17 +13,20 @@ function hanoi (n) {
   function move (disks, from, to) {
     
     if(disks === 0) {      
-      //printBoard();
+      printBoard();
       return;
     }
     else if(disks === 1) {
       pegs[to].push(pegs[from].pop());
-      //printBoard();
+      printBoard();
     }else{      
       var spared = getSpared(from, to);      
       move(disks - 1, from, spared);      
+      
       pegs[to].push(pegs[from].pop());            
+      printBoard();
       move(disks - 1, spared, to);
+
     }
   }
     
