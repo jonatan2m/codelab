@@ -13,12 +13,12 @@
 
 function BinarySearch(arr, min, max, item) {
 
-    if (min < max) {
+    if (min <= max) {
 
         var mid = Math.floor((max + min) / 2);
 
         if (item === arr[mid]) return mid;
-        else if (item < arr[mid]) return BinarySearch(arr, min, mid, item);
+        else if (item < arr[mid]) return BinarySearch(arr, min, mid - 1, item);
         else return BinarySearch(arr, mid + 1, max, item);
     }
     return -1;
@@ -29,3 +29,5 @@ var array = [-2, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 console.log(BinarySearch(array, 0, array.length - 1, 1) === 2);
 console.log(BinarySearch(array, 0, array.length - 1, 0) === 1);
 console.log(BinarySearch(array, 0, array.length - 1, 10) === -1);
+console.log(BinarySearch(array, 0, array.length - 1, 9) === 10);
+console.log(BinarySearch(array, 0, array.length - 1, -2) === 0);
