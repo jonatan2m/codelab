@@ -1,5 +1,7 @@
 /**
  * Search an element in a sorted and rotated array
+ * 
+ * Time Complexity O(logn).
  */
 
 //Content of binary-search.js
@@ -28,10 +30,10 @@ function BinarySearchRotatedArray(arr, min, max, item) {
 
         if (arr[mid] < arr[max] && arr[mid] < arr[min])
             return getPivotRecursive(arr, min, mid);
-        else if (arr[mid] > arr[mid + 1] && arr[mid] > arr[mid - 1])
-            return mid;
         else if (arr[mid] > arr[max] && arr[mid] > arr[min])
             return getPivotRecursive(arr, mid, max);
+        else
+            return mid;
     }
 
     var pivot = getPivotRecursive(arr, min, max);
