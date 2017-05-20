@@ -3,6 +3,11 @@
         <p>Server Details are currently not updated</p>
         <p>Server Name: {{ myName }} ({{ switchName() }}) </p>
         <button @click="resetName">Reset Name</button>
+        <button @click="resetFn()">Reset Name</button>
+
+        <hr>
+        <p>Edit me!</p>
+        <p>Age: {{ userAge }}</p>
     </div>
 
 </template>
@@ -11,8 +16,11 @@
     export default {
 //        props: ['myName'],
         props: {
-            myName: String,            
-            default: 'Hello John'
+            myName: {
+                type: String                
+            },
+            resetFn: Function,
+            userAge: Number            
         },
         methods: {
             switchName() {
@@ -21,7 +29,7 @@
             resetName() {
                 this.myName = "Jonatan";
                 this.$emit('nameWasReset', this.myName);
-            }
+            }            
         }
     }
 </script>

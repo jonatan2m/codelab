@@ -6,11 +6,17 @@
             <servers></servers>
             <button @click="changeName">Change my name</button>
             <p>Original name: {{ name }}</p> 
-            <app-server-details v-bind:myName="name" v-on:nameWasReset="name = $event"></app-server-details>
-            
+            <p>Age: {{ age }}</p>
+            <app-server-details 
+                v-bind:myName="name"
+                v-on:nameWasReset="name = $event"
+                :userAge="age"
+                :resetFn="resetName"></app-server-details>            
         </div>
         <hr>
-        <app-footer></app-footer>
+        <app-footer :userAge="age"
+                    :incrementAgeFn="incrementAge"
+                    v-on:ageWasEdited="age = $event"></app-footer>
     </div>
 <!-- 
     In the last lecture I introduced one possible folder structure. It's a great structure in small and medium sized projects.
@@ -46,12 +52,19 @@
     export default {
         data: function() {
             return {
-                name: 'Jonatan'
+                name: 'Jonatan',
+                age: 27
             }
         },
         methods: {
             changeName() {
-                this.name = "Joe";
+                this.name = "Anna";
+            },
+            resetName() {
+                this.name = "Jonatan"
+            },
+            incrementAge() {
+                this.age += 1;
             }
         },
         components: {
