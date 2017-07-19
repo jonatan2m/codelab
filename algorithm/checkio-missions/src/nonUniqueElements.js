@@ -15,3 +15,10 @@ module.exports = function (elements) {
     return result;
 }
 
+/**
+ * Other Implementation
+ * 
+ *  return data.filter(function(a){
+        return data.indexOf(a) !== data.lastIndexOf(a)    
+    });
+ */
