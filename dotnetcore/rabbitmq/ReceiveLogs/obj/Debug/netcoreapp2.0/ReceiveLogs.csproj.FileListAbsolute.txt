@@ -1,0 +1,10 @@
+d:\Github\myLab\dotnetcore\rabbitmq\ReceiveLogs\bin\Debug\netcoreapp2.0\ReceiveLogs.deps.json
+d:\Github\myLab\dotnetcore\rabbitmq\ReceiveLogs\bin\Debug\netcoreapp2.0\ReceiveLogs.runtimeconfig.json
+d:\Github\myLab\dotnetcore\rabbitmq\ReceiveLogs\bin\Debug\netcoreapp2.0\ReceiveLogs.runtimeconfig.dev.json
+d:\Github\myLab\dotnetcore\rabbitmq\ReceiveLogs\bin\Debug\netcoreapp2.0\ReceiveLogs.dll
+d:\Github\myLab\dotnetcore\rabbitmq\ReceiveLogs\bin\Debug\netcoreapp2.0\ReceiveLogs.pdb
+d:\Github\myLab\dotnetcore\rabbitmq\ReceiveLogs\obj\Debug\netcoreapp2.0\ReceiveLogs.csproj.CoreCompileInputs.cache
+d:\Github\myLab\dotnetcore\rabbitmq\ReceiveLogs\obj\Debug\netcoreapp2.0\ReceiveLogs.AssemblyInfoInputs.cache
+d:\Github\myLab\dotnetcore\rabbitmq\ReceiveLogs\obj\Debug\netcoreapp2.0\ReceiveLogs.AssemblyInfo.cs
+d:\Github\myLab\dotnetcore\rabbitmq\ReceiveLogs\obj\Debug\netcoreapp2.0\ReceiveLogs.dll
+d:\Github\myLab\dotnetcore\rabbitmq\ReceiveLogs\obj\Debug\netcoreapp2.0\ReceiveLogs.pdb

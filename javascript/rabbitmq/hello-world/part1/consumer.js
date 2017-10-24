@@ -8,7 +8,9 @@ amqp.connect('amqp://localhost', function (err, conn) {
         console.log(" [*] Waiting for messages in %s. To exit press CTRL+C", q);
 
         ch.consume(q, function (msg) {
-            console.log(' [x] Received %s', msg.content.toString());
+            //console.log(' [x] Received %s', msg.content.toString());
+            console.log(' [x] Received %s', JSON.parse(msg.content.toString()).msg);
+
         }, { noAck: true });
     })
 })

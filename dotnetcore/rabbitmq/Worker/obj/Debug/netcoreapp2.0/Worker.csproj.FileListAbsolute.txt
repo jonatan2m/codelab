@@ -1,0 +1,10 @@
+D:\Github\myLab\dotnetcore\rabbitmq\Worker\bin\Debug\netcoreapp2.0\Worker.deps.json
+D:\Github\myLab\dotnetcore\rabbitmq\Worker\bin\Debug\netcoreapp2.0\Worker.runtimeconfig.json
+D:\Github\myLab\dotnetcore\rabbitmq\Worker\bin\Debug\netcoreapp2.0\Worker.runtimeconfig.dev.json
+D:\Github\myLab\dotnetcore\rabbitmq\Worker\bin\Debug\netcoreapp2.0\Worker.dll
+D:\Github\myLab\dotnetcore\rabbitmq\Worker\bin\Debug\netcoreapp2.0\Worker.pdb
+D:\Github\myLab\dotnetcore\rabbitmq\Worker\obj\Debug\netcoreapp2.0\Worker.csproj.CoreCompileInputs.cache
+D:\Github\myLab\dotnetcore\rabbitmq\Worker\obj\Debug\netcoreapp2.0\Worker.AssemblyInfoInputs.cache
+D:\Github\myLab\dotnetcore\rabbitmq\Worker\obj\Debug\netcoreapp2.0\Worker.AssemblyInfo.cs
+D:\Github\myLab\dotnetcore\rabbitmq\Worker\obj\Debug\netcoreapp2.0\Worker.dll
+D:\Github\myLab\dotnetcore\rabbitmq\Worker\obj\Debug\netcoreapp2.0\Worker.pdb

@@ -1,0 +1,10 @@
+D:\Github\myLab\dotnetcore\rabbitmq\EmitLogs\bin\Debug\netcoreapp2.0\EmitLogs.deps.json
+D:\Github\myLab\dotnetcore\rabbitmq\EmitLogs\bin\Debug\netcoreapp2.0\EmitLogs.runtimeconfig.json
+D:\Github\myLab\dotnetcore\rabbitmq\EmitLogs\bin\Debug\netcoreapp2.0\EmitLogs.runtimeconfig.dev.json
+D:\Github\myLab\dotnetcore\rabbitmq\EmitLogs\bin\Debug\netcoreapp2.0\EmitLogs.dll
+D:\Github\myLab\dotnetcore\rabbitmq\EmitLogs\bin\Debug\netcoreapp2.0\EmitLogs.pdb
+D:\Github\myLab\dotnetcore\rabbitmq\EmitLogs\obj\Debug\netcoreapp2.0\EmitLogs.csproj.CoreCompileInputs.cache
+D:\Github\myLab\dotnetcore\rabbitmq\EmitLogs\obj\Debug\netcoreapp2.0\EmitLogs.AssemblyInfoInputs.cache
+D:\Github\myLab\dotnetcore\rabbitmq\EmitLogs\obj\Debug\netcoreapp2.0\EmitLogs.AssemblyInfo.cs
+D:\Github\myLab\dotnetcore\rabbitmq\EmitLogs\obj\Debug\netcoreapp2.0\EmitLogs.dll
+D:\Github\myLab\dotnetcore\rabbitmq\EmitLogs\obj\Debug\netcoreapp2.0\EmitLogs.pdb
