@@ -59,6 +59,8 @@
     <Compile Include="FactorialTest.cs" />
     <Compile Include="Fibonacci.cs" />
     <Compile Include="FibonacciTest.cs" />
+    <Compile Include="PermutationString.cs" />
+    <Compile Include="PermutationStringTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
