@@ -15,10 +15,11 @@ namespace RecursiveLab
                 var result = new List<string>();
                 for (int i = 0; i < endingString.Length; i++)
                 {
-                    var newString = RemoveCharAt(endingString, i);
+                    var newStringWithoutCurrentChat = RemoveCharAt(endingString, i);
 
+                    string beginningStringPart = $"{beginningString}{endingString[i]}";
                     result.AddRange(
-                        Permute($"{beginningString}{endingString[i]}", newString)
+                        Permute(beginningStringPart, newStringWithoutCurrentChat)
                         );
                 }
 
