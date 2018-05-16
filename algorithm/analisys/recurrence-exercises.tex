@@ -6,9 +6,68 @@
 \usepackage[T1]{fontenc}
 
 \begin{document}
-	\begin{center}
-		Recorrências - Exercicios
-	\end{center}
+
+\section{Recorrência}
+Uma recorrência é uma expressão que dá o valor de uma função em termos dos valores "anteriores" da mesma função.
+
+Para analisar o consumo de tempo de um algoritmo recursivo é necessário resolver uma recorrência.
+
+O exemplo clássico de recorrência, provavelmente o mais fomoso, é a formula de Fibonacci:
+
+$$
+F(n) = \left\{
+\begin{array}{ccc}
+	0 &\mbox{se}\ n = 0\quad \\
+	1 &\mbox{se n = 1}\quad \\
+	F(n - 1) + F(n - 2) &\mbox{se} \ n \ge 2\quad
+\end{array}\right.
+$$
+
+Outro exemplo clássico de recorrência é:
+$$
+F(n) = \left\{
+\begin{array}{cc}
+1 &\mbox{se n = 0}\quad \\
+n.F(n - 1) &\mbox{se} \ n \ge 1\quad
+\end{array}\right.
+$$
+
+Um fórmula fechada para F(n) é dada por:
+$$F(n) = n.F(n - 1)$$
+$$\quad = n.(n - 1).F(n - 2) = ... =$$
+$$\quad = n.(n - 1).(n - 2).... 2.1.1$$
+$$\quad = n!$$
+
+Resolver uma recorrência é encontrar uma "fórmula fechada" que dê o valor da função diretamente em termos do seu argumento.
+\\
+Vamos analisar o consumo de tempo do algoritmo da busca binária.
+\\
+Em cada iteração, o algoritmo descarta metade do valor. Se denotamos por $T(n)$ o número máximo de iterações realizadas pela busca binária sobre um vetor com $n$ elementos, a função $T(n)$ pode ser expressa pela seguinte recorrência:
+$$
+T(n) = T(\lfloor \frac{n}{2} \rfloor) + 1, \ T(1) = 1.
+$$
+
+Para obter uma solução, supomos inicialmente que $n = 2^k$.
+
+
+\begin{equation}
+\begin{split}
+T(n) = T(\lfloor \frac{n}{2} \rfloor) + 1 \\
+= (T(\frac{n}{4}) + 1) + 1 \ = T(\frac{n}{2^2}) = 2\\
+= T(\frac{n}{2^3}) + 3 \\
+= T(\frac{n}{2^k}) + k = T(1) + k = k + 1 \\
+= log \ {n} + 1
+\end{split}
+\end{equation}
+
+Podemos agora tentar mostrar que $T(n) \le \log{n} + 1, \ \forall{n} \ge 1$, por indução em n.
+\\
+Para $n = 1, T(1) = 1 = \log{1} + 1$
+Para $n > 1$, temos
+\\\\\\\\\
+continua...
+
+\section{Recorrência - Exercicios}
 
 \begin{enumerate}
 		
@@ -29,5 +88,20 @@
 		\item Mostre que a solução de $T(n)= 4T(\frac{n}{2}) + n$  é $O(n^2).$	
 		
 \end{enumerate}
+
+\section{Respostas}
+
+\begin{enumerate}
+	\item  $T(n)= T(\frac{n}{2}) + 7n + 2$, $T(1) = 1.$ \\
+	$T(n) \le O(n^2), \forall n \ge 8$, por indução em $n$
+	\\
 	
+	$T(1) = (1)^2 = 1$ \\
+	$T(2) = T(\frac{2}{2}) + 7*2 + 2 = 17 \not\le n^2(4) $ \\
+	$T(4) = T(\frac{4}{2}) + 7*4 + 2 = 32 \not\le n^2(16) $ \\
+	$T(8) = T(\frac{8}{2}) + 7*8 + 2 = 62 \le n^2(64) $ \\
+	
+	
+\end{enumerate}
+
 \end{document}
