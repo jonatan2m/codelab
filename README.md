@@ -4,6 +4,6 @@ Here is all contents that I have ever studied, pieces of code, small projects an
 
 ## Computer Science
 ### Algorithm
-[HackerRank](hackerRank)
-- [Cracking Code](hackerRank/crackingCodingInterview)
+[HackerRank](algorithm/hackerRank)
+- [Cracking Code](algorithm/hackerRank/crackingCodingInterview)
 - [30 Days of Code]()
