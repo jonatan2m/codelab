@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Session Name="C:\Projects\myLab\helloworld\c\prog-c.workspace">
+  <int Value="0" Name="m_selectedTab"/>
+  <wxString Value="C:\Projects\myLab\helloworld\c\prog-c.workspace" Name="m_workspaceName"/>
+  <TabInfoArray Name="TabInfoArray">
+    <TabInfo>
+      <wxString Value="C:\Projects\myLab\helloworld\c\main.c" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="80" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds">
+        <IntVectorItem Value="5"/>
+        <IntVectorItem Value="8"/>
+        <IntVectorItem Value="17"/>
+        <IntVectorItem Value="24"/>
+        <IntVectorItem Value="35"/>
+        <IntVectorItem Value="47"/>
+        <IntVectorItem Value="53"/>
+        <IntVectorItem Value="57"/>
+        <IntVectorItem Value="61"/>
+        <IntVectorItem Value="67"/>
+        <IntVectorItem Value="71"/>
+      </IntVector>
+    </TabInfo>
+  </TabInfoArray>
+  <SerializedObject Name="m_breakpoints">
+    <long Value="0" Name="Count"/>
+  </SerializedObject>
+</Session>
