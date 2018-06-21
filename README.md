@@ -13,3 +13,7 @@ Here is all contents that I have ever studied, pieces of code, small projects an
     - [BubleSort]()
 - [JavaScript](algorithm/sorting/javascript)
     - [BubleSort]()
+    
+## Math
+### Discrete
+- [UFMG](math/matemática%20discreta) 
