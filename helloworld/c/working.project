@@ -93,6 +93,12 @@
     </Configuration>
   </Settings>
   <VirtualDirectory Name="src">
+    <File Name="utils.c"/>
+    <File Name="utils.h"/>
+    <File Name="array.c"/>
+    <File Name="array.h"/>
+    <File Name="pointer.h"/>
+    <File Name="pointer.c"/>
     <File Name="main.c"/>
   </VirtualDirectory>
 </CodeLite_Project>

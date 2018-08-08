@@ -1,1 +1,1 @@
-./Debug/main.c.o   
+./Debug/main.c.o ./Debug/array.c.o ./Debug/utils.c.o ./Debug/pointer.c.o   

@@ -3,6 +3,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <pointer.h>
+#include <array.h>
+
 int lg(int n) {
     return log2(n);
 }
@@ -76,7 +79,7 @@ void assert_expo() {
 void vetores() {
     //alocado dinamicamente
     int *v;
-    v = malloc(5 * sizeof(int));
+    v = malloc(5 * sizeof (int));
     *(v+1) = 12;
     printf("%d ", *(v+1));
     free(v);
@@ -92,16 +95,34 @@ void vetores() {
     printf("%d\n", *(v+2));    
 }
 
+void pointer(){
+    ex1();
+    ex2();
+    ex3();
+    ex4();
+    ex5();
+    ex6();
+    int h, m;
+    hm(150, &h, &m);
+    printf("hours: %d and minutes: %d\n", h, m);
+}
+
+void array() {
+    ar1();
+    ar2();
+}
 
 int main(int argc, char **argv)
-{    
+{   
 	printf("hello world\n");
-    assert_lg();
+    pointer();
+    array();
+    /*assert_lg();
     assert_maximoR();
     assert_fib();
     assert_euclides();
     assert_expo();
-    vetores();
+    vetores();*/
 	return 0;
 }
 
