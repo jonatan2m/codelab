@@ -1,1 +1,1 @@
-./Debug/main.c.o ./Debug/array.c.o ./Debug/utils.c.o ./Debug/pointer.c.o   
+./Debug/main.c.o ./Debug/array.c.o ./Debug/utils.c.o ./Debug/binaryheap.c.o ./Debug/queue.c.o ./Debug/pointer.c.o ./Debug/linkedlist.c.o   

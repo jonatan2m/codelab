@@ -40,9 +40,38 @@ void ar2() {
     *(v + i) = i++;
     *(v + i) = i++;
     *(v + i) = i++;
-    printf("first value %d and %d\n", v[0], v[1]);
-    printf("first value %d and %d\n", v[2], v[3]);
+    printf("value %d and %d\n", v[0], v[1]);
+    printf("value %d and %d\n", v[2], v[3]);
     line();
+}
+
+void ar3() {
+    int *v[5];    
+    int *a = malloc(5 * sizeof(int));
+    
+    char string[] = {'H','e','l','l','o'};
+    char *begin, *end, temp;
+    begin = string;
+    end = string;
+    end += 4;
+    
+    printf("%x", begin);
+   for (int c = 0; c < 5/2; c++)
+   {        
+      temp   = *end;
+      *end   = *begin;
+      *begin = temp;
+ 
+      begin++;
+      end--;
+   }
+    
+    printf("Reverse of entered string is \"%s\".\n", string);
+    
+    
+    *(a + 1) = 1;
+    
+    
 }
 
 struct node 

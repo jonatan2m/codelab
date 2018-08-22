@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Jonatan
-Date                   :=08/08/2018
+Date                   :=22/08/2018
 CodeLitePath           :="C:/Program Files/CodeLite"
 LinkerName             :=C:/TDM-GCC-64/bin/g++.exe
 SharedObjectLinkerName :=C:/TDM-GCC-64/bin/g++.exe -shared -fPIC
@@ -62,7 +62,7 @@ AS       := C:/TDM-GCC-64/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=C:\Program Files\CodeLite
-Objects0=$(IntermediateDirectory)/main.c$(ObjectSuffix) $(IntermediateDirectory)/array.c$(ObjectSuffix) $(IntermediateDirectory)/utils.c$(ObjectSuffix) $(IntermediateDirectory)/pointer.c$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/main.c$(ObjectSuffix) $(IntermediateDirectory)/array.c$(ObjectSuffix) $(IntermediateDirectory)/utils.c$(ObjectSuffix) $(IntermediateDirectory)/binaryheap.c$(ObjectSuffix) $(IntermediateDirectory)/queue.c$(ObjectSuffix) $(IntermediateDirectory)/pointer.c$(ObjectSuffix) $(IntermediateDirectory)/linkedlist.c$(ObjectSuffix) 
 
 
 
@@ -117,6 +117,22 @@ $(IntermediateDirectory)/utils.c$(DependSuffix): utils.c
 $(IntermediateDirectory)/utils.c$(PreprocessSuffix): utils.c
 	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/utils.c$(PreprocessSuffix) utils.c
 
+$(IntermediateDirectory)/binaryheap.c$(ObjectSuffix): binaryheap.c $(IntermediateDirectory)/binaryheap.c$(DependSuffix)
+	$(CC) $(SourceSwitch) "C:/Projects/codelab/helloworld/c/binaryheap.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/binaryheap.c$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/binaryheap.c$(DependSuffix): binaryheap.c
+	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/binaryheap.c$(ObjectSuffix) -MF$(IntermediateDirectory)/binaryheap.c$(DependSuffix) -MM binaryheap.c
+
+$(IntermediateDirectory)/binaryheap.c$(PreprocessSuffix): binaryheap.c
+	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/binaryheap.c$(PreprocessSuffix) binaryheap.c
+
+$(IntermediateDirectory)/queue.c$(ObjectSuffix): queue.c $(IntermediateDirectory)/queue.c$(DependSuffix)
+	$(CC) $(SourceSwitch) "C:/Projects/codelab/helloworld/c/queue.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/queue.c$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/queue.c$(DependSuffix): queue.c
+	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/queue.c$(ObjectSuffix) -MF$(IntermediateDirectory)/queue.c$(DependSuffix) -MM queue.c
+
+$(IntermediateDirectory)/queue.c$(PreprocessSuffix): queue.c
+	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/queue.c$(PreprocessSuffix) queue.c
+
 $(IntermediateDirectory)/pointer.c$(ObjectSuffix): pointer.c $(IntermediateDirectory)/pointer.c$(DependSuffix)
 	$(CC) $(SourceSwitch) "C:/Projects/codelab/helloworld/c/pointer.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/pointer.c$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/pointer.c$(DependSuffix): pointer.c
@@ -124,6 +140,14 @@ $(IntermediateDirectory)/pointer.c$(DependSuffix): pointer.c
 
 $(IntermediateDirectory)/pointer.c$(PreprocessSuffix): pointer.c
 	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/pointer.c$(PreprocessSuffix) pointer.c
+
+$(IntermediateDirectory)/linkedlist.c$(ObjectSuffix): linkedlist.c $(IntermediateDirectory)/linkedlist.c$(DependSuffix)
+	$(CC) $(SourceSwitch) "C:/Projects/codelab/helloworld/c/linkedlist.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/linkedlist.c$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/linkedlist.c$(DependSuffix): linkedlist.c
+	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/linkedlist.c$(ObjectSuffix) -MF$(IntermediateDirectory)/linkedlist.c$(DependSuffix) -MM linkedlist.c
+
+$(IntermediateDirectory)/linkedlist.c$(PreprocessSuffix): linkedlist.c
+	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/linkedlist.c$(PreprocessSuffix) linkedlist.c
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

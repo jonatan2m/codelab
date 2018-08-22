@@ -93,6 +93,15 @@
     </Configuration>
   </Settings>
   <VirtualDirectory Name="src">
+    <VirtualDirectory Name="external">
+      <File Name="src/external/Queue.c_"/>
+    </VirtualDirectory>
+    <File Name="binaryheap.c"/>
+    <File Name="binaryheap.h"/>
+    <File Name="queue.c"/>
+    <File Name="queue.h"/>
+    <File Name="linkedlist.c"/>
+    <File Name="linkedlist.h"/>
     <File Name="utils.c"/>
     <File Name="utils.h"/>
     <File Name="array.c"/>

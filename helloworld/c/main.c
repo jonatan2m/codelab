@@ -5,6 +5,9 @@
 
 #include <pointer.h>
 #include <array.h>
+#include <linkedlist.h>
+#include <queue.h>
+#include <binaryheap.h>
 
 int lg(int n) {
     return log2(n);
@@ -110,13 +113,57 @@ void pointer(){
 void array() {
     ar1();
     ar2();
+    ar3();
+}
+
+void linkedlist(){
+    celula *c = list();
+    printf("PRINT LINKEDLIST %d ", c->conteudo);
+    add(1);
+    add(2);
+    add(3);    
+    add(4);
+    add(5);    
+    print();
+    printf("size linkedlist: %d\n", size());
+    printf("value_at 3: %d\n", value_at(3));
+    push_front(6);
+    print();
+    printf("pop_front: 6 %d\n", pop_front());
+    print();
+}
+
+void queue(){
+    enqueue(1);
+    enqueue(2);
+    enqueue(3);
+    printf("dequeue: 1 -> %d\n", dequeue());
+    printf("dequeue: 2 -> %d\n", dequeue());
+}
+
+void binaryheap(){
+    create(10);
+    insertHeap('a');
+    insertHeap('b');
+    insertHeap('d');
+    insertHeap('f');
+    insertHeap('e');
+    printf("remove heap %c", deleteHeap());
+    insertHeap('j');
+    insertHeap('f');
+    insertHeap('x');
+    printf("remove heap %c", deleteHeap());
+    printHeap();
 }
 
 int main(int argc, char **argv)
-{   
+{       
 	printf("hello world\n");
     pointer();
     array();
+    linkedlist();
+    queue();
+    binaryheap();
     /*assert_lg();
     assert_maximoR();
     assert_fib();
