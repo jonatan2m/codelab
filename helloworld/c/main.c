@@ -9,6 +9,7 @@
 #include <queue.h>
 #include <binaryheap.h>
 
+
 int lg(int n) {
     return log2(n);
 }
@@ -156,6 +157,12 @@ void binaryheap(){
     printHeap();
 }
 
+void hashtable_() {
+    ht1();
+    ht2("abacdb");
+}
+
+
 int main(int argc, char **argv)
 {       
 	printf("hello world\n");
@@ -164,12 +171,14 @@ int main(int argc, char **argv)
     linkedlist();
     queue();
     binaryheap();
+    hashtable_();
+    binarySearchTree();
     /*assert_lg();
     assert_maximoR();
     assert_fib();
     assert_euclides();
     assert_expo();
     vetores();*/
+    
 	return 0;
 }
-

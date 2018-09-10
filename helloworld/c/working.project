@@ -93,7 +93,10 @@
     </Configuration>
   </Settings>
   <VirtualDirectory Name="src">
+    <File Name="src/binarysearchtree.c"/>
+    <File Name="src/hashtable.c"/>
     <VirtualDirectory Name="external">
+      <File Name="src/external/BinaryTreeLevelOrder.c_"/>
       <File Name="src/external/Queue.c_"/>
     </VirtualDirectory>
     <File Name="binaryheap.c"/>
