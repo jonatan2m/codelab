@@ -1,0 +1,26 @@
+body {
+  background-color: #83af9b;
+  text-align: center;
+  font-family: Arial;
+  padding: 0;
+  margin: 0;
+}
+h1 {
+  background-color: #fe4365;
+  color: #f9cdad;
+  font-size: 8em;
+  padding: 50px;
+}
+h2 {
+  color: #fe4365;
+  background-color: #f9cdad;
+}
+img {
+  height: 250px;
+}
+p {
+  background-color: #fc9d9a;
+  color: white;
+  padding: 50px;
+  font-size: 2em;
+}

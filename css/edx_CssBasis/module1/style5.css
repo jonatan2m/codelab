@@ -1,0 +1,38 @@
+body {
+  font-family: Helvetica, sans-serif;
+  background-color: #fdff98;
+  margin: 20px;
+}
+
+h1 {
+  border: 1px solid #fc6a19;
+  font-family: Impact;
+  padding: 5px;
+  color: #fc6a19;
+  font: bold;
+}
+
+h2 {
+  background-color: #fc6a19;
+  color: #fdff98;
+  font-family: "Courier New", serif;
+  padding: 10px;
+  padding-top: 25px;
+}
+
+ol {
+  background-color: #fccf19;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+}
+
+li {
+  color: #fdff98;
+  font-weight: 600;
+}
+
+p {
+  border: 1px dashed #fccf19;
+  padding: 10px;
+}
