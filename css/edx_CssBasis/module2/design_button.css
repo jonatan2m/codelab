@@ -1,0 +1,59 @@
+div {
+  margin: 50px;
+  padding: 50px;
+}
+#badButton {
+  background-color: teal;
+  color: white;
+}
+#badButton button {
+  background-color: transparent;
+  border: 0px;
+  color: white;
+}
+
+/*this design is a pretty traditional button where it has a distinct background color and border color */
+#design1 {
+  background-color: #94618e;
+  color: #f8eee7;
+  font-family: Corbel;
+}
+#design1 button {
+  background-color: #f4decb;
+  padding: 10px 25px;
+  border: 5px solid #f8eee7;
+  color: #49274a;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+/* this is a more modern button design where there is no distinct border, but just a flat color background */
+#design2 {
+  background-color: #d9d9d9;
+  color: white;
+  font-family: "Century Gothic", sans-serif;
+}
+#design2 button {
+  background-color: #4484ce;
+  border: 0px;
+  color: white;
+  padding: 10px 50px;
+  font-family: Impact, sans-serif;
+  font-size: 1.3em;
+}
+
+/*this is a big graphic button that uses border radius to give it a rounded shape*/
+#design3 {
+  font-family: Impact, sans-serif;
+  font-size: 2em;
+}
+
+#design3 button {
+  font-family: Impact, sans-serif;
+  font-weight: 100;
+  background-color: white;
+  border: 7px #ec576b solid;
+  padding: 15px 40px;
+  border-radius: 20px;
+  font-size: 0.8em;
+}

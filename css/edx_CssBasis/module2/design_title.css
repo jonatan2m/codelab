@@ -1,0 +1,72 @@
+div {
+  padding: 10px;
+}
+
+/* Bad example. there are too properties declared */
+#busyTitle h1 {
+  font-size: 2em;
+  font-family: Impact;
+  color: yellow;
+  background-color: gray;
+  font-style: italic;
+  font-variant: small-caps;
+  font-weight: bold;
+  text-decoration: underlinel;
+}
+
+/* This title uses soft clean colors based on print media, so we chose a serif font. We also increased the size and color to help the title appear more prominent than the body text.  */
+#design1 {
+  background-color: #f4f4f4;
+  font-family: "Lucidia Sans Unicode", sans-serif;
+}
+
+#design1 h1 {
+  color: #c0b283;
+  font-size: 4em;
+  font-weight: 700;
+  font-family: Garamond;
+  width: 300px;
+}
+
+#design1 p {
+  color: #373737;
+  font-size: 1.2em;
+}
+
+/* This design is intended to look futuristic, so it only uses sans-serif, thin font with high contrast colors. */
+#design2 {
+  font-family: Century Gothic, sans-serif;
+  background-color: #0e0b16;
+}
+
+#design2 h1 {
+  font-weight: 400;
+  font-size: 2.3em;
+  color: #a239ca;
+  font-style: italic;
+}
+
+#design2 p {
+  color: #e7dfdd;
+}
+
+/* This design is based on pastel primary colors and uses color as a highlight against the default white background. We have achieved the separation between title and body text by setting its background color separately and giving it a bottom border.  */
+#design3 {
+  color: #df744a;
+  font-family: Arial, sans-serif;
+}
+
+#design3 h1 {
+  background-color: #bfd8d2;
+  text-align: center;
+  font-size: 4em;
+  font-weight: 100;
+  padding: 30px;
+  border-bottom: 5px #dcb239 solid;
+  font-family: Helvetica, sans-serif;
+}
+
+#design3 p {
+  background-color: #fedcd2;
+  padding: 50px;
+}

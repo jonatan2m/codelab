@@ -1,0 +1,55 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="design_button.css" />
+  </head>
+  <body>
+    <!-- Effective titles and buttons
+        Now that you know a bit more about how CSS is written, you will start to understand and notice more of the design elements as you navigate around the Web. 
+        
+        In this module's style studies section, you learned some effective ways to style titles and buttons. You also learned about some design choices that make your titles and buttons not as effective...
+        
+        Titles shouldn't be overly styled. They should only have a few properties set to help them stand out from body text, but not too many otherwise they will be too busy.
+        Buttons should send a clear message that they need to be interacted with. If a button doesn't show up as a rectangle, a user typically won't understand that it's a button. -->
+    <div id="badButton">
+      <p>
+        Font-size sets the overall scale of your text. You can use a lot of
+        different units to set the font size. Some of these units you are
+        probably familiar with if you have used text editors before such as pt
+        size or you can use px size. However, these methods are not advised
+        because they are static and will not adapt based on screen size.
+      </p>
+      <button>click here</button>
+    </div>
+    <div id="design1">
+      <p>
+        This property sets the font face. There are a collection of Web safe
+        fonts that generally each browser has agreed to support, but there is an
+        infinite number of different fonts. The problem is they might not all
+        look the way you want them to on different browsers.
+      </p>
+      <button>pay</button>
+    </div>
+    <div id="design2">
+      <p>
+        That is why this property "font-family" allows a list of fonts in the
+        order of your preference. This comma-separated list orders your font
+        preference from left to right. In our above example, our first choice is
+        Helvetica, if the browser doesn't support that it will move to the next
+        on the list, Verdana, and if it still doesn't support that it will just
+        pick any sans-serif font it does support. You should always end your
+        font family with fonts that are likely to be supported by the browser,
+        this way I am guaranteed to have control over the font-family.
+      </p>
+      <button>ok</button>
+    </div>
+    <div id="design3">
+      <p>
+        Something to keep in mind: some fonts have names with multiple words
+        like "Times New Roman" or "Century Gothic". When using these fonts
+        you'll need to surround the entire name with quotes so the browser
+        understands that is a single font name
+      </p>
+      <button>login</button>
+    </div>
+  </body>
+</html>
