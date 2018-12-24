@@ -27,10 +27,10 @@ void swim(int k) {
     }
 }
 
-int less(int x, int y) {
-    char left = *(harr + x);
-    char right = *(harr + y);
-    return left < right;
+int less(int parent, int child) {
+    char x = *(harr + parent);
+    char y = *(harr + child);
+    return x < y;
 }
 void exch(int from, int to) {
     char temp = *(harr + from);

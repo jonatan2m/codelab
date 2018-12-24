@@ -1,0 +1,34 @@
+body {
+  margin: 10px;
+  background-color: yellow;
+  width: 30%;
+}
+
+h1,
+h3 {
+  background-color: #e7a4be;
+  padding: 10px;
+  color: white;
+}
+
+h2 {
+  font-family: Impact serif;
+  color: orange;
+  font-weight: bold;
+}
+
+h3 {
+  font-style: italic;
+}
+
+p {
+  padding: 10px;
+  border: 5px dashed #badabf;
+  font-style: italic;
+}
+
+ol,
+ul {
+  border: 5px solid #badabf;
+  padding-top: 5px 5px;
+}
