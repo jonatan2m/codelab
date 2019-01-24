@@ -1,0 +1,34 @@
+function quicksort(arr, left=0, right=arr.length - 1) {
+    if (left < right) {
+        let pivotIndex = pivot(arr, left, right);
+
+        quicksort(arr, left, pivotIndex - 1);
+        quicksort(arr,pivotIndex + 1, right);
+    }
+    return arr;
+}
+
+function pivot(arr, start=0, end=arr.length - 1) {
+    let pivot = arr[start];
+    let swapIdx = start;
+
+    let swap = function(arr, from, to) {
+        //swap com ES 2015
+        // [arr[from], arr[to]] = [arr[to], arr[from]];
+        let temp = arr[from];
+        arr[from] = arr[to];
+        arr[to] = temp;
+    }
+
+    for (let i = start + 1; i <= end; i++) {
+        if (pivot > arr[i]) {
+            swapIdx++;
+            swap(arr, swapIdx, i);
+        }
+    }
+    swap(arr, start, swapIdx);
+    console.log(arr);
+    return swapIdx;
+}
+
+console.log(quicksort([4, 8, 2, 1, 5, 7, 6, 3]));

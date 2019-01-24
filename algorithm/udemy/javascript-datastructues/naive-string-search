@@ -1,0 +1,21 @@
+function search(long, short){
+    let count = 0;
+    let tempCount = 0;
+
+    for(let i = 0; i < long.length; i++){
+        if(long[i] === short[tempCount]){
+            tempCount++;
+        }else{
+            tempCount = 0;
+        }
+
+        if(tempCount === short.length){
+            tempCount = 0;
+            count++;
+        }
+    }
+
+    return count;
+}
+
+search("lorie lolely", "l");

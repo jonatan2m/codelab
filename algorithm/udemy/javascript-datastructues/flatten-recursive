@@ -1,0 +1,29 @@
+function flatten(items) {
+    // add whatever parameters you deem necessary - good luck!
+    var result = [];
+
+    function fn(arr) {
+
+        if (arr.length === 0)
+            return [];
+
+        if (Array.isArray(arr[0])) {
+            fn(arr[0]);
+            fn(arr.splice(1));
+        } else {
+            result.push(arr[0]);
+            result.concat(fn(arr.splice(1)));
+        }
+    }
+
+    fn(items);
+
+    return result;
+}
+
+//flatten([1, 2, 3, [4, 5]])
+// [1, 2, 3, 4, 5]
+//flatten([1, [2, [3, 4], [[5]]]])
+// [1, 2, 3, 4, 5]
+// flatten([[1],[2],[3]]) // [1,2,3]
+ flatten([[[[1], [[[2]]], [[[[[[[3]]]]]]]]]]) // [1,2,3

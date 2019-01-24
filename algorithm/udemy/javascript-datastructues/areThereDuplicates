@@ -1,0 +1,21 @@
+function areThereDuplicates() {
+  // good luck. (supply any arguments you deem necessary.)
+  //transformar a entrada em array
+  let values = Array.prototype.slice.call(arguments);
+
+  let frequencyValues = {};
+
+  for(let key of values) {
+
+      //pegar cada valor e verificar se ja existe
+      //se sim, retorna true
+      if(frequencyValues[key]) return true;
+
+      frequencyValues[key] = (frequencyValues[key] || 0) + 1;
+  }
+
+  // se nao, retorna false
+  return false;
+}
+
+console.log(areThereDuplicates(1,2,3,4,5,1));

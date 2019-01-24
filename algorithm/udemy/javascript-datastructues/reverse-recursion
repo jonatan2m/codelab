@@ -1,0 +1,18 @@
+function reverse(str) {
+    // add whatever parameters you deem necessary - good luck!
+
+    function reverseFn(index) {
+        if (index === 0)
+            return str[index];
+        if (index < 0)
+            return "";
+
+        return str[index] + reverseFn(index - 1);
+    }
+
+    return reverseFn(str.length - 1);
+}
+
+reverse('awesome')
+// 'emosewa'
+// reverse('rithmschool') // 'loohcsmhtir'

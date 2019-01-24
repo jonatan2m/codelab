@@ -1,0 +1,17 @@
+// SAMPLE INPUT / OUTPUT
+let isOdd1 = val => val % 2 !== 0;
+
+function someRecursive(arr, fn){
+  // add whatever parameters you deem necessary - good luck!
+  if(arr.length === 0) return false;
+  
+  if(fn(arr[0])) return true;
+  
+  return someRecursive(arr.splice(1), fn);
+  
+}
+
+// someRecursive([1,2,3,4], isOdd1) // true
+// someRecursive([4,6,8,9], isOdd1) // true
+//someRecursive([4,6,8], isOdd1) // false
+ someRecursive([4,6,8], val => val > 10); // false

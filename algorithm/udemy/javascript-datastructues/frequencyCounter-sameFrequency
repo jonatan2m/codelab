@@ -1,0 +1,19 @@
+function sameFrequency(n1, n2){
+  // good luck. Add any arguments you deem necessary
+  
+  n1 = String(n1);
+  n2 = String(n2);
+  if(n1.length !== n1.length) return false;
+  let frequencyN1 = {};
+ 
+  for(let key of n1){
+      frequencyN1[key] = (frequencyN1[key] || 0);
+  }
+
+  for(let key of n2){
+      if(!frequencyN1[key]) return false;
+      
+      frequencyN1[key]--;
+  }
+  return true;
+ }

@@ -1,0 +1,18 @@
+function isSubsequence(s1, s2) {
+    // good luck. Add any arguments you deem necessary.
+    // percorrer a segunda string dentro de um for.
+    // a execucao termina quando
+    // percorrer toda a s1 ou
+    //termina de percorrer a s2 (retorna false)
+    //quando acha uma correspondencia em s2, iterar o ponteiro para s1
+    let s1Index = 0;
+    for (let char of s2) {
+        if (s1Index === s1.length - 1)
+            return true;
+
+        if (s1[s1Index] === char) {
+            s1Index++;
+        }
+    }
+    return false;
+}

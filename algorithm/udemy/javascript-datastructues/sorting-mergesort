@@ -1,0 +1,42 @@
+function merge(arr1, arr2) {
+    let index1 = 0;
+    let index2 = 0;
+
+    //numa linguagem compilada, poderia pegar a soma do tamanho dos arrays
+    var results = [];
+
+    while (index1 < arr1.length && index2 < arr2.length) {
+        if (arr1[index1] <= arr2[index2]) {
+            results.push(arr1[index1]);
+            index1++;
+        } else {
+            results.push(arr2[index2]);
+            index2++;
+        }
+    }
+
+    while (index1 < arr1.length) {
+        results.push(arr1[index1]);
+        index1++;
+    }
+
+    while (index2 < arr2.length) {
+        results.push(arr2[index2]);
+        index2++;
+    }
+    return results;
+}
+
+function mergeSort(arr) {
+    
+    if(arr.length <= 1) return arr;
+
+    let mid = Math.floor(arr.length / 2);
+    let left = mergeSort(arr.slice(0, mid));
+    let right = mergeSort(arr.slice(mid));
+
+    return merge(left, right);
+}
+
+
+mergeSort([2,5,3,90,11,44,22,59]);
