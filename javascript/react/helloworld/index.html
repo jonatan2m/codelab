@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>First test with React</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <h1>Here is an example React page</h1>
+    <div id="root"></div>
+
+    <div id="root2"></div>
+
+    <!-- Load React. -->
+    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+    <script
+      src="https://unpkg.com/react@16/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <script src="./LikeButton.js"></script>
+    <script src="./LikeButtonJSX.js" type="text/babel"></script>
+
+    <script>
+      let container = document.querySelector("#root");
+
+      ReactDOM.render(React.createElement(LikeButton), container);
+    </script>
+
+    <script type="text/babel">
+      container = document.querySelector("#root2");
+      ReactDOM.render(React.createElement(LikeButtonJSX), container);
+    </script>
+  </body>
+</html>
