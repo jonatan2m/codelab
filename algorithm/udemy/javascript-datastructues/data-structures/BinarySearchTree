@@ -41,6 +41,11 @@ class BinarySearchTree {
 
         return internalFind(this.root, value);
     }
+    //Breadth First Search
+    BFS() {
+        var data = [],
+           queue = []
+    }
 }
 
 var tree = new BinarySearchTree();
