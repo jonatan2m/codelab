@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="UnitTest1.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="TestingEventsConsole\bin\Debug\netcoreapp2.1\TestingEventsConsole.deps.json" />
+    <None Remove="TestingEventsConsole\bin\Debug\netcoreapp2.1\TestingEventsConsole.dll" />
+    <None Remove="TestingEventsConsole\bin\Debug\netcoreapp2.1\TestingEventsConsole.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="FileSearch\" />
+  </ItemGroup>
+</Project>
