@@ -1,0 +1,88 @@
+var a = [1,2,3];
+var b = [...a, 4,5, 6];
+var c = [...a];
+console.log(a, b, c, a === c);
+
+var obj = {nome: 'Jonatan'};
+var obj1 = {...obj, idade: 38}
+console.log(obj, obj1)
+
+var string = 'minha string';
+//vira um array
+console.log([...string])
+
+var fn1 = (foo, bar) => {
+    console.log("foo", foo, "bar", bar)
+    };
+fn1(...b)
+
+var {first, second, ...others} = {first:1, second:2, third:3, fourth:4, fifth: 5}
+console.log(first, second, others);
+
+string = 'first part \
+second part';
+
+console.log(string)
+
+string = 'first part \n\
+second part';
+
+console.log(string)
+
+string = `Hey
+this
+
+string
+is awesome!`;
+
+console.log(string)
+
+//Com encapsulamento
+/*
+class JSE6 {
+    constructor({name, age}){
+        this.name = name;
+        this.age = age;
+    }
+
+    set age(value) {
+        this._age = value;
+    }
+
+    get age(){
+        return this._age
+    }
+
+    say(){
+        console.log(`${this.name}, ${this.age}`);
+
+    }
+}
+
+
+var jse6 = new JSE6({age:37, name:"Jonatan"});
+console.log(jse6, jse6.say());
+jse6.age = 38;
+console.log(jse6, jse6.say());
+*/
+
+//Promises
+var p = new Promise((resolve, reject) => {
+    var num = Math.floor(Math.random() * 10);
+
+    if(num % 2 === 0) resolve("par");
+    else reject("impar")
+});
+
+var pp = () => {
+    return p;
+}
+
+
+//p.then(value => console.log(value))
+// .catch(error => console.log("error ", error));
+
+var processingP = async () => { await pp ()};
+
+var _resultP =  processingP();
+console.log(_resultP);
