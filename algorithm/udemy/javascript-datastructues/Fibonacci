@@ -1,0 +1,13 @@
+function fibo(n){
+    //if(n < 2) return n;
+
+    //return fibo(n - 1) + fibo(n - 2);
+    let result = 0, y = 1, z = 1;
+    for(var i = 0; i < n; i++){
+        result = y;
+        y = z;
+        z = result + y;
+    }
+    
+    return result;
+}
