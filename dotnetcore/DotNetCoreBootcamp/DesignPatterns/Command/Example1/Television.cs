@@ -10,22 +10,24 @@ namespace DesignPatterns.Command.Example1
 
         public void Off()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("TV is off");
         }
 
         public void On()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("TV is on");            
         }
 
         public void VolumenDown()
         {
-            throw new NotImplementedException();
+            volume--;
+            Console.WriteLine($"TV volume is at: {volume}");            
         }
 
         public void VolumeUp()
         {
-            throw new NotImplementedException();
+            volume++;
+            Console.WriteLine($"TV volume is at: {volume}");                        
         }
     }
 }
