@@ -8,7 +8,6 @@
     <Compile Remove="Class1.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ChainOfResponsability\" />
     <Folder Include="ChainOfResponsability\Example1\" />
   </ItemGroup>
 </Project>
