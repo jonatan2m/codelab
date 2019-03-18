@@ -11,6 +11,8 @@ namespace DesignPatternsConsole
             DesignPatterns.Command.Example3.PlayRobot.Run();
             Console.WriteLine("--------------------------------------");
             DesignPatterns.Command.Example4.ApplicationMakeText.Run();
+            Console.WriteLine("--------------------------------------");
+            DesignPatterns.Memento.Example3.PlayEditor.Run();
             Console.Read();
         }
     }

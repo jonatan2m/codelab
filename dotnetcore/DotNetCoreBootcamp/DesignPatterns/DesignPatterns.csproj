@@ -9,6 +9,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ChainOfResponsability\Example1\" />
+    <Folder Include="Memento\Example3\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System">

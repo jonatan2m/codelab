@@ -9,4 +9,7 @@
     <ProjectReference Include="..\DesignPatterns\DesignPatterns.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="DesignPatterns\Memento\Example3\PlayEditor.cs" />
+  </ItemGroup>
 </Project>

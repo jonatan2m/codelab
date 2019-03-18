@@ -30,10 +30,10 @@ namespace DesignPatternsTest
         [Fact]
         public void ChainOfResponsability_Example1()
         {
-            DivNumbers div = new DivNumbers();
-            MultNumbers mult = new MultNumbers(div);
-            SubtractNumbers sub = new SubtractNumbers(mult);
-            AddNumbers rootOperator = new AddNumbers(sub);
+            IChain div = new DivNumbers();
+            IChain mult = new MultNumbers(div);
+            IChain sub = new SubtractNumbers(mult);
+            IChain rootOperator = new AddNumbers(sub);
 
             Numbers numbers = new Numbers(2, 4, CalcOperator.Mult);
             var result = rootOperator.Calculate(numbers);

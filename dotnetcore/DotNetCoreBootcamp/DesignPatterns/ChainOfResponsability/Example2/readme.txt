@@ -8,20 +8,26 @@ An employee typically submits an expense report to his or her manager,
 looking for approval and subsequent reimbursement for business travel expenses.
 The manager (if in his or her office) often can approve the report immediately,
 as long as it doesn't exceed a certain amount and no other special circumstances exist. 
-If the manager cannot approve the expense report, it moves along the chain to the next appropriate person. 
-The next person might be a VP, or a peer manager if the original manager happens to be out of the office. 
-Different rules and powers apply to the VP, and every once in a while, a big shot will have to get involved. 
-In all cases, the person currently holding the expense report knows who the next person in line is.
+If the manager cannot approve the expense report, it moves along the chain
+ to the next appropriate person. 
+The next person might be a VP, or a peer manager if the original manager 
+happens to be out of the office. 
+Different rules and powers apply to the VP, and every once in a while,
+ a big shot will have to get involved. 
+In all cases, the person currently holding the expense report knows who
+ the next person in line is.
 
 Listing 1 shows the relevant code for an ExpenseReport class.
-This class tracks the amount, whether or not the expense involve international travel (a special case),
+This class tracks the amount, whether or not the expense involve
+ international travel (a special case),
 and the person who ultimately handled (approved or rejected) the report.
 
 Listing 2 presents the Approver class, the core of the chain of responsibility pattern.
 The Approver class represents the entity known in the pattern as the Handler. 
 It's typically an abstract class.
 In this case, it could be represented as either;
-I've chosen to implement three specific handler subtypes: Manager, VicePresident, and CEO (see Listing 3).
+I've chosen to implement three specific handler subtypes: Manager, VicePresident, 
+and CEO (see Listing 3).
 An AutoRejectHandler also exists; approvers of this type reject everything.
 
 The client sends an ExpenseReport object to an Approver using the handle method.
