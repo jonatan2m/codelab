@@ -10,6 +10,7 @@
   <ItemGroup>
     <Folder Include="ChainOfResponsability\Example1\" />
     <Folder Include="Memento\Example3\" />
+    <Folder Include="Strategy\Example1\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System">
