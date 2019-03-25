@@ -11,6 +11,7 @@
     <Folder Include="ChainOfResponsability\Example1\" />
     <Folder Include="Memento\Example3\" />
     <Folder Include="Strategy\Example1\" />
+    <Folder Include="EP.SOLID\2 - OCP\Example1\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System">
@@ -25,5 +26,8 @@
     <Reference Include="System.Xml">
       <HintPath>System.Xml</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.6.0" />
   </ItemGroup>
 </Project>
