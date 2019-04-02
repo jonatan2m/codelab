@@ -4,11 +4,13 @@ VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DelegatesAndEvents", "DelegatesAndEvents\DelegatesAndEvents.csproj", "{8903BF29-7BFF-47DF-A34F-2C8E916C64E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignPatterns", "DesignPatterns\DesignPatterns.csproj", "{B438222C-24F9-467A-9416-50916220A3C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesignPatterns", "DesignPatterns\DesignPatterns.csproj", "{B438222C-24F9-467A-9416-50916220A3C0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesignPatternsTest", "DesignPatternsTest\DesignPatternsTest.csproj", "{AF38AFC6-2ED2-4DCC-805B-EA75C2D87433}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignPatternsConsole", "DesignPatternsConsole\DesignPatternsConsole.csproj", "{61981CF6-9EA0-4367-8D94-2C58BDAEEB46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesignPatternsConsole", "DesignPatternsConsole\DesignPatternsConsole.csproj", "{61981CF6-9EA0-4367-8D94-2C58BDAEEB46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp", "CSharp\CSharp.csproj", "{8629C105-4368-40CC-AD99-1C90FB602B4C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,6 +34,10 @@ Global
 		{61981CF6-9EA0-4367-8D94-2C58BDAEEB46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61981CF6-9EA0-4367-8D94-2C58BDAEEB46}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61981CF6-9EA0-4367-8D94-2C58BDAEEB46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8629C105-4368-40CC-AD99-1C90FB602B4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8629C105-4368-40CC-AD99-1C90FB602B4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8629C105-4368-40CC-AD99-1C90FB602B4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8629C105-4368-40CC-AD99-1C90FB602B4C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

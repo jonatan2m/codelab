@@ -13,6 +13,11 @@ namespace DesignPatternsConsole
             DesignPatterns.Command.Example4.ApplicationMakeText.Run();
             Console.WriteLine("--------------------------------------");
             DesignPatterns.Memento.Example3.PlayEditor.Run();
+            Console.WriteLine("--------------------------------------");
+            DesignPatterns.Adapter.Example1.PlayAdapter.Run();
+            Console.WriteLine("--------------------------------------");
+            DesignPatterns.Decorator.Example1.PlayDecorator.Run();
+
             Console.Read();
         }
     }
