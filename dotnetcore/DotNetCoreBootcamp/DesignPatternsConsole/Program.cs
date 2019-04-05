@@ -18,6 +18,15 @@ namespace DesignPatternsConsole
             Console.WriteLine("--------------------------------------");
             DesignPatterns.Decorator.Example1.PlayDecorator.Run();
 
+
+
+
+
+
+            Console.WriteLine("--------------------------------------");
+            Console.WriteLine("Examples from internet");
+            Console.WriteLine("--------------------------------------");
+            ExamplesFromInternet.AvengersSimulatorHeuristic.PlayAvengers.Run();
             Console.Read();
         }
     }
