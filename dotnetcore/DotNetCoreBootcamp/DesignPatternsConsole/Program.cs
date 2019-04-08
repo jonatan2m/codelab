@@ -17,8 +17,10 @@ namespace DesignPatternsConsole
             DesignPatterns.Adapter.Example1.PlayAdapter.Run();
             Console.WriteLine("--------------------------------------");
             DesignPatterns.Decorator.Example1.PlayDecorator.Run();
-
-
+            Console.WriteLine("--------------------------------------");
+            DesignPatterns.Bridge.Example1.PlayView.Run();
+            Console.WriteLine("--------------------------------------");
+            DesignPatterns.Composite.Example1.PlayComposite.Run();
 
 
 
