@@ -10,7 +10,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesignPatternsTest", "Desig
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesignPatternsConsole", "DesignPatternsConsole\DesignPatternsConsole.csproj", "{61981CF6-9EA0-4367-8D94-2C58BDAEEB46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp", "CSharp\CSharp.csproj", "{8629C105-4368-40CC-AD99-1C90FB602B4C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSharp", "CSharp\CSharp.csproj", "{8629C105-4368-40CC-AD99-1C90FB602B4C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IDisposable Patterns", "NET GC\IDisposable Patterns.csproj", "{0D4073E7-CE37-4E9A-8E6D-89A3550AACBA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +40,10 @@ Global
 		{8629C105-4368-40CC-AD99-1C90FB602B4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8629C105-4368-40CC-AD99-1C90FB602B4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8629C105-4368-40CC-AD99-1C90FB602B4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D4073E7-CE37-4E9A-8E6D-89A3550AACBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D4073E7-CE37-4E9A-8E6D-89A3550AACBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D4073E7-CE37-4E9A-8E6D-89A3550AACBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D4073E7-CE37-4E9A-8E6D-89A3550AACBA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
