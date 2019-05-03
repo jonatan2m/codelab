@@ -1,7 +1,8 @@
 ﻿This example was based on https://www.developer.com/java/article.php/3745236/Working-With-Design-Patterns-Chain-of-Responsibility.htm
 The problem:
 
-Workflow-based systems are another area where the chain of responsibility pattern is particularly applicable.
+Workflow-based systems are another area where the chain of responsibility pattern
+is particularly applicable.
 Expense reimbursement is one common example of such a workflow system.
 
 An employee typically submits an expense report to his or her manager, 

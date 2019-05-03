@@ -7,13 +7,6 @@ namespace DesignPatternsTest
     public class CommandTest
     {
         [Fact]
-        public void Command_Example1()
-        {
-            DesignPatterns.Command.Example1.PlayWithRemote.Run();
-            Assert.True(true);
-        }
-
-        [Fact]
         public void Command_Example2()
         {
             Controller controller = new Controller();
