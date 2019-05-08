@@ -6,10 +6,10 @@ using Xunit;
 
 namespace SOLIDPrinciplesTest.ValidationClass.Example02
 {
-    public class BestExampleTest
+    public class GoodExampleTest
     {
         [Fact]
-        public void BestExampleDesenvolvedor()
+        public void GoodExampleDesenvolvedor()
         {            
             Funcionario funcionario = new Funcionario
             {
@@ -23,7 +23,7 @@ namespace SOLIDPrinciplesTest.ValidationClass.Example02
         }
 
         [Fact]
-        public void BestExampleDba()
+        public void GoodExampleDba()
         {            
             Funcionario funcionario = new Funcionario
             {
@@ -37,7 +37,7 @@ namespace SOLIDPrinciplesTest.ValidationClass.Example02
         }
 
         [Fact]
-        public void BestExampleTester()
+        public void GoodExampleTester()
         {   
             Funcionario funcionario = new Funcionario
             {

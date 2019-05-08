@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SOLIDPrinciples.ValidationClass.Example02.BestSolution
+namespace SOLIDPrinciples.ValidationClass.Example02.GoodSolution
 {
-    public interface IRegraDeCalculo
+    public abstract class RegraDeCalculo
     {
-        double Calcula(Funcionario funcionario);
+        public abstract double Calcula(Funcionario funcionario);
     }
 
-    public class DezOuVintePorCento : IRegraDeCalculo
+    public class DezOuVintePorCento : RegraDeCalculo
     {
-        public double Calcula(Funcionario funcionario)
+        public override double Calcula(Funcionario funcionario)
         {
             if (funcionario.Salario > 3000)
                 return funcionario.Salario * 0.8;
@@ -20,9 +20,9 @@ namespace SOLIDPrinciples.ValidationClass.Example02.BestSolution
         }
     }
 
-    public class QuinzeOuVinteCincoPorCento : IRegraDeCalculo
+    public class QuinzeOuVinteCincoPorCento : RegraDeCalculo
     {   
-        public double Calcula(Funcionario funcionario)
+        public override double Calcula(Funcionario funcionario)
         {
             if (funcionario.Salario > 3000)
                 return funcionario.Salario * 0.75;

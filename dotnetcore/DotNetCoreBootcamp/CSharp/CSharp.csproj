@@ -4,4 +4,12 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="xUnitAutoData.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="xUnitAutoData.cs" />
+  </ItemGroup>
+
 </Project>

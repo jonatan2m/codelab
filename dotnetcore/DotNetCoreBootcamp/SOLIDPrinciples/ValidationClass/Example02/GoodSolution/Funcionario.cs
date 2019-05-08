@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SOLIDPrinciples.ValidationClass.Example02.BestSolution
+namespace SOLIDPrinciples.ValidationClass.Example02.GoodSolution
 {
     public class Funcionario
     {
@@ -11,7 +11,7 @@ namespace SOLIDPrinciples.ValidationClass.Example02.BestSolution
 
         public double AplicarRegraDeCalculoParaCargo()
         {
-            return Cargo.AplicarRegraPadrao(this);
+            return Cargo.AplicarRegraDeCalculo(this);
         }
     }
 }
