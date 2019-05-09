@@ -11,10 +11,12 @@ namespace SOLIDPrinciples.ValidationClass.Example01.WorstSolution
         /// <summary>
         /// This is not a good (SOLID) solution:
         /// 1. The Validate method has multiple responsibilities(Single responsibility).
-        /// 2. The Validate method has to change when a new validation will be added(Open/close principle, Dependency inversion).
+        /// 2. The Validate method has to change when a new validation will be
+        ///    added(Open/close principle, Dependency inversion).
         /// 3. It shows only the first message that is invalid.
-        /// The conditions are inverted(negative condition is harder to read).
-        /// This model can not stand when the Person has 20 validations(otherwise the method would be much to long).
+        /// The conditions are inverted (negative condition is harder to read).
+        /// This model can not stand when the Person has 20 validations
+        /// (otherwise the method would be much to long).
         /// </summary>
         /// <param name="person"></param>
         private void Validate(Person person)
