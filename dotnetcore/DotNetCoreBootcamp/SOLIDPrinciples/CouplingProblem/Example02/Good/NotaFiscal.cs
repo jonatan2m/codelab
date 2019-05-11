@@ -1,4 +1,6 @@
-﻿namespace SOLIDPrinciples.CouplingProblem.Example01
+﻿using System;
+
+namespace SOLIDPrinciples.CouplingProblem.Example02.Good
 {
     public class NotaFiscal
     {
@@ -8,6 +10,11 @@
         public NotaFiscal(double valor, double imposto)
         {
             this.valor = valor;
+            this.imposto = imposto;
+        }
+
+        public void SetImposto(double imposto)
+        {
             this.imposto = imposto;
         }
     }

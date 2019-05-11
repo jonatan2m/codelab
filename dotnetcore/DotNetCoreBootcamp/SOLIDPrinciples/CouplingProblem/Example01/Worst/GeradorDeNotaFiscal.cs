@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 
-namespace SOLIDPrinciples.CouplingProblem.Example01
+namespace SOLIDPrinciples.CouplingProblem.Example01.Worst
 {
-    public class GeradorDeNotaFiscal
+    public partial class GeradorDeNotaFiscal
     {
         private readonly EnviadorDeEmail email;
         private readonly NotaFiscalDao dao;
@@ -28,14 +27,6 @@ namespace SOLIDPrinciples.CouplingProblem.Example01
         private double impostoSimplesSobreO(double valor)
         {
             return valor * 0.06;
-        }
-
-        public class Fatura
-        {
-            public double GetValorMensal()
-            {
-                throw new NotImplementedException();
-            }
         }
     }
 }

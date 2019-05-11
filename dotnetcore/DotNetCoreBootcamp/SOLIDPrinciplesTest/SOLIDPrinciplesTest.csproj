@@ -16,4 +16,8 @@
     <ProjectReference Include="..\SOLIDPrinciples\SOLIDPrinciples.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="CouplingProblem\" />
+    <Folder Include="CouplingProblem\Example01\" />
+  </ItemGroup>
 </Project>

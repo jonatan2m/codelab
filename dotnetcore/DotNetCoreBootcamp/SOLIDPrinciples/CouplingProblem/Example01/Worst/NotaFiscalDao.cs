@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SOLIDPrinciples.CouplingProblem.Example01
+namespace SOLIDPrinciples.CouplingProblem.Example01.Worst
 {
     public class NotaFiscalDao
     {

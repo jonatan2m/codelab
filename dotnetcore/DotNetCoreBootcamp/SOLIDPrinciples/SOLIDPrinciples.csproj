@@ -5,4 +5,11 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="CouplingProblem\Example01\Worst\" />
+    <Folder Include="CouplingProblem\Example01\Good\" />
+    <Folder Include="CouplingProblem\Example02\" />
+    <Folder Include="CouplingProblem\Example02\Worst\" />
+    <Folder Include="CouplingProblem\Example02\Good\" />
+  </ItemGroup>
 </Project>
