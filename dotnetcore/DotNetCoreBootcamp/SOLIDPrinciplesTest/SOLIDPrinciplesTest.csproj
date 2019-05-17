@@ -19,5 +19,6 @@
   <ItemGroup>
     <Folder Include="CouplingProblem\" />
     <Folder Include="CouplingProblem\Example01\" />
+    <Folder Include="Encapsulation\Example1\" />
   </ItemGroup>
 </Project>

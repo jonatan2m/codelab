@@ -25,9 +25,11 @@ namespace SOLIDPrinciplesTest.ValidationClass.Example01
 
         private void AssertHelper(Person person, bool expected)
         {
-            ValidationList validations = new ValidationList();
-            validations.Add(new Age0OrHigherValidation(person));
-            validations.Add(new OnlyAdultsCanConsumeAlcoholValidation(person));
+            ValidationList validations = new ValidationList
+            {
+                new Age0OrHigherValidation(person),
+                new OnlyAdultsCanConsumeAlcoholValidation(person)
+            };
 
             AlcoholSeller alcoholSeller = new AlcoholSeller(validations);
 

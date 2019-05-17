@@ -3,7 +3,7 @@ using System.Text;
 
 namespace SOLIDPrinciples.CouplingProblem.Example01.Good
 {
-    public partial class GeradorDeNotaFiscal
+    public class GeradorDeNotaFiscal
     {
         private readonly List<IAcaoAposGerarNota> acoes;
 
@@ -15,7 +15,7 @@ namespace SOLIDPrinciples.CouplingProblem.Example01.Good
             double valor = fatura.GetValorMensal();
             var nf = new NotaFiscal(
                 valor,
-                impostoSimplesSobreO(valor));
+                ImpostoSimplesSobreO(valor));
 
             foreach (var acao in acoes)
             {
@@ -25,7 +25,7 @@ namespace SOLIDPrinciples.CouplingProblem.Example01.Good
             return nf;
         }
 
-        private double impostoSimplesSobreO(double valor)
+        private double ImpostoSimplesSobreO(double valor)
         {
             return valor * 0.06;
         }

@@ -16,7 +16,7 @@ namespace SOLIDPrinciples.CouplingProblem.Example01.Worst
             double valor = fatura.GetValorMensal();
             var nf = new NotaFiscal(
                 valor,
-                impostoSimplesSobreO(valor));
+                ImpostoSimplesSobreO(valor));
 
             email.EnviarEmail(nf);
             dao.Persiste(nf);
@@ -24,7 +24,7 @@ namespace SOLIDPrinciples.CouplingProblem.Example01.Worst
             return nf;
         }
 
-        private double impostoSimplesSobreO(double valor)
+        private double ImpostoSimplesSobreO(double valor)
         {
             return valor * 0.06;
         }

@@ -6,7 +6,7 @@ namespace SOLIDPrinciples.ValidationClass.Example02.BestSolution
 {
     public static class CargoExtension
     {
-        private static Dictionary<Cargo, Lazy<IRegraDeCalculo>> RegrasPadrao =
+        private static readonly Dictionary<Cargo, Lazy<IRegraDeCalculo>> RegrasPadrao =
             new Dictionary<Cargo, Lazy<IRegraDeCalculo>>
             {
                 {Cargo.DESENVOLVEDOR, new Lazy<IRegraDeCalculo>(() => new DezOuVintePorCento()) },
