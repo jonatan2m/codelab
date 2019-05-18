@@ -3,7 +3,7 @@ using System.Text;
 
 namespace SOLIDPrinciples.CouplingProblem.Example01.Worst
 {
-    public partial class GeradorDeNotaFiscal
+    public class GeradorDeNotaFiscal
     {
         private readonly EnviadorDeEmail email;
         private readonly NotaFiscalDao dao;

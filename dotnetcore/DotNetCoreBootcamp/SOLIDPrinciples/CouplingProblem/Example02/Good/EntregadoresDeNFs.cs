@@ -11,7 +11,14 @@ namespace SOLIDPrinciples.CouplingProblem.Example02.Good
 
         public void DeterminarFormaDeEnvio(NotaFiscal nf)
         {
-            //throw new NotImplementedException();
+            if (lei.DeveEntregarUrgente(nf))
+            {
+                correios.EnviarPorSedex10(nf);
+            }
+            else
+            {
+                correios.EnviarPorSedexComUm(nf);
+            }
         }
     }
 }

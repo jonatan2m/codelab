@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace DesignPatternsConsole
 {
@@ -21,9 +22,6 @@ namespace DesignPatternsConsole
             DesignPatterns.Bridge.Example1.PlayView.Run();
             Console.WriteLine("--------------------------------------");
             DesignPatterns.Composite.Example1.PlayComposite.Run();
-
-
-
 
             Console.WriteLine("--------------------------------------");
             Console.WriteLine("Examples from internet");
