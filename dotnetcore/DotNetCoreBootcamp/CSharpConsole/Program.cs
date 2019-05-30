@@ -1,6 +1,6 @@
 ﻿using CSharp.Enums.LikeJava;
 using System;
-using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace CSharpConsole
 {
@@ -12,10 +12,39 @@ namespace CSharpConsole
             Console.WriteLine(planetStatic.SurfaceGravity());
 
             PlanetEnum planet = PlanetEnum.MERCURY;
-            Console.WriteLine(planet.GetSurfaceGravity());            
+            Console.WriteLine(planet.GetSurfaceGravity());
 
-            Console.WriteLine("Hello World!");
-            Console.ReadKey();
+            Performance.Literal_vs_String_Contants.Example01 example = 
+                new Performance.Literal_vs_String_Contants.Example01();
+            example.CountMemoryAccessingDictionary(100);
+
+            Console.WriteLine("ParseDate");
+            example.ParseDate();
+
+            Console.WriteLine("ParseDateWithFormatVariable");
+            example.ParseDateWithFormatVariable();
+
+            
+            Performance.SelectMany_vs_NestedForeach.Example01 example01 = 
+                new Performance.SelectMany_vs_NestedForeach.Example01();
+
+            var sw = new Stopwatch();
+
+            Console.WriteLine("SelectMany");
+            sw.Start();
+            example01.SelectMany();
+            sw.Stop();
+            Console.WriteLine($"Tempo total: {sw.ElapsedMilliseconds}ms");
+
+            sw.Reset();
+
+            Console.WriteLine("NestedForeach");
+            sw.Start();
+            example01.NestedForeach();
+            sw.Stop();
+            Console.WriteLine($"Tempo total: {sw.ElapsedMilliseconds}ms");
+
+            Console.ReadKey();            
         }
     }
 }
