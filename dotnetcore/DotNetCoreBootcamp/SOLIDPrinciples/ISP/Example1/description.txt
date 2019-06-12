@@ -1,0 +1,24 @@
+﻿PENSANDO NA	INTERFACE	MAIS	MAGRA POSSÍVEL
+
+Um	dilema	interessante	sempre	é:	qual	parâmetro	devo	receber
+em	meu	método?	Por	exemplo,	imagine	uma	classe		NotaFiscal	,
+que	é	extremamente	complexa	e	difícil	de	ser	criada,	pois	depende
+de	muitos	outros	objetos.
+//NotaFiscal
+
+
+Agora,	imagine	um	outro	método,	 responsável	por	 calcular	o
+valor	 do	 imposto	 dessa	 nota	 fiscal.	 Mas,	 para	 calcular	 o	 valor,	 o
+algoritmo	leva	em	consideração	apenas	a	lista	de	itens.	Os	outros
+atributos	não	são	necessários	para	ele.
+//CalculadorDeImposto
+
+
+Devemos nos acoplar a classes estáveis e simples, mas notafiscal é muito complexa e
+passar somente o valor que o método precisa acaba por não expressar bem a intensão do método.
+
+Para resolver isso de forma elegante, criamos uma interface magra, ITributável, com um método apenas.
+Com essa abstração, conseguimos passar bem a intensão do que o método precisa fazer.
+Nota Fiscal implementa a interface ITributavel, que por sua vez tem um método ItensASeremTributaveis
+E CalculadorDeImposto recebe no método calcula, uma instancia de ITributável,
+com somente o método que ele precisa

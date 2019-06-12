@@ -6,7 +6,12 @@ namespace SOLIDPrinciples.Encapsulation.Example1.Good
     public class Fatura
     {
         public List<Pagamento> Pagamentos { get; internal set; } = new List<Pagamento>();
-        public double Valor { get; set; }
+        public double Valor { get; }
+
+        public Fatura(double valor)
+        {
+            Valor = valor;
+        }
 
         public bool Pago
         {

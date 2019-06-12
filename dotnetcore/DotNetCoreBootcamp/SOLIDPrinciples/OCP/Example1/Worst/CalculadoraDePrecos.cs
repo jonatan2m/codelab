@@ -12,7 +12,7 @@
                 TabelaDePrecoPadrao tabela = new TabelaDePrecoPadrao();
                 desconto = tabela.DescontoPara(produto.Valor);
             }
-            if (true /*REGRA 2*/)
+            /*else*/if (true /*REGRA 2*/)
             {
                 TabelaDePrecoDiferenciada tabela = new TabelaDePrecoDiferenciada();
                 desconto = tabela.DescontoPara(produto.Valor);

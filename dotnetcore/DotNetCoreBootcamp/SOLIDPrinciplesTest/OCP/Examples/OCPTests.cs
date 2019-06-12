@@ -28,7 +28,7 @@ namespace SOLIDPrinciplesTest.OCP.Examples
             Good.CalculadoraDePrecos calculadoraDePrecos =
                 new Good.CalculadoraDePrecos(
                     new Good.TabelaDePreco2(),
-                    new Good.Frete2());
+                    new Good.Frete1());
 
             var result = calculadoraDePrecos.Calcular(new Good.Compra
             {
