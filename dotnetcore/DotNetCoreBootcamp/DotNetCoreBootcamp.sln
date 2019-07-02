@@ -18,7 +18,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SOLIDPrinciples", "SOLIDPri
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SOLIDPrinciplesTest", "SOLIDPrinciplesTest\SOLIDPrinciplesTest.csproj", "{91E5BFB6-F71A-481E-BD83-524BF14E88D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpConsole", "CSharpConsole\CSharpConsole.csproj", "{53EEEAF9-171F-467F-A357-FABE1B880A26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSharpConsole", "CSharpConsole\CSharpConsole.csproj", "{53EEEAF9-171F-467F-A357-FABE1B880A26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadFirstExamples", "HeadFirstExamples\HeadFirstExamples.csproj", "{42D6B94A-9C18-41EC-B66D-FB0E2DAB01F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,6 +64,10 @@ Global
 		{53EEEAF9-171F-467F-A357-FABE1B880A26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53EEEAF9-171F-467F-A357-FABE1B880A26}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53EEEAF9-171F-467F-A357-FABE1B880A26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42D6B94A-9C18-41EC-B66D-FB0E2DAB01F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42D6B94A-9C18-41EC-B66D-FB0E2DAB01F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42D6B94A-9C18-41EC-B66D-FB0E2DAB01F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42D6B94A-9C18-41EC-B66D-FB0E2DAB01F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
