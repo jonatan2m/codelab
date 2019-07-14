@@ -54,8 +54,6 @@ namespace CSharpConsole
             Console.WriteLine("Hello World!");
             var aa = JsonConvert.DeserializeObject<Teste>("{'aaaa':'a'}");
 
-            Console.ReadKey();
-
         }
     }
 }
