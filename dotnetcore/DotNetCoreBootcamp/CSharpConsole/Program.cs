@@ -1,9 +1,16 @@
 ﻿using CSharp.Enums.LikeJava;
 using System;
 using System.Diagnostics;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace CSharpConsole
 {
+    class Teste
+    {
+        public string a { get; set; }
+    }
+
     class Program
     {
         static void Main(string[] args)
@@ -44,7 +51,11 @@ namespace CSharpConsole
             sw.Stop();
             Console.WriteLine($"Tempo total: {sw.ElapsedMilliseconds}ms");
 
-            Console.ReadKey();            
+            Console.WriteLine("Hello World!");
+            var aa = JsonConvert.DeserializeObject<Teste>("{'aaaa':'a'}");
+
+            Console.ReadKey();
+
         }
     }
 }

@@ -2,13 +2,11 @@
 
 namespace SOLIDPrinciples.CouplingProblem.Example01.Good
 {
-
-        public class Fatura
+    public class Fatura
+    {
+        public double GetValorMensal()
         {
-            public double GetValorMensal()
-            {
-                return new Random().NextDouble() * 100;
-            }
+            return new Random().NextDouble() * 100;
         }
-
+    }
 }

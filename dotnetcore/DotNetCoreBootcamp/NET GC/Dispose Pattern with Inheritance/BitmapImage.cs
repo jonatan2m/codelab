@@ -11,13 +11,13 @@ namespace NET_GC.Dispose_Pattern_with_Inheritance
 
     public class BitmapImage : ImageBase
     {
-        private bool disposed;
+        private bool _disposed;
 
         public BitmapImage(Bitmap image) : base(image)
         {
         }
 
-        public void Dispose()
+        public new void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
@@ -27,7 +27,7 @@ namespace NET_GC.Dispose_Pattern_with_Inheritance
         {
             Debug.WriteLine($"{nameof(BitmapImage)}.{nameof(Dispose)}({disposing}) by {(disposing ? "user code" : "garbage collection.")}");
             
-            if (disposed)
+            if (_disposed)
             {
                 return;
             }
@@ -37,7 +37,7 @@ namespace NET_GC.Dispose_Pattern_with_Inheritance
                 image.Dispose();
             }
 
-            disposed = true;
+            _disposed = true;
 
             base.Dispose(disposing);
         }
