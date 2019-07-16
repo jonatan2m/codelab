@@ -1,4 +1,5 @@
 ﻿using DesignPatterns.State.Example1;
+using DesignPatterns.State.SystemPermissionExample;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -71,6 +72,40 @@ namespace DesignPatternsTest
 
             player.Lock();
             Assert.IsType<PlayingState>(player.GetState());
+        }
+
+        [Fact]
+        public void SystemPermissionExample_1()
+        {
+            var requestor = new SystemUser();
+            var profile = new SystemProfile();
+            SystemPermissionNoNeedState permission = new SystemPermissionNoNeedState(requestor, profile);
+
+            SystemAdmin admin = new SystemAdmin();
+            permission.GrantedBy(admin);
+            Assert.Equal(SystemPermissionNoNeedState.REQUESTED, permission.State);
+            Assert.False(permission.IsGranted);
+            permission.ClaimedBy(admin);
+            permission.GrantedBy(admin);
+            Assert.Equal(SystemPermissionNoNeedState.GRANTED, permission.State);
+            Assert.True(permission.IsGranted);
+        }
+
+        [Fact]
+        public void SystemPermissionExample_2()
+        {
+            var requestor = new SystemUser();
+            var profile = new SystemProfile();
+            SystemPermission permission = new SystemPermission(requestor, profile);
+
+            SystemAdmin admin = new SystemAdmin();
+            permission.GrantedBy(admin);
+            Assert.Equal(SystemPermission.REQUESTED, permission.permissionState.ToString());
+            Assert.False(permission.IsGranted);
+            permission.ClaimedBy(admin);
+            permission.GrantedBy(admin);
+            Assert.Equal(SystemPermission.GRANTED, permission.permissionState.ToString());
+            Assert.True(permission.IsGranted);
         }
     }
 }
