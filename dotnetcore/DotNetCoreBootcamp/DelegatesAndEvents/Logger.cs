@@ -42,7 +42,7 @@ namespace DelegatesAndEvents
             var logLevelRandom = new Random();
             var logLevels = Enum.GetValues(typeof(Severity));
 
-            Logger.Cancel();
+            //Logger.Cancel();
 
             for (int i = 0; i < 10; i++)
             {

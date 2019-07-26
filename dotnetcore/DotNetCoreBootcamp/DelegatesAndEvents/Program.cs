@@ -10,10 +10,10 @@ namespace DelegatesAndEvents
 
             Logger.Run();
 
-            FileSearch.FileSearcher.Run();
+            //FileSearch.FileSearcher.Run();
 
 
-            //Console.ReadLine();
+            Console.ReadLine();
         }
     }
 }
