@@ -19,7 +19,8 @@ namespace SOLIDPrinciples.ValidationClass.Example01.BestSolution
             get
             {
                 return string.Format(
-                    "{0} is not allowed to consume alcohol because his or her age ({1}) not is {2} or higher.",
+                    @"{0} is not allowed to consume alcohol because
+                      his or her age ({1}) not is {2} or higher.",
                     Context.Name, Context.Age, MinimumAge);
             }
         }
