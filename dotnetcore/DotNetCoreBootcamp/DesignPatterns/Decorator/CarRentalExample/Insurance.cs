@@ -1,5 +1,8 @@
 ﻿namespace DesignPatterns.Decorator.CarRentalExample
 {
+    /// <summary>
+    /// Decorator ConcreteDecorator
+    /// </summary>
     public class Insurance : CarRentalDecorator
     {
         private readonly float rate;

@@ -1,5 +1,8 @@
 ﻿namespace DesignPatterns.Decorator.CarRentalExample
 {
+    /// <summary>
+    /// Decorator ConcreteDecorator
+    /// </summary>
     public class RefuelOnReturn : CarRentalDecorator
     {
         private readonly float _refuelPrice;

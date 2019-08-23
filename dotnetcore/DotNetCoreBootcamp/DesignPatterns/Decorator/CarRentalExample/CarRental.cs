@@ -3,6 +3,9 @@ using System.Text;
 
 namespace DesignPatterns.Decorator.CarRentalExample
 {
+    /// <summary>
+    /// Decorator ConcreteComponent
+    /// </summary>
     public class CarRental : IRental
     {
         protected float fuelConsumed;

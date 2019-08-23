@@ -1,5 +1,8 @@
 ﻿namespace DesignPatterns.Decorator.CarRentalExample
 {
+    /// <summary>
+    /// Decorator component
+    /// </summary>
     public interface IRental
     {
         float CalcPrice();

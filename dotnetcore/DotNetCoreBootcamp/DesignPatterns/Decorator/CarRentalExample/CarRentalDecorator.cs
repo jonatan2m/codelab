@@ -1,5 +1,8 @@
 ﻿namespace DesignPatterns.Decorator.CarRentalExample
 {
+    /// <summary>
+    /// Decorator AbstractDecorator
+    /// </summary>
     public abstract class CarRentalDecorator : IRental
     {
         protected readonly IRental rental;
