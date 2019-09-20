@@ -2,6 +2,7 @@
 using System;
 using System.Diagnostics;
 using System.Collections.Generic;
+using CSharp.Threads;
 using Newtonsoft.Json;
 
 namespace CSharpConsole
@@ -53,6 +54,9 @@ namespace CSharpConsole
 
             Console.WriteLine("Hello World!");
             var aa = JsonConvert.DeserializeObject<Teste>("{'aaaa':'a'}");
+
+            new CSharp.Threads.SimpleExample().SplitOperationInTwoThreads();
+            new CSharp.Threads.SimpleExample().OperationWithoutThread();
 
         }
     }
