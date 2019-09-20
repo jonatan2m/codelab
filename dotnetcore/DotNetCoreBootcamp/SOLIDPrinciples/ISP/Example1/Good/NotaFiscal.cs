@@ -20,8 +20,7 @@ namespace SOLIDPrinciples.ISP.Example1.Good
 
         }
 
-        //O metodo GetItens passou a ser definido por uma interface e com isso
-        //pode ter extraido para uma interface.
+        //O metodo GetItens passou a ser definido por uma interface
         public List<Item> ItensASeremTributados()
         {
             return itens;

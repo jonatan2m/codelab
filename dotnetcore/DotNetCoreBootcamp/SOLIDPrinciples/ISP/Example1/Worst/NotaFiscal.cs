@@ -15,11 +15,10 @@ namespace SOLIDPrinciples.ISP.Example1.Worst
             FormaDePagamento pgto,
             double valorTotal)
         {
-            //outros metodos e implementações
             this.itens = itens;
-
         }
 
+        //outros metodos e implementações
         public List<Item> GetItems()
         {
             return itens;
