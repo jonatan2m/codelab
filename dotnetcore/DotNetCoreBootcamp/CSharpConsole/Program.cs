@@ -22,7 +22,7 @@ namespace CSharpConsole
             PlanetEnum planet = PlanetEnum.MERCURY;
             Console.WriteLine(planet.GetSurfaceGravity());
 
-            Performance.Literal_vs_String_Contants.Example01 example = 
+            Performance.Literal_vs_String_Contants.Example01 example =
                 new Performance.Literal_vs_String_Contants.Example01();
             example.CountMemoryAccessingDictionary(100);
 
@@ -32,8 +32,8 @@ namespace CSharpConsole
             Console.WriteLine("ParseDateWithFormatVariable");
             example.ParseDateWithFormatVariable();
 
-            
-            Performance.SelectMany_vs_NestedForeach.Example01 example01 = 
+
+            Performance.SelectMany_vs_NestedForeach.Example01 example01 =
                 new Performance.SelectMany_vs_NestedForeach.Example01();
 
             var sw = new Stopwatch();
@@ -55,9 +55,11 @@ namespace CSharpConsole
             Console.WriteLine("Hello World!");
             var aa = JsonConvert.DeserializeObject<Teste>("{'aaaa':'a'}");
 
-            new CSharp.Threads.SimpleExample().SplitOperationInTwoThreads();
-            new CSharp.Threads.SimpleExample().OperationWithoutThread();
-
+            var simpleExampleThreadAndTask = new CSharp.Threads.SimpleExample();
+            simpleExampleThreadAndTask.OperationWithoutSplit();
+            simpleExampleThreadAndTask.SplitOperationInTwoThreads();
+            simpleExampleThreadAndTask.SplitOperationInTasks();
+            simpleExampleThreadAndTask.CompareResults();
         }
     }
 }
