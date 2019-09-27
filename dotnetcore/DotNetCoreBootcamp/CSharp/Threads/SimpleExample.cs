@@ -35,6 +35,7 @@ namespace CSharp.Threads
     public class SimpleExample
     {
         private List<int> data;
+        private List<int> resultTwoThread;
         private List<int> resultThread;
         private List<int> resultTask;
         private List<int> resultWithoutSplit;
@@ -42,6 +43,7 @@ namespace CSharp.Threads
         public SimpleExample()
         {
             resultTask = new List<int>();
+            resultTwoThread = new List<int>();
             resultThread = new List<int>();
             resultWithoutSplit = new List<int>();
 
@@ -60,12 +62,12 @@ namespace CSharp.Threads
             Console.WriteLine("inicia processamento das threads");
             Thread thread1 = new Thread(() =>
             {
-                resultThread.AddRange(part1.Select(x => foo.Process("Threads 1", x)));
+                resultTwoThread.AddRange(part1.Select(x => foo.Process("Threads 1", x)));
             });
 
             Thread thread2 = new Thread(() =>
             {
-                resultThread.AddRange(part2.Select(x => foo.Process("Threads 2", x)));                
+                resultTwoThread.AddRange(part2.Select(x => foo.Process("Threads 2", x)));                
             });
 
             thread1.Start();
@@ -74,7 +76,35 @@ namespace CSharp.Threads
             while (thread1.IsAlive || thread2.IsAlive) ;
 
             st.Stop();
-            Console.WriteLine($"Threads: time-> {st.ElapsedMilliseconds}");
+            Console.WriteLine($"Two Threads: time-> {st.ElapsedMilliseconds}");
+        }
+
+        public void SplitOperationInThreads()
+        {
+            Stopwatch st = Stopwatch.StartNew();
+
+            foreach (var item in data)
+            {
+                var thread = new Thread(() =>
+                {
+                    resultThread.Add(foo.Process("Threads", item));
+                });
+                thread.Start();
+            }
+            //Do Not Work
+            //var threads = data.Select(x =>
+            //{
+            //    var thread = new Thread(() =>
+            //    {
+            //        resultThread.Add(foo.Process("Threads", x));
+            //    });
+            //    thread.Start();
+                
+            //    return thread;
+            //});
+            
+            st.Stop();
+            Console.WriteLine($"Thread time-> {st.ElapsedMilliseconds}");
         }
 
         public void SplitOperationInTasks()
@@ -107,7 +137,8 @@ namespace CSharp.Threads
 
         public void CompareResults()
         {
-                if(resultThread.Count == resultTask.Count && resultWithoutSplit.Count == resultTask.Count)
+                if(resultTwoThread.Count == resultTask.Count && resultWithoutSplit.Count == resultTask.Count
+                && resultThread.Count == resultTask.Count)
                     Console.WriteLine($"OK");
                 else
                 {

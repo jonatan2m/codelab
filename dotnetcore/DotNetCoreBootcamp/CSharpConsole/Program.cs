@@ -59,7 +59,10 @@ namespace CSharpConsole
             simpleExampleThreadAndTask.OperationWithoutSplit();
             simpleExampleThreadAndTask.SplitOperationInTwoThreads();
             simpleExampleThreadAndTask.SplitOperationInTasks();
+            simpleExampleThreadAndTask.SplitOperationInThreads();
             simpleExampleThreadAndTask.CompareResults();
+
+            Console.Read();
         }
     }
 }
