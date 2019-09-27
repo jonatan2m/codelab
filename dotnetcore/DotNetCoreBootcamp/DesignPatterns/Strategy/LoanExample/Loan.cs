@@ -122,5 +122,23 @@ namespace DesignPatterns.Strategy.LoanExample
         {            
             return new Loan(notional, start, expiry, null, rating, new RevolverCapital());
         }
+
+        /// <summary>
+        /// Fake method
+        /// </summary>
+        /// <returns>always 5</returns>
+        internal int GetCommitment()
+        {
+            return 5;
+        }
+
+        /// <summary>
+        /// Fake method
+        /// </summary>
+        /// <returns>always 7</returns>
+        internal int GetUnusedPercentage()
+        {
+            return 7;
+        }
     }
 }
