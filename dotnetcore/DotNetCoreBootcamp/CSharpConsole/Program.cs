@@ -2,6 +2,7 @@
 using System;
 using System.Diagnostics;
 using System.Collections.Generic;
+using CSharp.LINQ;
 using CSharp.Threads;
 using Newtonsoft.Json;
 
@@ -61,6 +62,11 @@ namespace CSharpConsole
             simpleExampleThreadAndTask.SplitOperationInTasks();
             simpleExampleThreadAndTask.SplitOperationInThreads();
             simpleExampleThreadAndTask.CompareResults();
+
+            var selectMany = new SelectManyExample();
+            selectMany.SelectMany01();
+
+
 
             Console.Read();
         }
