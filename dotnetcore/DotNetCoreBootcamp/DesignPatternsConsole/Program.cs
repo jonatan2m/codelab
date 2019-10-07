@@ -6,7 +6,7 @@ namespace DesignPatternsConsole
     class Program
     {
         static void Main(string[] args)
-        {            
+        {
             DesignPatterns.Command.Example1.PlayWithRemote.Run();
             Console.WriteLine("--------------------------------------");
             DesignPatterns.Command.Example3.PlayRobot.Run();
