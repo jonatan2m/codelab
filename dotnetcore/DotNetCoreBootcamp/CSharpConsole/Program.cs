@@ -2,6 +2,8 @@
 using System;
 using System.Diagnostics;
 using System.Collections.Generic;
+using BenchmarkDotNet.Running;
+using CSharp.FileGenerate;
 using CSharp.LINQ;
 using CSharp.Threads;
 using Newtonsoft.Json;
@@ -66,6 +68,8 @@ namespace CSharpConsole
             var selectMany = new SelectManyExample();
             selectMany.SelectMany01();
 
+            //var fileWriterSummary = BenchmarkRunner.Run<FileWriter>();
+            FileWriter.Play();
 
 
             Console.Read();
