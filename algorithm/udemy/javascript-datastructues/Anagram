@@ -1,0 +1,26 @@
+function anagram(str1, str2) {
+  
+  if(str1 === str2) return true;
+  if(str1.length !== str2.length) return false;
+  
+  let str2Frequence = {};  
+  
+  for(let c of str2)
+    str2Frequence[c] = (str2Frequence[c] || 0) + 1;
+  
+  for(let c of str1) {
+    if(!str2Frequence[c]) {
+      return false;
+    }
+    str2Frequence[c]--;
+  }
+  
+  return true;
+}
+
+
+console.log(anagram('',''));
+console.log(anagram('abc','ab'));
+console.log(anagram('abc','bca'));
+console.log(anagram('abc','bcc'));
+console.log(anagram('qwerty','qeywrt'));
