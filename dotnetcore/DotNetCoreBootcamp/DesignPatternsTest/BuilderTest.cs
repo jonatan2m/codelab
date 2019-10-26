@@ -1,6 +1,8 @@
 ﻿using DesignPatterns.Builder.Example2;
+using DesignPatterns.Builder.GiftExample;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Xunit;
 
@@ -34,5 +36,12 @@ namespace DesignPatternsTest
 
             Assert.Equal("PartA1, PartB1, PartC1", result);
         }
-    }
+
+        [Fact]
+        public void Builder_GiftExample_Test1()
+        {
+            var builder = new GiftBuilder();
+        }
+    }    
 }
+
