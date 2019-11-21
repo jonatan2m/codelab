@@ -1,4 +1,5 @@
 ﻿using DesignPatterns.Builder.Example2;
+using DesignPatterns.Builder.FacetedBuilder;
 using DesignPatterns.Builder.FluentBuilder;
 using DesignPatterns.Builder.ProductStock;
 using System;
@@ -66,6 +67,23 @@ namespace DesignPatternsTest
                 .Build();
 
             Assert.Equal("Software Developer", emp.Position);
+        }
+
+        [Fact]
+        public void FacetedBuilder_CarBuilder_Test1()
+        {
+            var builder = new CarBuilderFacade();
+            var car = builder
+                .Info
+                    .WithColor("Black")
+                    .WithType("Sedan")
+                    .WithNumberOfDoors(4)
+                .Built
+                    .InCity("Rio de Janeiro")
+                    .AtAddress("Rua camerino, 127")
+                .Build();
+
+            Assert.Equal("Rio de Janeiro", car.City);
         }
     }
 }
