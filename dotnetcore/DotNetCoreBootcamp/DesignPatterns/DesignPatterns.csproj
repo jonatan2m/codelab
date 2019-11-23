@@ -5,13 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="EP.SOLID\2 - OCP\Example1\**" />
+    <EmbeddedResource Remove="EP.SOLID\2 - OCP\Example1\**" />
+    <None Remove="EP.SOLID\2 - OCP\Example1\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Class1.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ChainOfResponsability\Example1\" />
     <Folder Include="Memento\Example3\" />
     <Folder Include="Strategy\Example1\" />
-    <Folder Include="EP.SOLID\2 - OCP\Example1\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System">

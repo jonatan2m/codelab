@@ -24,6 +24,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeadFirstExamples", "HeadFi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TalkExamples", "ClassLibrary1\TalkExamples.csproj", "{D4BA5F80-6DA9-48B9-96A3-24CA48E34E82}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TalkExamplesTest", "TalkExamplesTest\TalkExamplesTest.csproj", "{FD4F085A-B30A-440D-B808-30CF0F2F513D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -74,6 +76,10 @@ Global
 		{D4BA5F80-6DA9-48B9-96A3-24CA48E34E82}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4BA5F80-6DA9-48B9-96A3-24CA48E34E82}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4BA5F80-6DA9-48B9-96A3-24CA48E34E82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD4F085A-B30A-440D-B808-30CF0F2F513D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD4F085A-B30A-440D-B808-30CF0F2F513D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD4F085A-B30A-440D-B808-30CF0F2F513D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD4F085A-B30A-440D-B808-30CF0F2F513D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
