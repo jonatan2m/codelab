@@ -11,16 +11,17 @@ namespace DesignPatterns.Command.ProductExample.V1
     {
         /// <summary>
         /// Only to start the scenario
+        /// Act as Client class
         /// </summary>
         public static void Play()
         {
+            //Invoker
             var modifyPrice = new ModifyPrice();
+            //Receiver
             var product = new Product("Phone", 500);
 
             Execute(product, modifyPrice, new ProductIncreasePriceCommand(product, 100));
-
             Execute(product, modifyPrice, new ProductIncreasePriceCommand(product, 50));
-
             Execute(product, modifyPrice, new ProductDecreasePriceCommand(product, 25));
 
             modifyPrice.Undo();
@@ -147,6 +148,7 @@ namespace DesignPatterns.Command.ProductExample.V1
         {
             _commands.Push(_command);
             _command.ExecuteAction();
+            
         }
 
         public void Undo()
