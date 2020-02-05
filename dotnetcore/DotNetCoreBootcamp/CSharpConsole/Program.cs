@@ -2,10 +2,14 @@
 using System;
 using System.Diagnostics;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using System.Threading;
+using System.Threading.Tasks;
 using BenchmarkDotNet.Running;
 using CSharp.FileGenerate;
 using CSharp.LINQ;
 using CSharp.Threads;
+using CSharpConsole.TasksExamples;
 using Newtonsoft.Json;
 
 namespace CSharpConsole
@@ -71,6 +75,20 @@ namespace CSharpConsole
             //var fileWriterSummary = BenchmarkRunner.Run<FileWriter>();
             FileWriter.Play();
 
+
+            //Start task in background.
+            AutoResetEvent wait = new AutoResetEvent(true);
+            
+            TaskFactoryExample.StartNewExample(async() =>
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    await Task.Delay(1000);
+                    Console.WriteLine(DateTime.Now);
+                }
+            }, wait);
+
+            Console.WriteLine("non blocking");
 
             Console.Read();
         }
