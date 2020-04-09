@@ -50,30 +50,26 @@ namespace WebApplication3_1
             {
                 var cancellationToken = context.RequestAborted;
 
-                var reader = context.Request.BodyReader;
-                var resultReader = await context.Request.BodyReader.ReadAsync(cancellationToken);
-                var buffer = resultReader.Buffer;
+                var reader = await context.Request.BodyReader.ReadAsync(cancellationToken);
+                var buffer = reader.Buffer;
                 
-                var s = context.Request.PathBase;
-
                 var found = buffer.FirstSpan.IndexOf(tag);
                 if (found != -1) await next();
-
-                //await context.Response.StartAsync(cancellationToken);
-
-                //context.Response.StatusCode = 200;
-
-                await next();
+                else
+                {
+                    context.Response.StatusCode = 200;
+                    await context.Response.StartAsync(cancellationToken);
+                }
             });
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
                 //Precisa mapear a rota somente em um lugar. não pode estar aqui e no controller
-                //endpoints.MapPost("/weatherforecast", async context =>
-                //{
-                //    await Task.Yield();
-                //});
+                endpoints.MapPost("/weatherforecast", async context =>
+                {
+                    await Task.Yield();
+                });
             });
 
             app.UseSwagger();
