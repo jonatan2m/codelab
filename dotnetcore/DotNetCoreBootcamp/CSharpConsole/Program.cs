@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using BenchmarkDotNet.Running;
 using CSharp.FileGenerate;
 using CSharp.LINQ;
+using CSharp.PatternMatching;
 using CSharp.Threads;
 using CSharpConsole.TasksExamples;
 using Newtonsoft.Json;
@@ -89,6 +90,11 @@ namespace CSharpConsole
             }, wait);
 
             Console.WriteLine("non blocking");
+
+            Console.WriteLine("Pattern Matching");
+            Console.WriteLine(EliminateIfs.PeakTime(DateTime.Now, true) ==
+                              EliminateIfs.PeakTimeImperative(DateTime.Now, true));
+            
 
             Console.Read();
         }
