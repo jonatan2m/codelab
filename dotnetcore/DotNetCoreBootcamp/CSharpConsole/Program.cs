@@ -10,6 +10,7 @@ using CSharp.FileGenerate;
 using CSharp.LINQ;
 using CSharp.PatternMatching;
 using CSharp.Threads;
+using CSharpConsole.Resilience.RetryExamples;
 using CSharpConsole.TasksExamples;
 using Newtonsoft.Json;
 
@@ -95,6 +96,7 @@ namespace CSharpConsole
             Console.WriteLine(EliminateIfs.PeakTime(DateTime.Now, true) ==
                               EliminateIfs.PeakTimeImperative(DateTime.Now, true));
             
+            RetryExample01.RetryUntilReachCount(retryCount:5);
 
             Console.Read();
         }
