@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 using Web3_1.Handlers;
 
 namespace Web3_1.Controllers.Movies
@@ -19,7 +20,7 @@ namespace Web3_1.Controllers.Movies
         public IActionResult Create([FromBody] NewMovieCommand command)
         {
             var result = _mediator.Send(command);
-            return Ok("Nós que cria!");
+            return Ok(result);
         }
     }
 }

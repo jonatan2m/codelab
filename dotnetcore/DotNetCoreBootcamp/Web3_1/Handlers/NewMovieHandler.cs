@@ -10,22 +10,39 @@ namespace Web3_1.Handlers
 {
     public class NewMovieHandler : IRequestHandler<NewMovieCommand, Movie>
     {
-        public Task<Movie> Handle(NewMovieCommand request, CancellationToken cancellationToken)
+        private readonly MovieRepository movieRepository;
+
+        public NewMovieHandler(MovieRepository movieRepository)
+        {
+            this.movieRepository = movieRepository;
+        }
+
+        public async Task<Movie> Handle(NewMovieCommand request, CancellationToken cancellationToken)
         {
             var movie = new Movie
-            {
-                Id = request.Id,
+            {                
                 Name = request.Name
             };
 
-            //Criar
+            movieRepository.Create(movie);
 
-            return Task.FromResult(movie);}
+            return await Task.FromResult(movie);            
+        }
     }
+    
 
     public class NewMovieCommand : IRequest<Movie>
-    {
-        public int Id { get; set; }
+    {        
         public string Name { get; set; }
+    }
+
+    public class MovieRepository
+    {
+        public int Create(Movie movie)
+        {
+            movie.Id = new Random().Next();
+
+            return movie.Id;
+        }
     }
 }
