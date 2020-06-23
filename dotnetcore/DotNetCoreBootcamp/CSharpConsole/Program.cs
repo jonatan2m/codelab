@@ -2,6 +2,7 @@
 using System;
 using System.Diagnostics;
 using System.Collections.Generic;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -25,6 +26,15 @@ namespace CSharpConsole
     {
         static void Main(string[] args)
         {
+
+            var s = Path.Combine("http://SCCHIB4FIDCVIP:9091/", "upload");
+
+            var fileInfo = new FileInfo(@"\\buy4sc.local\repository\tesouraria\ReceivableAssignment\QuotationRequest\Summary\CESSAO-20200417-QTRQS-003.rem");
+            var fileName = fileInfo.Name;
+
+            //fileInfo.DirectoryName
+
+
             Planet planetStatic = Planet.MERCURY;
             Console.WriteLine(planetStatic.SurfaceGravity());
 

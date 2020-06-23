@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Web3_1.Handlers;
 
 namespace Web3_1
 {
@@ -26,6 +27,7 @@ namespace Web3_1
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<EventDispacher>();
             services.AddMediatR(typeof(Startup));
             services.AddControllers();
 
@@ -38,8 +40,6 @@ namespace Web3_1
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            //app.UseHttpsRedirection();
 
             app.UseRouting();
 

@@ -9,18 +9,20 @@ namespace Web3_1.Controllers.Movies
     [ApiController]
     public class Movie0Controller : ControllerBase
     {
-        private readonly IMediator _mediator;
-
-        public Movie0Controller(IMediator mediator)
+        private readonly EventDispacher _eventDispacher;
+        
+        public Movie0Controller(EventDispacher eventDispacher)
         {
-            _mediator = mediator;
+            _eventDispacher = eventDispacher;
         }
         
         [HttpPost]
         public IActionResult Create([FromBody] NewMovieCommand command)
         {
             var result = _mediator.Send(command);
-            return Ok(result);
+
+            _eventDispacher.Publish(new Ping() {Id = 2});
+            return Ok("Nós que cria!");
         }
     }
 }
