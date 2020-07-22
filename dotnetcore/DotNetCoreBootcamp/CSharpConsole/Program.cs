@@ -26,7 +26,7 @@ namespace CSharpConsole
     {
         static void Main(string[] args)
         {
-
+            /*
             var s = Path.Combine("http://SCCHIB4FIDCVIP:9091/", "upload");
 
             var fileInfo = new FileInfo(@"\\buy4sc.local\repository\tesouraria\ReceivableAssignment\QuotationRequest\Summary\CESSAO-20200417-QTRQS-003.rem");
@@ -107,6 +107,14 @@ namespace CSharpConsole
                               EliminateIfs.PeakTimeImperative(DateTime.Now, true));
             
             RetryExample01.RetryUntilReachCount(retryCount:5);
+
+            */
+
+            Console.WriteLine("Enumerables - Yield Return");
+            CSharp.Enumerables.YieldReturn.Example01.Run();
+
+            CSharp.Enumerables.YieldReturn.Example02.Run();
+
 
             Console.Read();
         }

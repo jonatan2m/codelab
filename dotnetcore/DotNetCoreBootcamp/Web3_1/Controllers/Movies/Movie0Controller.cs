@@ -10,7 +10,13 @@ namespace Web3_1.Controllers.Movies
     public class Movie0Controller : ControllerBase
     {
         private readonly EventDispacher _eventDispacher;
-        
+        private readonly IMediator _mediator;
+
+        public Movie0Controller(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
+
         public Movie0Controller(EventDispacher eventDispacher)
         {
             _eventDispacher = eventDispacher;
