@@ -7,11 +7,15 @@ using System.Threading.Tasks;
 
 namespace DomainEvents.MediatRExample1
 {
+    //TODO get contract from ddd course reference
     public  interface IEntity
     {
 
     }
 
+    /// <summary>
+    /// Every Payment has a fee.
+    /// </summary>
     public class Payment
     {
         private decimal _fee = 0;
@@ -22,8 +26,7 @@ namespace DomainEvents.MediatRExample1
         {
             GrossAmount = amount;
         }
-
-
+        
         public void ApplyFee(decimal fee)
         {
             _fee = fee;
@@ -34,22 +37,24 @@ namespace DomainEvents.MediatRExample1
     {
         public readonly decimal Amount;
 
-        public PaymentRecorded(Payment payment)
+        public PaymentRecorded(decimal amount)
         {
-            Amount = payment.NetAmount;
+            Amount = amount;
         }
     }
 
     public class Bank
     {
+        private readonly IMediator _mediator;
         public ICollection<Payment> Payments { get; }
 
-        public Bank()
+        public Bank(IMediator mediator)
         {
+            _mediator = mediator;
             Payments = new List<Payment>();
         }
 
-        public void RecordPayment(Payment payment)
+        public async Task RecordPayment(Payment payment)
         {
             //Check if Payment is Valid
             /* some code */
@@ -57,7 +62,10 @@ namespace DomainEvents.MediatRExample1
             Payments.Add(payment);
 
             //Notify who wants to know about payments coming
-            /*  */
+            var fee = await _mediator.Send(new PaymentRecorded(payment.GrossAmount)).ConfigureAwait(false);
+            payment.ApplyFee(fee);
+
+            await _mediator.Publish(new PaymentRecorded(payment.GrossAmount)).ConfigureAwait(false);
         }
     }
 
@@ -84,7 +92,8 @@ namespace DomainEvents.MediatRExample1
     {
         public Task Handle(PaymentRecorded notification, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            //Register a report based on notification
+            return Task.FromResult(true);
         }
     }
 }
