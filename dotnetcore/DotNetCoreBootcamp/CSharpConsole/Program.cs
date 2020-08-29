@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using BenchmarkDotNet.Running;
@@ -26,6 +27,21 @@ namespace CSharpConsole
     {
         static void Main(string[] args)
         {
+            var bytes = Encoding.ASCII.GetBytes("teste com arquivo");
+
+            using (var t = File.Create("teste.txt"))
+            {
+                t.Write(bytes);
+            }
+
+            using (var source = File.Open("teste.txt", FileMode.Open))
+            {
+                using (Stream destination = File.Open("teste-copy.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite))
+                {
+                    source.CopyTo(destination);
+                }
+            }
+
 
             //var s = Path.Combine("http://SCCHIB4FIDCVIP:9091/", "upload");
 
