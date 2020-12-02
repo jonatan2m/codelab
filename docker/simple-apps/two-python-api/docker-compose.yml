@@ -1,0 +1,13 @@
+version: "3"
+services:
+    web:
+        build: "./py-client"
+        ports:
+            - "5002:${APP_PORT}"
+        environment: 
+            - APP_PORT=${APP_PORT}
+    api:
+        build: "./py-api"
+        ports:
+            - "5000:5000"
+        
