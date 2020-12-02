@@ -27,20 +27,23 @@ namespace CSharpConsole
     {
         static void Main(string[] args)
         {
-            var bytes = Encoding.ASCII.GetBytes("teste com arquivo");
+            //GroupByExample.Run();
 
-            using (var t = File.Create("teste.txt"))
-            {
-                t.Write(bytes);
-            }
 
-            using (var source = File.Open("teste.txt", FileMode.Open))
-            {
-                using (Stream destination = File.Open("teste-copy.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite))
-                {
-                    source.CopyTo(destination);
-                }
-            }
+            //var bytes = Encoding.ASCII.GetBytes("teste com arquivo");
+
+            //using (var t = File.Create("teste.txt"))
+            //{
+            //    t.Write(bytes);
+            //}
+
+            //using (var source = File.Open("teste.txt", FileMode.Open))
+            //{
+            //    using (Stream destination = File.Open("teste-copy.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite))
+            //    {
+            //        source.CopyTo(destination);
+            //    }
+            //}
 
 
             //var s = Path.Combine("http://SCCHIB4FIDCVIP:9091/", "upload");
@@ -90,14 +93,14 @@ namespace CSharpConsole
             //Console.WriteLine("Hello World!");
             //var aa = JsonConvert.DeserializeObject<Teste>("{'aaaa':'a'}");
 
-            var simpleExampleThreadAndTask = new CSharp.Threads.SimpleExample();
-            simpleExampleThreadAndTask.OperationWithoutSplit();
-            simpleExampleThreadAndTask.SplitOperationInTwoThreads();
-            simpleExampleThreadAndTask.SplitOperationInTasks();
-            simpleExampleThreadAndTask.SplitOperationInTasks2();
-            simpleExampleThreadAndTask.SplitOperationParallelFor();
-            simpleExampleThreadAndTask.SplitOperationInThreads();
-            simpleExampleThreadAndTask.CompareResults();
+            //var simpleExampleThreadAndTask = new CSharp.Threads.SimpleExample();
+            //simpleExampleThreadAndTask.OperationWithoutSplit();
+            //simpleExampleThreadAndTask.SplitOperationInTwoThreads();
+            //simpleExampleThreadAndTask.SplitOperationInTasks();
+            //simpleExampleThreadAndTask.SplitOperationInTasks2();
+            //simpleExampleThreadAndTask.SplitOperationParallelFor();
+            //simpleExampleThreadAndTask.SplitOperationInThreads();
+            //simpleExampleThreadAndTask.CompareResults();
 
             //var selectMany = new SelectManyExample();
             //selectMany.SelectMany01();
@@ -130,12 +133,13 @@ namespace CSharpConsole
 
             //Console.WriteLine("Enumerables - Yield Return");
             //CSharp.Enumerables.YieldReturn.Example01.Run();
-
             //CSharp.Enumerables.YieldReturn.Example02.Run();
-
 
             //Console.WriteLine("Enumerables - Select and SelectMany");
             //CSharp.Enumerables.SelectAndMany.Example01.Run();
+
+            //Threading
+            CSharp.Threads.Example02.Run();
 
             Console.Read();
         }

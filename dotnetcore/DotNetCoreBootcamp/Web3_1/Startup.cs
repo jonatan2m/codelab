@@ -28,6 +28,7 @@ namespace Web3_1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<EventDispacher>();
+            services.AddScoped<MovieRepository>();
             services.AddMediatR(typeof(Startup));
             services.AddControllers();
 

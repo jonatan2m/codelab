@@ -6,7 +6,7 @@ namespace CSharp.Enumerables.YieldReturn
 {
 
     /// <summary>
-    /// Based on Elemar's talk about yield return
+    /// Based on Elemar's talks about yield return
     /// https://www.youtube.com/watch?v=TbvD3BwC01U
     /// </summary>
     public static class Example01
