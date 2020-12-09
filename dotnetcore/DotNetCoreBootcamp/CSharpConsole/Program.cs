@@ -141,7 +141,7 @@ namespace CSharpConsole
             //Threading
             CSharp.Threads.Example02.Run();
 
-            Console.Read();
+            //Console.Read();
         }
     }
 }

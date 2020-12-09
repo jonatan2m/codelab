@@ -10,14 +10,18 @@ namespace CSharp.Threads
         public static void Run()
         {
             var ex = new Example02();
-            
-            ex.WithoutThreading();
-            
-            ex.WithThreading();
-            
-            ex.WithJoinThreading();
 
-            ex.WithSleepThreading();
+            ex.WithoutThreading();
+
+            //ex.WithThreading();
+
+            //ex.WithJoinThreading();
+
+            //ex.WithSleepThreading();
+
+            //ex.ForegroundThread();
+
+            //ex.BackgroundThread();
         }
 
         public void WithSleepThreading()
@@ -47,12 +51,12 @@ namespace CSharp.Threads
 
             Thread t1 = new Thread(() => Work1(nameof(WithJoinThreading)));
             Thread t2 = new Thread(() => Work2(nameof(WithJoinThreading)));
-            
+
             t1.Start();
             t2.Start();
             t2.Join();
 
-            Console.WriteLine("--- END");
+            Console.WriteLine($"{nameof(WithJoinThreading)} --- END");
         }
 
         public void WithThreading()
@@ -65,7 +69,7 @@ namespace CSharp.Threads
             t1.Start();
             t2.Start();
 
-            Console.WriteLine("--- END");
+            Console.WriteLine($"{nameof(WithThreading)} --- END");
         }
 
         public void WithoutThreading()
@@ -75,7 +79,32 @@ namespace CSharp.Threads
             Work1(nameof(WithoutThreading));
             Work2(nameof(WithoutThreading));
 
-            Console.WriteLine("--- END");
+            Console.WriteLine($"{nameof(WithoutThreading)} --- END");
+        }
+
+        public void BackgroundThread()
+        {
+            Console.WriteLine(nameof(BackgroundThread));
+
+            Thread t1 = new Thread(() => WorkSleeping(nameof(BackgroundThread)));
+
+            t1.IsBackground = true;
+
+            t1.Start();
+
+            Console.WriteLine($"{nameof(BackgroundThread)} --- END");
+        }
+
+        //It will run event the main thread finishes its processing
+        public void ForegroundThread()
+        {
+            Console.WriteLine(nameof(ForegroundThread));
+
+            Thread t1 = new Thread(() => WorkSleeping(nameof(ForegroundThread)));
+            
+            t1.Start();
+
+            Console.WriteLine($"{nameof(ForegroundThread)} --- END");
         }
 
         private void Work1(string prefix)
@@ -83,7 +112,7 @@ namespace CSharp.Threads
             Thread th = Thread.CurrentThread;
             for (int i = 1; i <= 100000; i++)
             {
-                if(i % 10000 == 0)
+                if (i % 10000 == 0)
                     Console.WriteLine($"{prefix}_({th.ManagedThreadId}){nameof(Work1)} is called {i}");
             }
         }
@@ -94,6 +123,16 @@ namespace CSharp.Threads
             for (int i = 1; i <= 10; i++)
             {
                 Console.WriteLine($"{prefix}_({th.ManagedThreadId}){nameof(Work2)} is called {i}");
+            }
+        }
+
+        private void WorkSleeping(string prefix)
+        {
+            Thread th = Thread.CurrentThread;
+            for (int i = 1; i <= 5; i++)
+            {
+                Console.WriteLine($"{prefix}_({th.ManagedThreadId}){nameof(Work1)} is called {i}");
+                Thread.Sleep(2000);
             }
         }
     }
