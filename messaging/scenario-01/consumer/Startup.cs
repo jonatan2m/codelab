@@ -27,7 +27,7 @@ namespace consumer
         {
             services.AddControllers();
 
-            services.AddHostedService<ConsumerHostedService>();
+            //services.AddHostedService<ConsumerHostedService>();            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -15,6 +15,7 @@ namespace producer.Controllers
         public int Value1 { get; set; }
         public int Value2 { get; set; }
         public string OperationType { get; set; }
+        public string Origin { get; set; }
     }
 
     [ApiController]
@@ -64,15 +65,7 @@ namespace producer.Controllers
                 );
 
 
-            return Ok();
-            // var rng = new Random();
-            // return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            // {
-            //     Date = DateTime.Now.AddDays(index),
-            //     TemperatureC = rng.Next(-20, 55),
-            //     Summary = Summaries[rng.Next(Summaries.Length)]
-            // })
-            // .ToArray();
+            return Ok();         
         }
     }
 }

@@ -345,3 +345,4 @@ __pycache__/
 
 # Custom
 Five2.Presentation.Web/logs/*.*
+.docker
