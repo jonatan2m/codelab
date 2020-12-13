@@ -1,0 +1,19 @@
+version: '3'
+services:
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: rabbitmq
+    #volumes: 
+      #- ./enabled_plugins:/etc/rabbitmq/enabled_plugins/
+      #- ./.docker/rabbitmq/etc/:/etc/rabbitmq/enabled_plugins/
+      #- "./rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro"
+      #- "./autocluster-0.4.1.ez:/usr/lib/rabbitmq/lib/rabbitmq_server-3.5.5/plugins/autocluster-0.4.1.ez"
+    environment: 
+      RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
+      RABBITMQ_DEFAULT_USER: "rabbitmq"
+      RABBITMQ_DEFAULT_PASS: "rabbitmq"
+      RABBITMQ_DEFAULT_VHOST: "/"
+    ports: 
+      - 5672:5672
+      - 15672:15672
+
