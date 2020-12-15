@@ -16,6 +16,10 @@ namespace consumer
 {
     public class Program
     {
+        static string routingKeyDiv2 = "div2";
+        static string routingKeyDiv3 = "div3";
+        static string routingKeyDiv5 = "div5";
+
         static HashSet<ulong> controls;
         public static void Main(string[] args)
         {
@@ -39,19 +43,28 @@ namespace consumer
                                          arguments: null);
 
             //define limit to unack messages 
-            //channel.BasicQos(0, 5, false);
+            channel.BasicQos(0, 5, false);
 
             var logs = BuildExchange(connection);
+            var result = BuildExchangeDirect(connection);
 
-            BuildConsumer(channel, logs, $"Consumer A", 10000);
-            BuildConsumer(channel, logs, $"Consumer B", 5000);
-            BuildConsumer(channel, logs, $"Consumer C", 3000);
-            BuildConsumer(channel, logs, $"Consumer D", 1000);
-            BuildConsumer(channel, logs, $"Consumer E", 1000);
-            BuildConsumer(channel, logs, $"Consumer F", 1000);
-            BuildConsumer(channel, logs, $"Consumer G", 1000);
+            BuildConsumer(channel, logs, result, $"Consumer A", 10000);
+            BuildConsumer(channel, logs, result, $"Consumer B", 5000);
+            BuildConsumer(channel, logs, result, $"Consumer C", 3000);
+            BuildConsumer(channel, logs, result, $"Consumer D", 1000);
+            BuildConsumer(channel, logs, result, $"Consumer E", 1000);
+            BuildConsumer(channel, logs, result, $"Consumer F", 1000);
+            BuildConsumer(channel, logs, result, $"Consumer G", 1000);
 
             CreateHostBuilder(args).Build().Run();
+        }
+
+        public static IModel BuildExchangeDirect(IConnection connection)
+        {
+            var channel  = connection.CreateModel();
+            channel.ExchangeDeclare(exchange:"result", type: ExchangeType.Direct);
+
+            return channel;
         }
 
         public static IModel BuildExchange(IConnection connection)
@@ -62,7 +75,7 @@ namespace consumer
             return channel;
         }
 
-        public static void BuildConsumer(IModel channel, IModel logs, string consumerName, int sleepSeconds)
+        public static void BuildConsumer(IModel channel, IModel logs, IModel result, string consumerName, int sleepSeconds)
         {
             var consumer = new EventingBasicConsumer(channel);
             consumer.Received += async (model, ea) =>
@@ -77,6 +90,20 @@ namespace consumer
                     }
 
                     System.Console.WriteLine($"{consumerName}.{ea.DeliveryTag} = {operation.Execute()}");
+
+                    string routingKey = string.Empty;
+                    if(operation.Execute() % 5 == 0) routingKey = routingKeyDiv5;
+                    else if(operation.Execute() % 3 == 0) routingKey = routingKeyDiv3;
+                    else if(operation.Execute() % 2 == 0) routingKey = routingKeyDiv2;
+                    else routingKey = "not-match";
+
+                    var valueCalculated = operation.Execute();
+
+                    result.BasicPublish(
+                        exchange: "result",
+                        routingKey: routingKey,
+                        basicProperties: null,
+                        body: Encoding.UTF8.GetBytes(valueCalculated.ToString()));
 
                     await Task.Delay(sleepSeconds);
                     //Thread.Sleep(sleepSeconds);
