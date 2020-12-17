@@ -140,6 +140,7 @@ namespace CSharpConsole
 
             //Threading
             CSharp.Threads.Example02.Run();
+            //CSharp.Threads.ThreadPools.Example01.Run();
 
             //Console.Read();
         }
