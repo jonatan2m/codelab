@@ -4,13 +4,13 @@ using System.Threading.Tasks;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
-namespace Direct
+namespace Topic
 {
-    public class DirectExample
+    public class TopicExample
     {
-        private readonly IModel channel;
+        private readonly IConnection connection;
 
-        public DirectExample()
+        public TopicExample()
         {
             var factory = new ConnectionFactory()
             {
@@ -20,26 +20,26 @@ namespace Direct
                 VirtualHost = "/"
             };
 
-            var connection = factory.CreateConnection();
-            channel = connection.CreateModel();
+            connection = factory.CreateConnection();
         }
 
-        public void RunConsumerInfo()
+        public void RunConsumerSum()
         {
             Task.Run(() =>
             {
-                channel.ExchangeDeclare(exchange: "direct-01", type: ExchangeType.Direct);
+                var channel = connection.CreateModel();
+                channel.ExchangeDeclare("topic-01", type: ExchangeType.Topic);
 
                 var queueName = channel.QueueDeclare().QueueName;
 
-                channel.QueueBind(queueName, "direct-01", "info");
-
+                channel.QueueBind(queueName, "topic-01", "sum.info");
+                channel.QueueBind(queueName, "topic-01", "sum.warning");
                 var consumer = new EventingBasicConsumer(channel);
                 consumer.Received += ((model, ea) =>
                 {
                     var message = Encoding.UTF8.GetString(ea.Body.ToArray());
 
-                    System.Console.WriteLine($"info-{message} ({Thread.CurrentThread.ManagedThreadId})");
+                    System.Console.WriteLine($"sum.info|warning {message}");
 
                     for (int i = 0; i < int.MaxValue; i++)
                     {
@@ -48,34 +48,32 @@ namespace Direct
 
                     channel.BasicAck(ea.DeliveryTag, false);
                 });
-
                 channel.BasicConsume(queueName, false, consumer);
 
                 while (true)
                 {
-                    Thread.Sleep(10);
+                    Thread.Sleep(500);
                 }
             });
         }
 
-        public void RunConsumerWarning()
+         public void RunConsumerSub()
         {
             Task.Run(() =>
             {
-                channel.ExchangeDeclare(exchange: "direct-01", type: ExchangeType.Direct);
+                var channel = connection.CreateModel();
+                channel.ExchangeDeclare("topic-01", type: ExchangeType.Topic);
 
                 var queueName = channel.QueueDeclare().QueueName;
 
-                channel.QueueBind(queueName, "direct-01", "warning");
-
-                channel.BasicQos(0, 2, true);
-
+                channel.QueueBind(queueName, "topic-01", "sub.info");
+                channel.QueueBind(queueName, "topic-01", "sub.warning");
                 var consumer = new EventingBasicConsumer(channel);
                 consumer.Received += ((model, ea) =>
                 {
                     var message = Encoding.UTF8.GetString(ea.Body.ToArray());
 
-                    System.Console.WriteLine($"warning-{message} ({Thread.CurrentThread.ManagedThreadId})");
+                    System.Console.WriteLine($"sub.info|warning {message}");
 
                     for (int i = 0; i < int.MaxValue; i++)
                     {
@@ -84,32 +82,31 @@ namespace Direct
 
                     channel.BasicAck(ea.DeliveryTag, false);
                 });
-
                 channel.BasicConsume(queueName, false, consumer);
 
                 while (true)
                 {
-                    Thread.Sleep(10);
+                    Thread.Sleep(500);
                 }
             });
         }
 
-         public void RunConsumerError()
+        public void RunConsumerSumAll()
         {
             Task.Run(() =>
             {
-                channel.ExchangeDeclare(exchange: "direct-01", type: ExchangeType.Direct);
+                var channel = connection.CreateModel();
+                channel.ExchangeDeclare("topic-01", type: ExchangeType.Topic);
 
                 var queueName = channel.QueueDeclare().QueueName;
 
-                channel.QueueBind(queueName, "direct-01", "error");
-
+                channel.QueueBind(queueName, "topic-01", "sum.*");
                 var consumer = new EventingBasicConsumer(channel);
                 consumer.Received += ((model, ea) =>
                 {
                     var message = Encoding.UTF8.GetString(ea.Body.ToArray());
 
-                    System.Console.WriteLine($"error-{message} ({Thread.CurrentThread.ManagedThreadId})");
+                    System.Console.WriteLine($"sum.* {message}");
 
                     for (int i = 0; i < int.MaxValue; i++)
                     {
@@ -118,43 +115,77 @@ namespace Direct
 
                     channel.BasicAck(ea.DeliveryTag, false);
                 });
-
                 channel.BasicConsume(queueName, false, consumer);
 
                 while (true)
                 {
-                    Thread.Sleep(10);
+                    Thread.Sleep(500);
                 }
             });
         }
 
-        public void RunConsumerAll()
+        public void RunConsumerSubAll()
         {
             Task.Run(() =>
             {
-                channel.ExchangeDeclare(exchange: "direct-01", type: ExchangeType.Direct);
+                var channel = connection.CreateModel();
+                channel.ExchangeDeclare("topic-01", type: ExchangeType.Topic);
 
                 var queueName = channel.QueueDeclare().QueueName;
 
-                channel.QueueBind(queueName, "direct-01", "info");
-                channel.QueueBind(queueName, "direct-01", "warning");
-                channel.QueueBind(queueName, "direct-01", "error");
-
+                channel.QueueBind(queueName, "topic-01", "sub.*");
                 var consumer = new EventingBasicConsumer(channel);
                 consumer.Received += ((model, ea) =>
                 {
                     var message = Encoding.UTF8.GetString(ea.Body.ToArray());
 
-                    System.Console.WriteLine($"ALL-{message} ({Thread.CurrentThread.ManagedThreadId})");
+                    System.Console.WriteLine($"sub.* {message}");
+
+                    for (int i = 0; i < int.MaxValue; i++)
+                    {
+                        var t = message;
+                    }
 
                     channel.BasicAck(ea.DeliveryTag, false);
                 });
-
                 channel.BasicConsume(queueName, false, consumer);
 
                 while (true)
                 {
-                    Thread.Sleep(10);
+                    Thread.Sleep(500);
+                }
+            });
+        }
+
+         public void RunConsumerAll()
+        {
+            Task.Run(() =>
+            {
+                var channel = connection.CreateModel();
+                channel.ExchangeDeclare("topic-01", type: ExchangeType.Topic);
+
+                var queueName = channel.QueueDeclare().QueueName;
+
+                channel.QueueBind(queueName, "topic-01", "#");
+                var consumer = new EventingBasicConsumer(channel);
+                consumer.Received += ((model, ea) =>
+                {
+                    var message = Encoding.UTF8.GetString(ea.Body.ToArray());
+
+                    System.Console.WriteLine($"ALL {message}");
+
+                    for (int i = 0; i < int.MaxValue; i++)
+                    {
+                        var t = message;
+                    }
+
+                    channel.BasicAck(ea.DeliveryTag, false);
+                });
+                channel.BasicConsume(queueName, false, consumer);
+
+                while (true)
+                {
+                    Thread.Sleep(500);
                 }
             });
         }

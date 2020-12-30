@@ -36,8 +36,46 @@ namespace producer.Controllers
         }
 
         [HttpGet]
+        [Route("topic")]
+        public async Task Topic(CancellationToken token)
+        {
+            System.Console.WriteLine("Producer - Topic");
+
+            var factory = new ConnectionFactory
+            {
+                HostName = "localhost",
+                UserName = "rabbitmq",
+                Password = "rabbitmq",
+                VirtualHost = "/"
+            };
+
+            var connection = factory.CreateConnection();
+            var channel = connection.CreateModel();
+
+            channel.ExchangeDeclare("topic-01", type: ExchangeType.Topic);
+
+            while (true)
+            {
+                var message = DateTime.Now.ToString("YYYY-MM-dd hh:mm:ss");
+                byte[] body = Encoding.UTF8.GetBytes(message);
+                
+                channel.BasicPublish("topic-01", $"sum.info", null, body);
+                channel.BasicPublish("topic-01", $"sum.warning", null, body);
+
+                channel.BasicPublish("topic-01", $"sub.info", null, body);
+                channel.BasicPublish("topic-01", $"sub.warning", null, body);
+                
+                channel.BasicPublish("topic-01", $"sub.*", null, Encoding.UTF8.GetBytes("SUB"));
+
+                channel.BasicPublish("topic-01", $"sum.*", null, Encoding.UTF8.GetBytes("SUM"));
+
+                await Task.Delay(1000, token);
+            }
+        }
+
+        [HttpGet]
         [Route("direct")]
-        public async Task<IActionResult> Direct(CancellationToken token)
+        public async Task Direct(CancellationToken token)
         {
             System.Console.WriteLine("Producer - Direct");
 
@@ -71,13 +109,11 @@ namespace producer.Controllers
 
                 await Task.Delay(100, token);
             }
-
-            return Ok();
         }
 
         [HttpGet]
         [Route("fanout")]
-        public async Task<IActionResult> Fanout(CancellationToken token)
+        public async Task Fanout(CancellationToken token)
         {
             System.Console.WriteLine("Producer - Fanout");
             var factory = new ConnectionFactory
@@ -106,7 +142,7 @@ namespace producer.Controllers
 
         [HttpGet]
         [Route("queue")]
-        public async Task<IActionResult> Queue(CancellationToken token)
+        public async Task Queue(CancellationToken token)
         {
             System.Console.WriteLine("Producer - Queue");
             var factory = new ConnectionFactory()
@@ -129,45 +165,8 @@ namespace producer.Controllers
 
                 channel.BasicPublish("", "fila-01", false, null, body);
 
-                //Thread.Sleep(2000);
                 await Task.Delay(100, token);
             }
-
-            return Ok();
-        }
-
-        [HttpGet]
-        public IActionResult Get()
-        {
-            var factory = new ConnectionFactory()
-            {
-                HostName = "localhost",
-                UserName = "rabbitmq",
-                Password = "rabbitmq",
-                VirtualHost = "/"
-            };
-            using var connection = factory.CreateConnection();
-            using var channel = connection.CreateModel();
-
-            channel.QueueDeclare(
-                queue: "hello", durable: false, exclusive: false, autoDelete: false, arguments: null
-            );
-
-            var message = new Operation
-            {
-                Value1 = 1,
-                Value2 = 2,
-                OperationType = "+"
-            };
-
-            var body = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(message));
-
-            channel.BasicPublish(
-                exchange: "", routingKey: "hello", basicProperties: null, body: body
-                );
-
-
-            return Ok();
         }
     }
 }
