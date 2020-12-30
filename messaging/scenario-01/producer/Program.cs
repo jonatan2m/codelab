@@ -4,11 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Direct;
+using Fanout;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using producer.Controllers;
+using Queue;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
@@ -22,26 +25,55 @@ namespace producer
 
         public static void Main(string[] args)
         {
-            var factory = new ConnectionFactory()
+            if (args.Length == 0)
             {
-                HostName = "localhost",
-                UserName = "rabbitmq",
-                Password = "rabbitmq",
-                VirtualHost = "/"
-            };
-            string queueName = "hello";
-            using var connection = factory.CreateConnection();            
+                System.Console.WriteLine("choose: queue");
+                return;
+            }
 
-            BuildResultListener(connection);
+            int consumerLength = int.Parse(args[1]);
 
-            BuildPublisher(connection, queueName, "Producer A");
-            BuildPublisher(connection, queueName, "Producer B");
-           
+            switch (args[0])
+            {
+                case "queue":
+                    var queue = new QueueExample();
+                    for (int i = 0; i < consumerLength; i++)
+                        queue.RunConsumer();
+                    break;
+                case "fanout":
+                    var fanout = new FanoutExample();
+                    for (int i = 0; i < consumerLength; i++)
+                        fanout.RunConsumer();
+                    break;
+                case "direct":
+                    var direct = new DirectExample();
+                    direct.RunConsumerInfo();
+                    direct.RunConsumerWarning();
+                    direct.RunConsumerError();
+                    direct.RunConsumerAll();
+                    break;
+            }
+
+            // var factory = new ConnectionFactory()
+            // {
+            //     HostName = "localhost",
+            //     UserName = "rabbitmq",
+            //     Password = "rabbitmq",
+            //     VirtualHost = "/"
+            // };
+            // string queueName = "hello";
+            // using var connection = factory.CreateConnection();            
+
+            // BuildResultListener(connection);
+
+            // BuildPublisher(connection, queueName, "Producer A");
+            // BuildPublisher(connection, queueName, "Producer B");
+
             CreateHostBuilder(args).Build().Run();
         }
 
         public static void BuildResultListener(IConnection connection)
-        {            
+        {
             var channelDiv2 = connection.CreateModel();
             var channelDiv3 = connection.CreateModel();
             var channelDiv5 = connection.CreateModel();
@@ -59,13 +91,15 @@ namespace producer
 
             BuildResultConsumer(channelDiv2, queueDiv2);
             BuildResultConsumer(channelDiv3, queueDiv3);
-            BuildResultConsumer(channelDiv5, queueDiv5);          
+            BuildResultConsumer(channelDiv5, queueDiv5);
         }
 
-        public static void BuildResultConsumer(IModel channel, string queueName){
-             
-             var consumer = new EventingBasicConsumer(channel);
-            consumer.Received += ((model, ea) => {
+        public static void BuildResultConsumer(IModel channel, string queueName)
+        {
+
+            var consumer = new EventingBasicConsumer(channel);
+            consumer.Received += ((model, ea) =>
+            {
                 var body = ea.Body.ToArray();
                 var message = Encoding.UTF8.GetString(body);
                 var routingKey = ea.RoutingKey;
@@ -94,7 +128,7 @@ namespace producer
                 var body = ea.Body.ToArray();
                 var message = Encoding.UTF8.GetString(body);
 
-                if(message.Contains(publisherName))
+                if (message.Contains(publisherName))
                     System.Console.WriteLine($"{publisherName}.{message}");
             };
 
