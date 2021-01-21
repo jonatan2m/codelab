@@ -31,7 +31,7 @@ Running the project
 
 
 
-# Scenario
+# Scenario 01 - mongoDB docker instance
 Just estabilish a connection with MongoDB instance and create a TODO app running on console.
 TODO app consists on having Tasks and their statuses. It's possible having tasks with deadline or not.
 For simplification, a task creation is driven by console, with fields separated by ";".
@@ -53,3 +53,22 @@ The console will handle all options before perform the action
 ## Reports
 - How many tasks still opened? (list all)
 - How many tasks are overdue? (list all)
+
+# Scenario 02 - Atlas MongoDB
+The better starting point. [Here](https://www.mongodb.com/blog/post/atlas-plus-load-sample-data-for-easier-learning) you can access the database samples.
+In the list below you can know more about the samples:
+- sample_airbnb
+- sample_geospatial
+- sample_mflix (is a database with five collections all about movies)
+- sample_supplies (is a typical sales data collection)
+- *sample_training* (is a database with nine collections used in MongoDB’s private training.)
+- sample_weatherdata
+
+
+## Questions
+- Why shall I use ObjectId to map Id properties?
+
+
+- How can I see the collection metadata?
+
+- What is the IAsyncCursor? How can I use it?

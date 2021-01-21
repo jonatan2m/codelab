@@ -1,43 +1,53 @@
 ﻿using System;
-using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace playmongodb
 {
-    public class MongoTask
-    {
-        public ObjectId Id { get; set; }
-        public string Title { get; set; }
-        public DateTime Deadline { get; set; }
-        public bool Completed { get; set; }
-
-        public static MongoTask Default => new MongoTask{
-            Id = ObjectId.GenerateNewId(),
-            Title = "Practice with MongoDB example",
-            Deadline = DateTime.Now
-        };
-    }
 
     class Program
     {
+        static readonly MongoClient _dbClient;
+
+        static Program()
+        {
+            _dbClient = new MongoClient(DatabaseSettings.ConnectionString);            
+        }
+
         static void Main(string[] args)
         {
-            var connectionString = "mongodb://jonatan:123456@localhost:27017";
-            var databaseName = "playtask";
-            MongoClient dbClient = new MongoClient(connectionString);
-            
-            var db = dbClient.GetDatabase(databaseName);
+            System.Console.WriteLine("Create task: task_name;deadline");
+            System.Console.WriteLine("Edit task: task_id;task_name");
 
-            var taskCollection = db.GetCollection<MongoTask>("tasks");
 
-            taskCollection.InsertOne(MongoTask.Default);
-
-            foreach (var item in taskCollection.AsQueryable())
+            while (true)
             {
-                System.Console.WriteLine($"TaskId - {item.Id}; {item.Title} ({item.Deadline})");
-            }
+                Console.Clear();
+                var taskCollection = GetCollection<MongoTask>();
 
-            Console.WriteLine("Hello World!");
+                //taskCollection.InsertOne(MongoTask.Default);
+                
+                PrintTaskCollection(taskCollection);                
+
+                Console.ReadLine();
+            }
+        }
+
+        static IMongoCollection<T> GetCollection<T>()
+        {
+            var db = _dbClient.GetDatabase(DatabaseSettings.DatabaseName);
+
+            return db.GetCollection<T>(MongoTask.CollectionName);
+        }
+
+        static void PrintTaskCollection(IMongoCollection<MongoTask> tasks)
+        {
+            string tableFormat = "{0,30}{1,40}{2,50}";
+            System.Console.WriteLine(tableFormat, "Id", "Name", "Deadline");
+            
+            foreach (var task in tasks.AsQueryable())
+            {
+                System.Console.WriteLine(tableFormat, task.Id, task.Title, task.Deadline);
+            }
         }
     }
 }
