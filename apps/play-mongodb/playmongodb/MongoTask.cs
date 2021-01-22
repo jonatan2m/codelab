@@ -7,10 +7,10 @@ namespace playmongodb
     {
         public static readonly string CollectionName = "tasks";
         // public ObjectId Id { get; set; }
-        public int Id { get; set; }
+        public long Id { get; set; }
         
         public string Title { get; set; }
-        public DateTime Deadline { get; set; }
+        public DateTime? Deadline { get; set; }
         public bool Completed { get; set; }
 
         public static MongoTask Default => new MongoTask

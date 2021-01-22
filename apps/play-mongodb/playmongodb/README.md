@@ -68,7 +68,13 @@ In the list below you can know more about the samples:
 ## Questions
 - Why shall I use ObjectId to map Id properties?
 
-
 - How can I see the collection metadata?
 
 - What is the IAsyncCursor? How can I use it?
+Widely used to list items
+
+- How to know if there is any indexes on database?
+
+- Type BsonDocument and BsonElement
+
+> Read operations are case-sensitive
