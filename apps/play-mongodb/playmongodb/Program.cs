@@ -1,4 +1,5 @@
 ﻿using System;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace playmongodb
@@ -24,13 +25,13 @@ namespace playmongodb
         {
             while (true)
             {
-                Console.Clear();
-                var taskCollection = GetCollection<MongoTask>();
+                var taskCollection = GetCollection<MongoTask>(MongoTask.CollectionName);
 
                 PrintTaskCollection(taskCollection);
                 PrintCommands();
 
                 var input = Console.ReadLine();
+                Console.Clear();
 
                 var taskParts = input.Split(';');
 
@@ -40,12 +41,20 @@ namespace playmongodb
                 }
                 else
                 {
+
                     if (taskParts[0] == "_ft")
                     {
-                        var filter = Builders<MongoTask>.Filter.Eq("Title", taskParts[1]);
+                        //var filter = Builders<MongoTask>.Filter.Eq("Title", taskParts[1]);
+                        //var tasks = taskCollection.Find(filter).FirstOrDefault();
 
-                        var result = taskCollection.Find(filter).FirstOrDefault();
-                        System.Console.WriteLine($"{result.Id} - {result.Title}");
+                        var collection = GetCollection<MongoTask>(MongoTask.CollectionName);
+                        var filter3 = Builders<MongoTask>.Filter.Regex("Title", new BsonRegularExpression($".*{taskParts[1]}.*"));
+                        var tasks = collection.Find<MongoTask>(filter3).ToList();
+
+                        foreach (var item in tasks)
+                        {                            
+                            System.Console.WriteLine($"{item.Id} - {item.Title}");
+                        }
 
                         Console.ReadLine();
                         continue;
@@ -72,17 +81,26 @@ namespace playmongodb
             }
         }
 
-        static IMongoCollection<T> GetCollection<T>()
+        static IMongoCollection<T> GetCollection<T>(string collectionName)
         {
             var db = _dbClient.GetDatabase(DatabaseSettings.DatabaseName);
 
-            return db.GetCollection<T>(MongoTask.CollectionName);
+            return db.GetCollection<T>(collectionName);
         }
 
         static void PrintTaskCollection(IMongoCollection<MongoTask> tasks)
         {
             const string tableFormat = "{0,30}{1,40}{2,50}";
-            System.Console.WriteLine(tableFormat, "Id", "Name", "Deadline");
+            System.Console.WriteLine(tableFormat, "Id", "Title", "Deadline");
+
+            /* Another way to read all documents
+            var documents = tasks.Find(new MongoDB.Bson.BsonDocument()).ToList();
+
+            foreach (var task in documents)
+            {
+                System.Console.WriteLine(tableFormat, task.Id, task.Title, task.Deadline);
+            }
+            */
 
             foreach (var task in tasks.AsQueryable())
             {
