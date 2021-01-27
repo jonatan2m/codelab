@@ -12,6 +12,10 @@ namespace playmongodb
         static Program()
         {
             _dbClient = new MongoClient(DatabaseSettings.ConnectionString);
+            new SeedDataProvider(
+                DatabaseSettings.ConnectionString,
+                DatabaseSettings.DatabaseName)
+                .SeedData();
         }
 
         static void PrintCommands()
@@ -62,8 +66,7 @@ namespace playmongodb
                     //find:
                     //creation
                     var task = new MongoTask
-                    {
-                        Id = DateTime.Now.Ticks,
+                    {                        
                         Title = taskParts[0]
                     };
 
@@ -90,7 +93,7 @@ namespace playmongodb
 
         static void PrintTaskCollection(IMongoCollection<MongoTask> tasks)
         {
-            const string tableFormat = "{0,30}{1,40}{2,50}";
+            const string tableFormat = "{0,30}{1,50}{2,30}";
             System.Console.WriteLine(tableFormat, "Id", "Title", "Deadline");
 
             /* Another way to read all documents

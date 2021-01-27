@@ -5,10 +5,9 @@ namespace playmongodb
 {
     public class MongoTask
     {
-        public static readonly string CollectionName = "tasks";
-        // public ObjectId Id { get; set; }
-        public long Id { get; set; }
-        
+        public static readonly string CollectionName = "mongotasks";
+        public ObjectId Id { get; set; }
+                
         public string Title { get; set; }
         public DateTime? Deadline { get; set; }
         public bool Completed { get; set; }
@@ -20,5 +19,5 @@ namespace playmongodb
             Title = "Practice with MongoDB example",
             Deadline = DateTime.Now
         };
-    }
+    }    
 }
