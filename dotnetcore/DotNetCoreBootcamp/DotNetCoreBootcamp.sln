@@ -34,7 +34,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web3_1", "Web3_1\Web3_1.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainEvents", "DomainEvents\DomainEvents.csproj", "{EADC6857-22CD-4A79-B1B4-961089A4B368}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainEventsTest", "DomainEventsTest\DomainEventsTest.csproj", "{89EBC032-5FB5-4C56-B6EF-44396E42F47E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainEventsTest", "DomainEventsTest\DomainEventsTest.csproj", "{89EBC032-5FB5-4C56-B6EF-44396E42F47E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Refactoring", "Refactoring\Refactoring.csproj", "{0AA9AC45-0CBF-41EE-9A8D-975E236EEA3B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -110,6 +112,10 @@ Global
 		{89EBC032-5FB5-4C56-B6EF-44396E42F47E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89EBC032-5FB5-4C56-B6EF-44396E42F47E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89EBC032-5FB5-4C56-B6EF-44396E42F47E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AA9AC45-0CBF-41EE-9A8D-975E236EEA3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AA9AC45-0CBF-41EE-9A8D-975E236EEA3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AA9AC45-0CBF-41EE-9A8D-975E236EEA3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AA9AC45-0CBF-41EE-9A8D-975E236EEA3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
