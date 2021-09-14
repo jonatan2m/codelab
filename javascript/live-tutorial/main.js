@@ -18,16 +18,16 @@ if(window.Worker){
     });
     
     document.querySelector('.exec-code').addEventListener('click', function (){
-        const userCode = "("+editor.getValue()+")";        
+        const userCode = "(" + editor.getValue() + ")";        
     
-        worker.postMessage(userCode);    
+        //worker.postMessage(userCode);    
 
-        setTimeout(function(){
-            worker.terminate();             
-        }, 5000);        
+        // setTimeout(function(){
+        //     worker.terminate();             
+        // }, 5000);        
 
-        //var t = eval("(" + editor.getValue() + ")");
-        //t(6);
+        var t = eval("(" + editor.getValue() + ")");
+        t(6);
 
         //--------------------------
 
@@ -56,7 +56,7 @@ if(window.Worker){
         
         //--------------------------
     
-        try{
+        /*try{
             var func = new Function(userCode);
             var result = func(2);
             document.querySelector('#code').innerHTML = result;
@@ -65,6 +65,7 @@ if(window.Worker){
             document.querySelector('#code').innerHTML = err;
             console.error(err);
         }
+        */
     });
 }else{
     alert("This browser can't execute our code. Please, upgrade your browser version or install a newer one");
