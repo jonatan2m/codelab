@@ -3,6 +3,12 @@ using Xunit;
 
 namespace Refactoring
 {
+    /*
+    Quando você tem métodos longos, onde não é possível aplicar o **Extrair Método (100)**.
+
+    Transforma o método em seu próprio objeto, trazendo consigo todas as variaveis que ele utiliza.
+    Quando você aplica essa refatoração, pode quebrar a classe de forma despreocupada, dentro do método que gerou essa alteração    
+    */
     public class ReplaceMethodWithMethodObject
     {
         [Fact]
