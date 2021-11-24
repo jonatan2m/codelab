@@ -5,19 +5,24 @@ using Xunit;
 
 namespace Refactoring
 {
+   
+
     //Replace Type Code with State/Strategy
-    class Employee
-    {
-        private int _monthlySalary;
-        private int _commission;
-        private int _bonus;
+    public class Employee
+    {        
+        private EmployeeType _type;        
+        private int v;
+        private readonly int _monthlySalary;                       
+        private readonly int _commission;
+        private readonly int _bonus;
 
-        private EmployeeType _type;
-
-        Employee(int type)
+        public Employee(int type, int monthlySalary, int commission = 0, int bonus = 0)
         {
             setType(type);
-        }
+            _monthlySalary = monthlySalary;            
+            _commission = commission;
+            _bonus = bonus;
+        }        
 
         //step one - encapsulate the type
         int getType()
@@ -27,22 +32,28 @@ namespace Refactoring
 
         void setType(int arg)
         {
-            _type = EmployeeType.newType(arg);            
+            _type = EmployeeType.newType(arg);
         }
 
-        int payAmount()
+        public int getMonthlySalary()
         {
-            switch (getType())
-            {
-                case EmployeeType.ENGINEER:
-                    return _monthlySalary;
-                case EmployeeType.SALESMAN:
-                    return _monthlySalary + _commission;
-                case EmployeeType.MANAGER:
-                    return _monthlySalary + _bonus;
-                default:
-                    throw new ArgumentException("Incorrect Employee");
-            }
+            return _monthlySalary;
+        }
+
+        public int getComission()
+        {
+            return _commission;
+        }
+
+        public int getBonus()
+        {
+            return _bonus;
+        }
+
+        public int payAmount()
+        {
+            //step seven - remove switch case from here and put it on EmployeeType, passing 'this' as parameter
+            return _type.payAmount(this);            
         }
     }
 
@@ -72,12 +83,35 @@ namespace Refactoring
             }
         }
 
+        //step six - move payAmount to EmployeeType and add acessible methods to get salary, commission and bonus
+        public virtual int payAmount(Employee emp)
+        {
+            switch (getTypeCode())
+            {
+                case EmployeeType.ENGINEER:
+                    throw new InvalidOperationException("Should be overrided");
+                case EmployeeType.SALESMAN:
+                    //TODO Remove it for Salesman class
+                    return emp.getMonthlySalary() + emp.getComission();
+                case EmployeeType.MANAGER:
+                    //TODO Remove it for Manager class
+                    return emp.getMonthlySalary() + emp.getBonus();
+                default:
+                    throw new ArgumentException("Incorrect Employee");
+            }
+        }
+
         //step three - create subclasses
         class Engineer : EmployeeType
         {
             public override int getTypeCode()
             {
-                return Employee.ENGINEER;
+                return ENGINEER;
+            }
+
+            public override int payAmount(Employee emp)
+            {
+                return emp.getMonthlySalary();
             }
         }
 
@@ -86,7 +120,7 @@ namespace Refactoring
         {
             public override int getTypeCode()
             {
-                return Employee.MANAGER;
+                return MANAGER;
             }
         }
 
@@ -95,19 +129,21 @@ namespace Refactoring
         {
             public override int getTypeCode()
             {
-                return Employee.SALESMAN;
+                return SALESMAN;
             }
-        }
-
-
-        public class ReplaceConditionalWithPolymorphism
-        {
-            [Fact]
-            public void ReplaceConditionalWithPolymorphismBefore()
-            {
-
-            }
-
-        }
-
+        }      
     }
+
+    public class ReplaceConditionalWithPolymorphism
+    {
+        [Fact]
+        public void ReplaceConditionalWithPolymorphismBefore()
+        {
+            var engineer = new Employee(EmployeeType.ENGINEER, 1000);
+
+            var result = engineer.payAmount();
+
+            Assert.Equal(1000, result);
+        }
+    }
+}
