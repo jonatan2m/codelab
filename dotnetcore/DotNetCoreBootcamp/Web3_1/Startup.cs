@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -11,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Web3_1.FluentValidationExamples;
 using Web3_1.Handlers;
 
 namespace Web3_1
@@ -32,7 +34,9 @@ namespace Web3_1
             services.AddMediatR(typeof(Startup));
             services.AddControllers();
             services.AddAutoMapper(typeof(Startup));
-
+            
+            //Inject all Validators in specific Assembly which was the same this extension method is used
+            services.AddValidatorsFromAssemblyContaining<EventViewModelValidator>();
             
             services.AddSwaggerGen(setup =>
             {                
@@ -82,7 +86,7 @@ namespace Web3_1
                 {
                     setup.InjectStylesheet("/swagger-ui/custom.css");                    
                 });
-            }
+            }            
 
             app.UseRouting();
 
