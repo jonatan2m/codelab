@@ -31,7 +31,43 @@ namespace Web3_1
             services.AddScoped<MovieRepository>();
             services.AddMediatR(typeof(Startup));
             services.AddControllers();
+            services.AddAutoMapper(typeof(Startup));
 
+            
+            services.AddSwaggerGen(setup =>
+            {                
+                setup.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "Example Swagger",
+                    Description = "This is a silly test",
+                    License = new Microsoft.OpenApi.Models.OpenApiLicense
+                    {
+                        Name = "Whatever",
+                        Url = new Uri("https://projetomatrix.com.br")
+                    },
+                    TermsOfService = new Uri("https://projetomatrix.com.br"),
+                    Contact = new Microsoft.OpenApi.Models.OpenApiContact
+                    {
+                        Email = "jonatan@projetomatrix.com.br",
+                        Url = new Uri("https://projetomatrix.com.br"),
+                        Name = "Jonatan Machado",                        
+                    }
+                });
+
+                
+                
+
+                /* Enable XML documentation
+                    <PropertyGroup>
+                        <GenerateDocumentationFile>true</GenerateDocumentationFile>  
+                        <NoWarn>$(NoWarn);1591</NoWarn>
+                    </PropertyGroup>
+                */
+                //enabling XML Documentation (summary comment)
+                var xmlFilename = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                setup.IncludeXmlComments(System.IO.Path.Combine(AppContext.BaseDirectory, xmlFilename));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,6 +76,12 @@ namespace Web3_1
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseStaticFiles();
+                app.UseSwagger();
+                app.UseSwaggerUI(setup =>
+                {
+                    setup.InjectStylesheet("/swagger-ui/custom.css");                    
+                });
             }
 
             app.UseRouting();

@@ -12,15 +12,41 @@ namespace Web3_1.Controllers
     [Route("[controller]")]
     public class MapperController : ControllerBase
     {
+        private readonly IMapper _mapper;
 
+        public MapperController(IMapper mapper)
+        {
+            _mapper = mapper;
+        }
+
+        /// <summary>
+        /// Here is a summary example
+        /// </summary>
+        /// <returns>Item found</returns>
+        /// <remarks>
+        /// Sample result:
+        ///     GET /
+        ///     {
+        ///         "eventId": 1,
+        ///         "createdAt": DateTime.Now,
+        ///         "isActive": true,
+        ///         "Title": "Mapper Event Testing"
+        ///     }
+        /// </remarks>
+        /// <response code="200">Find an item</response>
+        /// <response code="500">An Error occurred</response>
+        [ProducesResponseType(Microsoft.AspNetCore.Http.StatusCodes.Status200OK)]
+        [ProducesResponseType(Microsoft.AspNetCore.Http.StatusCodes.Status500InternalServerError)]
         [HttpGet]
+        [Produces("application/json")]
         public IActionResult Index()
         {
-            var profile = new MapperProfile();
-            IMapper map = new MapperConfiguration(c =>
-            {
-                c.AddProfile(profile);                
-            }).CreateMapper();
+            //Injecting on DI, it isn't necessary
+            //var profile = new MapperProfile();
+            //IMapper map = new MapperConfiguration(c =>
+            //{
+            //    c.AddProfile(profile);                
+            //}).CreateMapper();
 
             Event source = new Event
             {
@@ -30,9 +56,11 @@ namespace Web3_1.Controllers
                 Title = "Mapper Event Testing"
             };
 
-            var model = map.Map<Event, EventViewModel>(source);
+            var model = _mapper.Map<Event, EventViewModel>(source);
 
-            return Ok(model);
+            source = _mapper.Map<EventViewModel, Event>(model);
+
+            return Ok(new { model, source });
         }
     }
 }

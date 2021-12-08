@@ -27,7 +27,8 @@ namespace Web3_1.MapperExamples
         public MapperProfile()
         {
             CreateMap<Event, EventViewModel>()
-                .ForMember(x => x.Id, opt => opt.MapFrom(y => y.EventId));
+                .ForMember(x => x.Id, opt => opt.MapFrom(y => y.EventId))
+                .ReverseMap();
         }
     }
 }
