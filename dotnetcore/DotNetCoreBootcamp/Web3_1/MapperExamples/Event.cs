@@ -20,6 +20,7 @@ namespace Web3_1.MapperExamples
         public int Id { get; set; }
         public string Title { get; set; }
         public DateTime CreatedAt { get; set; }        
+        public int EventBriteCode { get; set; }
     }
 
     public class MapperProfile : Profile
