@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Web3_1.CustomMiddleware;
 using Web3_1.FluentValidationExamples;
 using Web3_1.Handlers;
 
@@ -91,6 +92,8 @@ namespace Web3_1
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseMiddleware<BlockEventCodeMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {
