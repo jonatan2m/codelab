@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +15,16 @@ namespace Web3_1.Controllers
     [Route("[controller]")]
     public class MapperController : ControllerBase
     {
+        private readonly ILogger<MapperController> logger;
         private readonly IMapper _mapper;
         private readonly IValidator<EventViewModel> _validator;
 
-        public MapperController(IMapper mapper, FluentValidation.IValidator<EventViewModel> validator)
+        public MapperController(
+            Microsoft.Extensions.Logging.ILogger<MapperController> logger,
+            IMapper mapper,
+            FluentValidation.IValidator<EventViewModel> validator)
         {
+            this.logger = logger;
             _mapper = mapper;
             _validator = validator;
         }
@@ -35,26 +41,37 @@ namespace Web3_1.Controllers
         [Produces("application/json")]
         public IActionResult Index()
         {
-            //Injecting on DI, it isn't necessary
-            //var profile = new MapperProfile();
-            //IMapper map = new MapperConfiguration(c =>
-            //{
-            //    c.AddProfile(profile);                
-            //}).CreateMapper();
-
-            Event source = new Event
+            //agrupa todos os logs dentro do escopo com o mesmo TraceId
+            using (logger.BeginScope("using a scope"))
             {
-                EventId = 1,
-                CreatedAt = DateTime.Now,
-                IsActive = true,
-                Title = "Mapper Event Testing"
-            };
+                logger.LogInformation("controller is configured. {Id}", Guid.NewGuid());
+                
 
-            var model = _mapper.Map<Event, EventViewModel>(source);
+                //Injecting on DI, it isn't necessary
+                //var profile = new MapperProfile();
+                //IMapper map = new MapperConfiguration(c =>
+                //{
+                //    c.AddProfile(profile);                
+                //}).CreateMapper();
 
-            source = _mapper.Map<EventViewModel, Event>(model);
+                Event source = new Event
+                {
+                    EventId = 1,
+                    CreatedAt = DateTime.Now,
+                    IsActive = true,
+                    Title = "Mapper Event Testing"
+                };
 
-            return Ok(new { model, source });
+                var model = _mapper.Map<Event, EventViewModel>(source);
+
+                source = _mapper.Map<EventViewModel, Event>(model);
+
+
+                logger.LogInformation("part 2. {Id}", Guid.NewGuid());
+                
+
+                return Ok(new { model, source });
+            }
         }
 
         /// <summary>
@@ -67,7 +84,7 @@ namespace Web3_1.Controllers
         [ProducesResponseType(Microsoft.AspNetCore.Http.StatusCodes.Status500InternalServerError)]
         [HttpPost]
         public IActionResult Process(EventViewModel @event)
-        {            
+        {
             var result = _validator.Validate(@event);
 
             if (result.IsValid == false)

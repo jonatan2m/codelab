@@ -41,11 +41,10 @@ namespace Web3_1.CustomMiddleware
                     stream = new MemoryStream(requestData);
                 }
 
-                httpContext.Request.Body = stream;
-
-                await _next(httpContext);
-
+                httpContext.Request.Body = stream;                
             }
+
+            await _next(httpContext);
         }
     }
 
