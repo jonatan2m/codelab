@@ -37,7 +37,7 @@ namespace Web3_1.Controllers
         /// <response code="500">An Error occurred</response>
         [ProducesResponseType(Microsoft.AspNetCore.Http.StatusCodes.Status200OK)]
         [ProducesResponseType(Microsoft.AspNetCore.Http.StatusCodes.Status500InternalServerError)]
-        [HttpGet]
+        [HttpGet(Name = "Initial Page")]
         [Produces("application/json")]
         public IActionResult Index()
         {
