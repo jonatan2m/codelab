@@ -15,6 +15,7 @@ using CSharp.Threads;
 using CSharpConsole.Resilience.RetryExamples;
 using CSharpConsole.TasksExamples;
 using Newtonsoft.Json;
+using CSharp.Enumerables.IEnumerableAndList;
 
 namespace CSharpConsole
 {
@@ -139,8 +140,17 @@ namespace CSharpConsole
             //CSharp.Enumerables.SelectAndMany.Example01.Run();
 
             //Threading
-            CSharp.Threads.Example02.Run();
+            //CSharp.Threads.Example02.Run();
             //CSharp.Threads.ThreadPools.Example01.Run();
+
+
+            //List through methods
+            var list = new ListInstanceThroughMethods();
+            list.Scenario1();
+            list.Scenario2();
+            list.Scenario3();
+            list.Scenario4();
+            list.Scenario5();
 
             //Console.Read();
         }

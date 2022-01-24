@@ -12,7 +12,7 @@ namespace DomainEventsTest.SharingContext
         public Player(string name)
         {
             Name = name;
-            Health = new Random().Next(50, 100);
+            Health = 100;
         }
 
         public void TakeDamage(int damage)
