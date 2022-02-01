@@ -32,5 +32,16 @@ namespace DomainEventsTest.SharingContext.DataDrivenTests
 
             Assert.Equal(expectedHealth, sut.Health);
         }
+
+        [Theory]
+        [MemberData(nameof(ExternalHealthDamageTestData.TestData), MemberType = typeof(ExternalHealthDamageTestData))]
+        public void TakeDamageTestClassExternal(int damage, int expectedHealth)
+        {
+            var sut = new Player("A");
+
+            sut.TakeDamage(damage);
+
+            Assert.Equal(expectedHealth, sut.Health);
+        }
     }
 }

@@ -17,5 +17,16 @@ namespace DomainEventsTest.SharingContext.DataDrivenTests
 
             Assert.Equal(expectedHealth, sut.Health);
         }
+
+        [Theory]
+        [HealthDamage]
+        public void TakeDamageFromAttribute(int damage, int expectedHealth)
+        {
+            var sut = new Player("B");
+
+            sut.TakeDamage(damage);
+
+            Assert.Equal(expectedHealth, sut.Health);
+        }
     }
 }
