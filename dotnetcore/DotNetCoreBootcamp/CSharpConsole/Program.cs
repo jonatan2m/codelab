@@ -151,6 +151,7 @@ namespace CSharpConsole
             list.Scenario3();
             list.Scenario4();
             list.Scenario5();
+            list.Scenario6();
 
             //Console.Read();
         }

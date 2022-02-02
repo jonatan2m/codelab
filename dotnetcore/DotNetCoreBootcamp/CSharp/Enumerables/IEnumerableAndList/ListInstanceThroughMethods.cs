@@ -110,6 +110,29 @@ namespace CSharp.Enumerables.IEnumerableAndList
             _ = sheets.FirstOrDefault(x => x.HasScribble());
         }
 
+        /// <summary>
+        /// IEnumerable Any method
+        /// </summary>
+        public void Scenario6()
+        {
+            Console.WriteLine(nameof(Scenario6));
+            var sheets = new List<Sheet>();
+
+            for (int i = 1; i <= 10; i++)
+            {
+                sheets.Add(new Sheet { Page = i });
+            }
+
+            if (sheets.Any(x => x.HasScribble()))
+            {
+                Console.WriteLine("Any method execution");
+            }
+            else
+            {
+                Console.WriteLine("There is no scribble sheet ");
+            }
+        }
+
         private void PrintNumers(IEnumerable<int> numbers)
         {
             if (numbers is List<int>)
