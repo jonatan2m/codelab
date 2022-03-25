@@ -33,7 +33,7 @@ namespace CSharp.Enumerables.IEnumerableAndList
             Console.WriteLine(nameof(Scenario1));
             var ids = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
-            PrintNumers(ids);
+            PrintNumbers(ids);
         }
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace CSharp.Enumerables.IEnumerableAndList
             }
         }
 
-        private void PrintNumers(IEnumerable<int> numbers)
+        private void PrintNumbers(IEnumerable<int> numbers)
         {
             if (numbers is List<int>)
                 Console.WriteLine("it is a List<int>");
