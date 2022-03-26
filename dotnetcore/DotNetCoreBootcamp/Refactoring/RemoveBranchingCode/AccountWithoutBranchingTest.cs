@@ -7,12 +7,12 @@ namespace Refactoring.RemoveBranchingCode
 {
     public class AccountWithoutBranchingTest
     {
-        internal readonly AccountWithoutBranching _account;
-        private bool UnFreezeWasCalled = false;
+        private readonly AccountWithoutBranching _account;
+        private bool _unFreezeWasCalled = false;
 
         public AccountWithoutBranchingTest()
         {
-            _account = new AccountWithoutBranching(() => UnFreezeWasCalled = true);
+            _account = new AccountWithoutBranching(() => _unFreezeWasCalled = true);
         }
 
 
@@ -102,7 +102,7 @@ namespace Refactoring.RemoveBranchingCode
 
             // Assert
             Assert.Equal(decimal.Zero, _account.Balance);
-            Assert.True(UnFreezeWasCalled);
+            Assert.True(_unFreezeWasCalled);
         }
     }
 }

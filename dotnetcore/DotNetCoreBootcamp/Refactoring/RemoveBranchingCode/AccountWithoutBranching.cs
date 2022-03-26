@@ -19,39 +19,36 @@ namespace Refactoring.RemoveBranchingCode
     {
         public decimal Balance { get; private set; }
 
-        private IAccountState Freezable { get; set; }
-
-        private bool IsVerified { get; set; }
-        private bool IsClosed { get; set; }
+        private IAccountState State { get; set; }
 
         public AccountWithoutBranching(Action onUnfreeze)
         {
-            Freezable = new NotVerified(onUnfreeze);
+            State = new NotVerified(onUnfreeze);
         }
 
         public void Deposit(decimal amount)
         {
-            Freezable = Freezable.Deposit(() => Balance += amount);
+            State = State.Deposit(() => Balance += amount);
         }
 
         public void Withdraw(decimal amount)
         {
-            Freezable = Freezable.Withdraw(() => Balance -= amount);
+            State = State.Withdraw(() => Balance -= amount);
         }
 
         public void HolderVerified()
         {
-            Freezable = Freezable.HolderVerified();
+            State = State.HolderVerified();
         }
 
         public void Close()
         {
-            Freezable = Freezable.Close();
+            State = State.Close();
         }
 
         public void Freeze()
         {
-            Freezable = Freezable.Freeze();
+            State = State.Freeze();
         }
     }
 }
