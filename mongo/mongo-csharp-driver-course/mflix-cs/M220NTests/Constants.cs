@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using System.Reflection.Emit;
+using M220N;
+using Microsoft.Extensions.Configuration;
 
 namespace M220NTests
 {
@@ -10,6 +12,7 @@ namespace M220NTests
         {
             var configuration = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json", optional: true)
+                .AddUserSecrets<Program>()
                 .AddEnvironmentVariables()
                 .Build();
 

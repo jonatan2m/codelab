@@ -96,7 +96,10 @@ namespace M220N.Repositories
                         (Movie m) => m.Comments)
                     .FirstOrDefaultAsync(cancellationToken);
             }
-
+            catch (System.FormatException ex)
+            {
+                return null;
+            }
             catch (Exception ex)
             {
                 // TODO Ticket: Error Handling
