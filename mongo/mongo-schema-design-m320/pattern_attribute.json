@@ -1,0 +1,13 @@
+{
+  "_id": "<objectId>",
+  "title": "<string>",
+  "artist": "<string>",
+  "location": "<string>",
+  "on_display": "<bool>",
+  "in_house": "<bool>",
+  "events": [
+    { "k": "date_acquisition", "v": "<date>" },
+	  { "k": "<string>", "v":"<date>"},
+    { "k": "<string>", "v": "<date>"}
+  ]
+}
