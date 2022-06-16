@@ -1,0 +1,36 @@
+{
+  "_id": "<objectId>",
+  "item_code": "<string>",
+  "name": "<string>",
+  "maker_brand": "<string>",
+  "price": "<decimal>",
+  "description": "<string>",
+  "materials": ["<string>"],
+  "country": "<string>",
+  "image": "<string>",
+  "available_sizes": {
+    "mens": ["<string>"],
+    "womens": ["<string>"]
+  },
+  "package_weight_kg": "<decimal>",
+  "average_rating": "<decimal>",
+  "reviews": [{
+    "author": "<string>",
+    "text": "<string>",
+    "rating": "<int>"
+  }],
+  "questions": [{
+    "author": "<string>",
+    "text": "<string>",
+    "likes": "<int>"
+  }],
+  "stock_amount": "<int>",
+  "maker_address": {
+    "building_number": "<string>",
+    "street_name": "<string>",
+    "city": "<string>",
+    "country": "<string>",
+    "postal_code": "<string>"
+  },
+  "makers": ["<string>"]
+}

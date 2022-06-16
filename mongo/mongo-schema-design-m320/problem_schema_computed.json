@@ -1,0 +1,18 @@
+{
+  "_id": "<objectId>",
+  "address": {
+    "building number": "<string>",
+    "street name": "<string>",
+    "city": "<string>",
+    "state": "<string>",
+    "zip code": "<string>"
+  },
+  "owner": "<string>",
+  "zone": "<int>",
+  "date": "<date>",
+  "kW per day": {
+    "consumption": "<int>",
+    "self-produced": "<int>",
+    "city-supplemented": "<int>"
+  }
+}
