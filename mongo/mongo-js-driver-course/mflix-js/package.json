@@ -55,7 +55,7 @@
     "mocha": "^5.2.0",
     "mongodb": "^3.1.6",
     "morgan": "^1.9.1",
-    "npm-check-updates": "^3.1.21",
+    "npm-check-updates": "^16.3.8",
     "prettier": "^1.14.3",
     "sinon": "^5.0.10"
   },
@@ -88,6 +88,6 @@
     "jest-cli": "^25.0.0",
     "jest-express": "^1.6.0",
     "lint-staged": "^7.3.0",
-    "nodemon": "^1.17.5"
+    "nodemon": "^2.0.20"
   }
 }
