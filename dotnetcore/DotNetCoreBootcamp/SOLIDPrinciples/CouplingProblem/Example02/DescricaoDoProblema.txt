@@ -1,9 +1,0 @@
-﻿As vezes, o desacoplar nem sempre precisa de uma solucao rebuscada.
-
-Uma classe que possui um processo complicado, onde as dependencias realizam 
-diversas acoes ao longo da execucao do método, deve considerar além do acoplamento
-a divisao das responsabilidades.
-
-Se uma acao executada precisa de 2 dependencias e nao é mais utilizada em nenhuma 
-parte da classe ou do método, é mais adequado agrupar essas dependencias numa classe
-mais especifica.
