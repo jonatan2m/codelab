@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace DesignPatternsConsole
 {
-    class Program
+    class Program6565
     {
-        static void Main(string[] args)
+        public static void Main1(string[] args)
         {
             DesignPatterns.Command.Example1.PlayWithRemote.Run();
             Console.WriteLine("--------------------------------------");

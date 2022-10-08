@@ -24,9 +24,9 @@ namespace CSharpConsole
         public string a { get; set; }
     }
 
-    class Program
+    class Program11111
     {
-        static void Main(string[] args)
+        public static void Main1()
         {
             //GroupByExample.Run();
 

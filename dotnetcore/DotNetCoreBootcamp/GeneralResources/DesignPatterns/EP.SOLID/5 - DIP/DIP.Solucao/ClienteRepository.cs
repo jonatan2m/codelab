@@ -1,6 +1,6 @@
 using System.Data;
-using System.Data.SqlClient;
 using EP.SOLID.DIP.Solucao.Interfaces;
+using Microsoft.Data.SqlClient;
 
 namespace EP.SOLID.DIP.Solucao
 {

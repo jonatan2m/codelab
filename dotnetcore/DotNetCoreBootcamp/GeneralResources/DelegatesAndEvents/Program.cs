@@ -2,9 +2,9 @@
 
 namespace DelegatesAndEvents
 {
-    class Program
+    class Program321
     {
-        static void Main(string[] args)
+        public static void Main1111(string[] args)
         {
             ExampleDelegates.Run();
 

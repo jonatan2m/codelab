@@ -2,9 +2,9 @@
 
 namespace SOLIDPrinciples
 {
-    class Program
+    class Program1246
     {
-        static void Main(string[] args)
+        static void Main111(string[] args)
         {
             Console.WriteLine("Hello World!");
         }

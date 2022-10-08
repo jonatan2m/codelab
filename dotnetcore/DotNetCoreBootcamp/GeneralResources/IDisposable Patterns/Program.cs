@@ -11,9 +11,9 @@ namespace NET_GC
     using Dispose_Pattern_with_Inheritance;
     using Memory_Leak;
 
-    class Program
+    class Program66666
     {
-        static void Main()
+        static void Main11111234()
         {
             start:
             Console.WriteLine(@".NET Garbage Collector (GC) Demo. Copyright © 2018 DCOM Engineering, LLC

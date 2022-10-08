@@ -3,9 +3,9 @@ using System;
 
 namespace HeadFirstExamples
 {
-    class Program
+    class Program876
     {
-        static void Main(string[] args)
+        static void Main4444(string[] args)
         {
             DuckPlay.Play();
 
