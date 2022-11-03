@@ -13,16 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="IDisposable Patterns\Sample.tif" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="IDisposable Patterns\Sample.tif">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AutoFixture" Version="4.17.0" />
     <PackageReference Include="BenchmarkDotNet" Version="0.13.2" />
     <PackageReference Include="Konscious.Security.Cryptography.Argon2" Version="1.3.0" />

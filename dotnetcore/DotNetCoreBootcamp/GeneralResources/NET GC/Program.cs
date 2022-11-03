@@ -13,7 +13,7 @@ namespace NET_GC
 
     class Program
     {
-        static void Main()
+        static void Main111()
         {
             start:
             Console.WriteLine(@".NET Garbage Collector (GC) Demo. Copyright © 2018 DCOM Engineering, LLC
