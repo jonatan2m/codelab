@@ -30,4 +30,30 @@ namespace GeneralResources.XUnitExample.WorkingWithData
             Assert.True(IsOddNumber(d));
         }
     }
+
+    //public class CalculatorTests
+    //{
+    //    [Theory]
+    //    [MemberData(nameof(CalculatorData.Data), MemberType = typeof(CalculatorData))]
+    //    public void CanAddTheoryMemberDataMethod(int value1, int value2, int expected)
+    //    {
+    //        var calculator = new Calculator();
+
+    //        var result = calculator.Add(value1, value2);
+
+    //        Assert.Equal(expected, result);
+    //    }
+    //}
+
+    //public class CalculatorData
+    //{
+    //    public static IEnumerable<object[]> Data =>
+    //        new List<object[]>
+    //        {
+    //        new object[] { 1, 2, 3 },
+    //        new object[] { -4, -6, -10 },
+    //        new object[] { -2, 2, 0 },
+    //        new object[] { int.MinValue, -1, int.MaxValue },
+    //        };
+    //}
 }
