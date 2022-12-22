@@ -8,4 +8,16 @@
     <Compile Remove="SOLID\OCP\Example1\Problem - Copy.cs" />
   </ItemGroup>
 
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+      <_Parameter1>GeneralResources</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+  <!--<ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+      <_Parameter1>$(AssemblyName).Tests</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>-->
+
 </Project>
