@@ -31,7 +31,7 @@ namespace GeneralResources.CursoAlgoritmoEstruturaDeDados.BinaryHeap
         //Insert
         public void Insert(T value)
         {
-            if (_cursor < _data.Length)
+            if (_cursor == _data.Length)
             {
                 throw new InvalidOperationException("Insert exceeds heap capacity.");
             }
