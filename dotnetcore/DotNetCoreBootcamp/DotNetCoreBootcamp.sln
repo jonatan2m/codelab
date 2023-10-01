@@ -12,6 +12,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web3_1", "Web3_1\Web3_1.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeneralResources", "GeneralResources\GeneralResources.csproj", "{974DDA22-B8BD-471C-AF22-D0483EDBAD48}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleExecution", "ConsoleExecution\ConsoleExecution.csproj", "{79707DD0-2901-4903-86FF-2BE52AC34960}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,10 @@ Global
 		{974DDA22-B8BD-471C-AF22-D0483EDBAD48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{974DDA22-B8BD-471C-AF22-D0483EDBAD48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{974DDA22-B8BD-471C-AF22-D0483EDBAD48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79707DD0-2901-4903-86FF-2BE52AC34960}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79707DD0-2901-4903-86FF-2BE52AC34960}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79707DD0-2901-4903-86FF-2BE52AC34960}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79707DD0-2901-4903-86FF-2BE52AC34960}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
