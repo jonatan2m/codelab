@@ -9,6 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="CSharp\WorkflowExamples\**" />
+    <EmbeddedResource Remove="CSharp\WorkflowExamples\**" />
+    <None Remove="CSharp\WorkflowExamples\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="CSharp\xUnitAutoData.cs" />
   </ItemGroup>
 
@@ -35,10 +41,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="CSharp\WorkflowExamples\" />
   </ItemGroup>
 
   <ItemGroup>
