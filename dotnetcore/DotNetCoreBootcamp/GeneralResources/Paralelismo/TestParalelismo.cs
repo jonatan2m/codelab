@@ -65,6 +65,15 @@ namespace GeneralResources.Paralelismo
         [Fact]
         public void Main2()
         {
+            /*
+             * O `BlockingCollection` é comumente utilizado em cenários onde múltiplas threads estão produzindo e consumindo dados simultaneamente de uma mesma coleção. Um exemplo comum é o padrão produtor-consumidor.
+
+Neste cenário, uma ou mais threads (os produtores) estão gerando dados e os adicionando na `BlockingCollection`. Ao mesmo tempo, uma ou mais threads (os consumidores) estão removendo e processando estes dados da `BlockingCollection`.
+
+A `BlockingCollection` garante que os dados serão processados na ordem em que foram adicionados e que nenhum dado será processado mais de uma vez. Ela também gerencia automaticamente questões de concorrência e sincronização, como travamento e desbloqueio de threads.
+
+Por exemplo, em um aplicativo de processamento de vídeo, várias threads podem estar produzindo quadros de vídeo e adicionando-os a uma `BlockingCollection`, enquanto outras threads estão consumindo esses quadros da `BlockingCollection` para codificação e gravação em disco.
+             */
             BlockingCollection<string> dataQueue = new BlockingCollection<string>();
 
             // Simulação de leitura dos dados do servidor
