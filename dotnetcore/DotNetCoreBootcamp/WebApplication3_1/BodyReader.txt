@@ -1,2 +1,0 @@
-﻿//Post interessante sobre um teste feito em cima do BodyReader
-https://www.stevejgordon.co.uk/using-the-bodyreader-and-bodywriter-in-asp-net-core-3-0
