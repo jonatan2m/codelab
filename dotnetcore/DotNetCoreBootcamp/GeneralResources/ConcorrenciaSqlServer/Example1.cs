@@ -246,5 +246,83 @@ VALUES(1, 'Criado', GETDATE());
             await Task.WhenAll(fluxo2Task, fluxo1Task);
 
         }
+
+        /// <summary>
+        /// Bloqueia alterações 
+        /// </summary>
+        /// <returns></returns>
+        [Fact]
+        public async Task ConcurrenceScenarioWithHintUPDLOCK()
+        {
+            var output = new Queue<string>();
+
+            string connectionString = "Data Source=127.0.0.1,1433;Initial Catalog=TesteConcorrencia;User Id=sa;Password=Sqlserver102js@@;TrustServerCertificate=True";
+
+            // Fluxo 1
+            var fluxo1Task = Task.Run(async () =>
+            {
+                output.Enqueue($"Fluxo 1: Iniciado {DateTime.Now.ToLongTimeString()}");
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    await connection.OpenAsync();
+                    await Task.Delay(1000);
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        var updateCommand = new SqlCommand(
+                            @"UPDATE FluxoTeste SET Status = 'Enviado', DataAtualizacao = GETDATE()
+                            FROM FluxoTeste WITH (UPDLOCK)
+                            WHERE Id = 1",
+                            connection, transaction);
+                        await updateCommand.ExecuteNonQueryAsync();
+                        output.Enqueue($"Fluxo 1: Status alterado para 'Enviado'. {DateTime.Now.ToLongTimeString()}");
+
+                        // Simula alguma demora para concluir
+                        //await Task.Delay(1000);
+
+                        transaction.Commit();
+                        output.Enqueue($"Fluxo 1: Commit realizado. {DateTime.Now.ToLongTimeString()}");
+                    }
+                }
+            });
+
+            // Fluxo 2
+            var fluxo2Task = Task.Run(async () =>
+            {
+                output.Enqueue($"Fluxo 2: Iniciado {DateTime.Now.ToLongTimeString()}");
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    await connection.OpenAsync();                    
+
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        var readCommand = new SqlCommand(
+                            "SELECT Status FROM FluxoTeste WHERE Id = 1",
+                            connection, transaction);
+                        var status = (string?)await readCommand.ExecuteScalarAsync();
+                        output.Enqueue($"Fluxo 2: Status lido = {status}  {DateTime.Now.ToLongTimeString()}");
+
+                        var updateCommand = new SqlCommand(
+                            @"UPDATE FluxoTeste SET Status = 'Criado', DataAtualizacao = GETDATE()
+                            FROM FluxoTeste WITH (UPDLOCK) 
+                            WHERE Id = 1;",
+                            connection, transaction);
+                        
+                        await updateCommand.ExecuteNonQueryAsync();
+                        
+                        // Simula processamento demorado
+                        await Task.Delay(3000);
+                        
+                        output.Enqueue($"Fluxo 2: Status alterado para 'Criado'. {DateTime.Now.ToLongTimeString()}");
+
+                        transaction.Commit();
+                        output.Enqueue($"Fluxo 2: Commit realizado.  {DateTime.Now.ToLongTimeString()}");
+                    }
+                }
+            });
+
+            // Executa ambos os fluxos simultaneamente
+            await Task.WhenAll(fluxo2Task, fluxo1Task);
+
+        }
     }
 }
