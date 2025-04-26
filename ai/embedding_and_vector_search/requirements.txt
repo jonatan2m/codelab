@@ -1,0 +1,8 @@
+langchain==0.3.24
+langchain-community==0.3.20
+langchain-openai==0.3.14
+openai==1.73.0
+chromadb==1.0.7
+pypdf==5.4.0
+markdown==3.8
+python-dotenv==1.1.0
