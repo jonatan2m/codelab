@@ -10,6 +10,8 @@ To run scripts in dotnet, install dotnet-script tool:
 run it into fifteen_minutes folder:
 > dotnet tool install -g dotnet-script --configfile .\nuget.config
 
+After that, execute the script .cs using:
+> dotnet script {script-name}
 ## Algorithms Tehcnics
 
 ### Sliding Window
