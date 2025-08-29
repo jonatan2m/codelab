@@ -4,12 +4,8 @@ namespace algoritmos.tests;
 /// https://leetcode.com/problems/longest-substring-without-repeating-characters/
 /// 
 /// takeaways:
-/// Consider all numbers as negative numbers (compute first kth elements)
+/// "Some edge cases can break the algorithm, and working with dynamic windows is quite hard."
 /// 
-/// Test case:
-/// nums = [1,12,-5,-6,50,3]
-/// k = 4
-/// max average = 12.75
 /// </summary>
 public class leet3
 {
@@ -20,11 +16,13 @@ public class leet3
     [InlineData("b", 1)]
     [InlineData("au", 2)]
     [InlineData("pwwkew", 3)]
+    [InlineData("dvdp", 3)]
     public void Leet3(string input, int result)
     {
         Assert.Equal(result, LengthOfLongestSubstringV1(input));
         Assert.Equal(result, LengthOfLongestSubstringV2(input));
         Assert.Equal(result, LengthOfLongestSubstringV3(input));
+        Assert.Equal(result, LengthOfLongestSubstringV4(input));
     }
 
     /// <summary>
@@ -105,6 +103,31 @@ public class leet3
             max = Math.Max(max, end - start + 1);
         }
 
+        return max;
+    }
+
+    /// <summary>
+    /// Mixed
+    /// </summary>
+    public int LengthOfLongestSubstringV4(string s)
+    {
+         if(s.Length == 0) return 0;
+       
+        int start = 0;        
+        int max = 0;
+        Dictionary<char, int> lastest = new();
+        
+        for(int end = 0; end < s.Length; end++) {
+            char c = s[end];
+            if(lastest.ContainsKey(c)){
+                start = int.Max(start, lastest[c] + 1);
+            }
+
+            lastest[c] = end;
+
+            max = int.Max(max, (end - start) + 1);
+        }
+        
         return max;
     }
 }
