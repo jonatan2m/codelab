@@ -143,7 +143,7 @@ public class leet3
         for (int right = 0; right < s.Length; right++) {
             char c = s[right];
 
-            if (lastSeen.ContainsKey(c) && lastSeen[c] >= left) {
+            if (lastSeen.ContainsKey(c) && lastSeen[c] >= left /*do not move the pointer back*/) {
                 left = lastSeen[c] + 1;
             }
 
