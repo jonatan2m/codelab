@@ -346,3 +346,4 @@ __pycache__/
 # Custom
 Five2.Presentation.Web/logs/*.*
 .docker
+ai/bag_of_words/env_bag_of_words/lib/python3.10/site-packages/_distutils_hack/__init__.py

@@ -1,0 +1,7 @@
+# Update the qrcode library to the latest version
+qrcode==7.3.1
+#não vou usar essa lib
+#opencv-python==4.5.1.48
+pillow
+pyzbar
+requests
