@@ -1,0 +1,37 @@
+@IMBD_HostAddress = http://localhost:5126
+
+GET {{IMBD_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+### Obter filme com reviews páginado
+GET {{IMBD_HostAddress}}/movies/68dd8b45352fd8d641bc5755/reviews?skip=100&limit=5000
+Accept: application/json
+
+### Obter filme
+GET {{IMBD_HostAddress}}/movies/68dd8b45352fd8d641bc5755
+Accept: application/json
+
+### Obter estatisticas do filme
+GET {{IMBD_HostAddress}}/movies/68dd8b45352fd8d641bc5755/stats
+Accept: application/json
+
+### Obter filmes
+GET {{IMBD_HostAddress}}/movies/
+Accept: application/json
+
+### Inserir filme
+POST {{IMBD_HostAddress}}/movies/
+Content-Type: application/json
+
+{
+  "title": "The Matrix",
+  "year": 1999,
+  "releaseDate": "1999-03-31T00:00:00Z",
+  "castings": ["Keanu Reeves", "Laurence Fishburne", "Carrie-Anne Moss"]
+}
+
+### Criar Reviews fake
+POST {{IMBD_HostAddress}}/movies/68dd8b45352fd8d641bc5755/reviews/seed/20000
+###
