@@ -50,9 +50,15 @@ namespace IMBD.Endpoints
 
             group.MapGet("/{id}/stats", async (MovieStatsService movieStatsService, MongoDbContext db, string id) =>
             {
-                await movieStatsService.RecalculateStatsAsync(id);
-
                 var movieStats = await db.MovieStats.Find(x => x.MovieId == id).FirstOrDefaultAsync();
+
+                if(movieStats is null)
+                {
+                    //faria sentido que esse processo fosse feito em background
+                    //precisa entender como recalcular os valores, 
+                    //mas aí talvez tenha que seja por algoritmo e não pelo banco
+                    await movieStatsService.RecalculateStatsAsync(id);                    
+                }
                     
                 return movieStats is not null ? Results.Ok(movieStats) : Results.NotFound();
             });

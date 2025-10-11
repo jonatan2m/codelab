@@ -13,6 +13,11 @@ services:
       interval: 5s
       timeout: 3s
       retries: 10
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: '1GB'
 
   redis:
     image: redis:7
