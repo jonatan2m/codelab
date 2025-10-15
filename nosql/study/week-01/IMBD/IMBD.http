@@ -1,25 +1,25 @@
 @IMBD_HostAddress = https://localhost:5001
-
-GET {{IMBD_HostAddress}}/weatherforecast/
-Accept: application/json
+@MovieId = 68dd8b45352fd8d641bc5755
 
 ###
 
 ### Obter filme com reviews páginado
-GET {{IMBD_HostAddress}}/movies/68dd8b45352fd8d641bc5755/reviews?skip=100&limit=5000
+GET {{IMBD_HostAddress}}/movies/{{MovieId}}/reviews?skip=100&limit=5000
 Accept: application/json
 
 ### Obter filme
-GET {{IMBD_HostAddress}}/movies/68dd8b45352fd8d641bc5755
+GET {{IMBD_HostAddress}}/movies/{{MovieId}}
 Accept: application/json
+X-Api-Key: minha-chave
 
 ### Obter estatisticas do filme
-GET {{IMBD_HostAddress}}/movies/68e9bef74f7c76b6f6c3ac74/stats
+GET {{IMBD_HostAddress}}/movies/{{MovieId}}/stats
 Accept: application/json
 
 ### Obter filmes
 GET {{IMBD_HostAddress}}/movies/
 Accept: application/json
+X-Api-Key: minha-chave
 
 ### Inserir filme
 POST {{IMBD_HostAddress}}/movies/
@@ -33,5 +33,5 @@ Content-Type: application/json
 }
 
 ### Criar Reviews fake
-POST {{IMBD_HostAddress}}/movies/68dd8b45352fd8d641bc5755/reviews/seed/2000000
+POST {{IMBD_HostAddress}}/movies/{{MovieId}}/reviews/seed/20000
 ###

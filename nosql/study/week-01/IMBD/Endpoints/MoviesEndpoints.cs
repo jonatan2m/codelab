@@ -17,11 +17,13 @@ namespace IMBD.Endpoints
         public static void MapMovieEndpoints(this WebApplication app)
         {
             var group = app.MapGroup("/movies");
+            
             group.MapGet("/", async (MongoDbContext db) =>
             {
                 var list = await db.Movies.Find(_ => true).ToListAsync();
                 return Results.Ok(list);
             });
+            group.RequireRateLimiting("reviews-policy");
 
             group.MapGet("/{id}", async (string id, MongoDbContext db) =>
             {

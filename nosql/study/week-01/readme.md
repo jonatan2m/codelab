@@ -54,10 +54,7 @@ Entender por que usar NoSQL e os princípios básicos de modelagem.
 - Diagrama com diferenças entre tipos de NoSQL
 
     #### Quando faz sentido usar NoSQL
-    Faz sentido utilizar NoSQL quando se precisa de performance, escala horizontal e/ou flexibilidade de schema. Enquanto bancos SQL
-    escalam verticalmente, NoSQL foi projetado para escala horizontal, adicionando nós comuns (sharding). Mesmo que SQL suporte
-    replicação, a busca por consistência forte (ACID) pode gerar atraso na propagação. Já o NoSQL normalmente adota BASE (Basically Available, Soft
-    State, Eventual Consistency), aceitando consistência eventual em troca de disponibilidade.
+    Faz sentido utilizar NoSQL quando se precisa de performance, escala horizontal e/ou flexibilidade de schema. Enquanto bancos SQL escalam verticalmente, NoSQL foi projetado para escala horizontal, adicionando nós comuns (sharding). Mesmo que SQL suporte replicação, a busca por consistência forte (ACID) pode gerar atraso na propagação. Já o NoSQL normalmente adota BASE (Basically Available, Soft State, Eventual Consistency), aceitando consistência eventual em troca de disponibilidade.
 
     #### Teorema CAP
     O Teorema CAP mostra que não é possível ter Consistência, Disponibilidade e Tolerância a Partição ao mesmo tempo em falhas. Na prática:
