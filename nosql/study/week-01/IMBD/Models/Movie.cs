@@ -21,7 +21,9 @@ namespace IMBD.Models
         [BsonDateTimeOptions(Kind = DateTimeKind.Utc)]
         public DateTime? ReleaseDate { get; set; }
 
-        public List<string> Castings { get; set; }        
+        // NOVO formato
+        [BsonIgnoreIfNull]
+        public List<ActorReference> Cast { get; set; }
     }
 
     /// <summary>

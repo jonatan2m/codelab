@@ -76,7 +76,7 @@ namespace IMBD.Endpoints
                     Title = req.Title,
                     Year = req.Year,
                     ReleaseDate = req.ReleaseDate,
-                    Castings = req.Castings ?? new List<string>()
+                    Cast = req.Cast ?? new List<ActorReference>()
                 };
 
                 await db.Movies.InsertOneAsync(movie, cancellationToken: token);

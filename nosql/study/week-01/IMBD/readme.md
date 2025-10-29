@@ -33,10 +33,75 @@ $lookup é para poucos registros, não serve pra esse cenário. Melhor fazer as 
 - Shard / Particionamento:
 
     Se chegar a níveis absurdos, colocar a collection reviews shardeada por movieId (Cassandra style).
+    Quando temos um cluster shardeado (dados distribuídos entre servidores), o MongoDB divide os 
+    dados em ranges baseados na Shard Key.
+    Se a Shard Key for sequencial ou timestamp, um shard sempre vai ficar onerado, enquanto os outros ficarão ociosos. Fazer a distribuição uniforme pra resolve isso.
+
+    Exemplo com IDs sequenciais:    
+    ```bash
+    // Shard Key: movieId (sequencial: 1, 2, 3, 4, 5...)
+    // MongoDB divide em ranges:
+
+    Shard A: movieId 1-1000
+    Shard B: movieId 1001-2000  
+    Shard C: movieId 2001-3000
+    ```
+    O que acontece com writes:
+    ```bash
+    // Novos filmes sempre têm IDs crescentes:
+    movieId: 2001 → Shard C
+    movieId: 2002 → Shard C  
+    movieId: 2003 → Shard C
+    movieId: 2004 → Shard C
+    // Todos os writes vão para o Shard C!
+    ```
+
+    // 1. Definir shard key (obrigatório ter índice na shard key)
+    sh.shardCollection("imdb.reviews", { movieId: 1 })
+
+    // Isso AUTOMATICAMENTE cria o índice { movieId: 1 } se não existir
+    // Mas é APENAS para permitir o sharding, não muda a distribuição
 
 Para melhorar a performance e já trazer umas informações sobre os Reviews, é possível fazer uma colletion de suporte, a MovieStats, que vai guardar um compilado das informações dos reviews para exibição rápida em Dashboards
 
 ---
+## tópicos especificos
+### Indices
+
+- Single-field (campo único) — índice simples ascendente/descendente.
+    Ex.: db.collection.createIndex({ campo: 1 })
+
+- Compound (composto) — índice em múltiplos campos (ordem importa).
+    Ex.: db.collection.createIndex({ a: 1, b: -1 })
+
+- Multikey — índice para campos que são arrays (indexa cada elemento).
+    Ex.: db.collection.createIndex({ tags: 1 })
+
+- Text — índice para busca textual (full‑text). Só é permitido um índice text por collection.
+    Ex.: db.collection.createIndex({ descricao: "text" })
+
+- Hashed — índice com hash do valor (útil para shard keys com distribuição uniforme).
+    Ex.: db.collection.createIndex({ campo: "hashed" })
+
+- Wildcard — índice que indexa campos dinâmicos/objetos aninhados (usar $).
+    Ex.: db.collection.createIndex({ "$": 1 })
+
+- Geospatial — índices espaciais: "2d" (planar) e "2dsphere" (geojson/superfície esférica).
+    Ex.: db.collection.createIndex({ localizacao: "2dsphere" })
+
+- TTL (Time To Live) — índice com expireAfterSeconds para expirar documentos automaticamente.
+    Ex.: db.collection.createIndex({ createdAt: 1 }, { expireAfterSeconds: 3600 })
+
+- Unique — índice que impõe unicidade de valores.
+    Ex.: db.collection.createIndex({ email: 1 }, { unique: true })
+
+- Partial — índice parcial que indexa apenas documentos que satisfaçam partialFilterExpression  (mais eficiente que sparse em muitos casos).
+    Ex.: db.collection.createIndex({ ativo: 1 }, { partialFilterExpression: { ativo: true } })
+
+- Sparse — índice que indexa somente documentos onde o campo existe (menos recomendado que partial em muitos cenários modernos).
+    Ex.: db.collection.createIndex({ opcional: 1 }, { sparse: true })
+---
+## Desafios do projeto
 Claro! Projetar algo como o IMDb — com milhões de usuários, filmes e reviews — é um excelente cenário para aprofundar seus estudos em banco de dados NoSQL.
 
 A seguir está uma lista dos principais desafios reais que um projeto desse tipo enfrenta, organizados por categoria, com foco especial em NoSQL (como MongoDB, Cassandra, DynamoDB etc.):
@@ -182,10 +247,14 @@ Schema versionado	Alterações em documentos exigem migração parcial ou versio
 Documentos legados com estrutura antiga	Precisa garantir compatibilidade em leitura e escrita.
 Migração de dados entre clusters	Ex: mudar do Mongo local para Atlas ou Dynamo exige dump/index/config/restore.
 🧠 8. Infraestrutura e otimização
-Desafio	Detalhes
-Sharding e balanceamento	Para escalar horizontalmente. Ex: shard reviews por movieId.
-TTL para dados temporários	Ex: sessões, tokens, logs podem ser auto-expirados.
-Indexação pesada	Índices grandes demais degradam escrita — precisa balancear custo de escrita vs velocidade de leitura.
+
+- Sharding e balanceamento:	Para escalar horizontalmente.
+    Ex: shard reviews por movieId.
+- TTL para dados temporários:
+	Ex: sessões, tokens, logs podem ser auto-expirados.
+- Indexação pesada:
+    Índices grandes demais degradam escrita — precisa balancear custo de escrita vs velocidade de leitura.
+
 📌 Extras específicos de estudo em NoSQL
 Tópico	Por que é relevante?
 $lookup e seus limites	Join em Mongo, só funciona entre collections do mesmo banco e não sharded.

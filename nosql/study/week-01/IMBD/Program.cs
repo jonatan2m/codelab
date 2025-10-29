@@ -1,6 +1,7 @@
 using IMBD.Database;
 using IMBD.Endpoints;
 using IMBD.Services;
+using IMBD.Workers;
 using Microsoft.AspNetCore.RateLimiting;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Conventions;
@@ -35,6 +36,7 @@ builder.Services.AddScoped(sp =>
 new MongoDbContext(sp.GetRequiredService<IMongoDatabase>()));
 
 builder.Services.AddScoped<MovieStatsService>();
+builder.Services.AddHostedService<IndexInitializer>();
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -68,8 +70,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-
 
 app.MapMovieEndpoints();
 app.MapReviewEndpoints();

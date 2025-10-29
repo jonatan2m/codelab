@@ -10,7 +10,7 @@ namespace IMBD.Models.Requests
         public string Title { get; set; } = null!;
         public int Year { get; set; }
         public DateTime? ReleaseDate { get; set; }
-        public List<string>? Castings { get; set; }
+        public List<ActorReference>? Cast { get; set; }
 
     }
 

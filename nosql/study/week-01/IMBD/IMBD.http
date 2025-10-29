@@ -1,4 +1,4 @@
-@IMBD_HostAddress = https://localhost:5001
+@IMBD_HostAddress = http://localhost:5000
 @MovieId = 68dd8b45352fd8d641bc5755
 
 ###
@@ -24,14 +24,27 @@ X-Api-Key: minha-chave
 ### Inserir filme
 POST {{IMBD_HostAddress}}/movies/
 Content-Type: application/json
+X-Api-Key: minha-chave
 
 {
   "title": "The Matrix",
   "year": 1999,
   "releaseDate": "1999-03-31T00:00:00Z",
-  "castings": ["Keanu Reeves", "Laurence Fishburne", "Carrie-Anne Moss"]
+  "castings": [{
+        "id": "690166a50f72ee0c2585c1e3",
+        "name": "Keanu Reeves"
+      },
+      {
+        "id": "690166c80f72ee0c2585c1e4",
+        "name": "Laurence Fishburne"
+      },
+      {
+        "id": "690166ce0f72ee0c2585c1e5",
+        "name": "Carrie-Anne Moss"
+      }]
 }
 
 ### Criar Reviews fake
-POST {{IMBD_HostAddress}}/movies/{{MovieId}}/reviews/seed/20000
+POST {{IMBD_HostAddress}}/movies/{{MovieId}}/reviews/seed/2000000
+X-Api-Key: minha-chave 
 ###
