@@ -1,0 +1,24 @@
+services:
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "3003:3000"
+    networks:
+      - chatbot-net
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    depends_on:
+      - server
+    deploy:
+      replicas: 5
+    networks:
+      - chatbot-net
+
+networks:
+  chatbot-net:
+    driver: bridge

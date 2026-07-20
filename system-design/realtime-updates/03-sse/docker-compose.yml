@@ -1,0 +1,24 @@
+services:
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "3002:3000"
+    networks:
+      - sse-net
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    depends_on:
+      - server
+    deploy:
+      replicas: 3
+    networks:
+      - sse-net
+
+networks:
+  sse-net:
+    driver: bridge

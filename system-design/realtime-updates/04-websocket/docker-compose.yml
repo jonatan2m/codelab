@@ -1,0 +1,63 @@
+services:
+  redis:
+    image: redis:7-alpine
+    networks:
+      - ws-net
+
+  server-a:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    environment:
+      INSTANCE_ID: A
+      REDIS_URL: redis://redis:6379
+    ports:
+      - "3005:3000"
+    depends_on:
+      - redis
+    networks:
+      - ws-net
+
+  server-b:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    environment:
+      INSTANCE_ID: B
+      REDIS_URL: redis://redis:6379
+    ports:
+      - "3006:3000"
+    depends_on:
+      - redis
+    networks:
+      - ws-net
+
+  bot-a:
+    build:
+      context: ./bot
+      dockerfile: Dockerfile
+    environment:
+      TARGET_HOST: server-a
+    depends_on:
+      - server-a
+    deploy:
+      replicas: 2
+    networks:
+      - ws-net
+
+  bot-b:
+    build:
+      context: ./bot
+      dockerfile: Dockerfile
+    environment:
+      TARGET_HOST: server-b
+    depends_on:
+      - server-b
+    deploy:
+      replicas: 2
+    networks:
+      - ws-net
+
+networks:
+  ws-net:
+    driver: bridge

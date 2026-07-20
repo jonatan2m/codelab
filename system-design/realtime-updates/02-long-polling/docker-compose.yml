@@ -14,6 +14,12 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - server
+    environment:
+      # 0 = todos reconectam no mesmo instante (thundering herd visível no server)
+      # ex: JITTER_MS=800 docker compose up --build → reconexões espalhadas
+      JITTER_MS: ${JITTER_MS:-1000}
+    deploy:
+      replicas: 15
     networks:
       - long-polling-net
 

@@ -25,6 +25,34 @@ let totalEvents = 0;
 let totalTimeouts = 0;
 let totalDisconnects = 0;
 
+// --- thundering herd: histograma de reconexões após um broadcast ---
+const HERD_WINDOW_MS = 3_000;
+const HERD_BUCKET_MS = 100;
+const requestTimestamps: number[] = [];
+
+function printHerdHistogram(broadcastTime: number, clientCount: number): void {
+  const buckets = new Array(HERD_WINDOW_MS / HERD_BUCKET_MS).fill(0);
+
+  for (const ts of requestTimestamps) {
+    const delta = ts - broadcastTime;
+    if (delta >= 0 && delta < HERD_WINDOW_MS) {
+      buckets[Math.floor(delta / HERD_BUCKET_MS)]++;
+    }
+  }
+
+  console.log(
+    `\n[THUNDERING HERD] Reconexões recebidas nos ${HERD_WINDOW_MS / 1000}s após o broadcast ` +
+    `para ${clientCount} cliente(s):`
+  );
+  buckets.forEach((count, i) => {
+    if (count > 0) {
+      const bar = "█".repeat(Math.min(count, 60));
+      console.log(`  +${(i * HERD_BUCKET_MS).toString().padStart(4)}ms | ${bar} ${count}`);
+    }
+  });
+  console.log("");
+}
+
 function removePendingClient(client: PendingClient): void {
   const index = pendingClients.indexOf(client);
   if (index !== -1) {
@@ -36,7 +64,8 @@ function removePendingClient(client: PendingClient): void {
 function onEventArrived(event: ServerEvent): void {
   const snapshot = [...pendingClients];
 
-  // responde todos os clientes que estão esperando
+  // responde todos os clientes que estão esperando — é aqui que o "rebanho" é criado:
+  // todo mundo recebe resposta no mesmo instante e vai reconectar em seguida
   for (const client of snapshot) {
     removePendingClient(client);
     const waitedMs = Date.now() - client.connectedAt;
@@ -49,6 +78,11 @@ function onEventArrived(event: ServerEvent): void {
     `[SERVER] Evento "${event.type}" entregue para ${snapshot.length} cliente(s) | ` +
     `fila atual: ${pendingClients.length}`
   );
+
+  if (snapshot.length > 0) {
+    const broadcastTime = Date.now();
+    setTimeout(() => printHerdHistogram(broadcastTime, snapshot.length), HERD_WINDOW_MS);
+  }
 }
 
 function generateEvent(): void {
@@ -76,6 +110,13 @@ const server = http.createServer((req, res) => {
 
   totalConnections++;
   res.setHeader("Access-Control-Allow-Origin", "*");
+
+  // usado só pelo histograma do thundering herd — remove entradas com mais de 10s
+  const now = Date.now();
+  requestTimestamps.push(now);
+  while (requestTimestamps.length > 0 && now - requestTimestamps[0] > 10_000) {
+    requestTimestamps.shift();
+  }
 
   // timeout: nenhum evento em 30s → 204, cliente reconecta
   const timeoutHandle = setTimeout(() => {

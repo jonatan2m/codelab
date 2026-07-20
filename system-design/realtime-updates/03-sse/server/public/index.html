@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>03-sse — EventSource nativo do browser</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, system-ui, "Segoe UI", sans-serif;
+    max-width: 780px;
+    margin: 32px auto;
+    padding: 0 16px;
+    background: #0e0e10;
+    color: #e4e4e7;
+  }
+  h1 { font-size: 1.4rem; margin-bottom: 4px; }
+  .sub { color: #9ca3af; font-size: 0.9rem; margin-bottom: 24px; }
+  .panel {
+    background: #18181b;
+    border: 1px solid #27272a;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  .status-row { display: flex; gap: 24px; font-size: 0.9rem; margin-bottom: 4px; }
+  .status-row span { color: #9ca3af; }
+  #status.open { color: #4ade80; }
+  #status.error { color: #f87171; }
+  #status.connecting { color: #facc15; }
+  input {
+    background: #27272a;
+    border: 1px solid #3f3f46;
+    color: #e4e4e7;
+    border-radius: 6px;
+    padding: 8px 10px;
+    font-size: 0.9rem;
+    width: 60%;
+  }
+  button {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin-left: 8px;
+  }
+  button:hover { background: #2563eb; }
+  #log {
+    font-family: ui-monospace, monospace;
+    font-size: 0.82rem;
+    max-height: 360px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  #log div { padding: 3px 0; border-bottom: 1px solid #27272a; }
+  #log div.evt { color: #93c5fd; }
+  #log div.msg { color: #86efac; }
+  .hint { color: #71717a; font-size: 0.82rem; margin-top: 8px; }
+</style>
+</head>
+<body>
+  <h1>03-sse — cliente browser (EventSource real)</h1>
+  <p class="sub">Mesma conexão dos clientes Node do experimento, mas usando a API nativa do browser em vez de parser manual.</p>
+
+  <div class="panel">
+    <div class="status-row">
+      <div>Status: <span id="status" class="connecting">conectando...</span></div>
+      <div>Last-Event-ID rastreado pelo browser: <span id="lastId">—</span></div>
+    </div>
+    <p class="hint">
+      Pra ver a reconexão + replay ao vivo: abra o DevTools → aba Network → marque "Offline" por alguns
+      segundos → desmarque. O <code>EventSource</code> reconecta sozinho mandando o <code>Last-Event-ID</code>
+      certo, sem nenhuma linha de código nossa.
+    </p>
+  </div>
+
+  <div class="panel">
+    <strong>Canal reverso (POST /messages)</strong><br /><br />
+    <input id="msgInput" placeholder="mensagem pro servidor" />
+    <button id="sendBtn">Enviar</button>
+  </div>
+
+  <div class="panel">
+    <strong>Eventos recebidos</strong>
+    <div id="log"></div>
+  </div>
+
+<script>
+  const statusEl = document.getElementById("status");
+  const lastIdEl = document.getElementById("lastId");
+  const logEl = document.getElementById("log");
+
+  function logLine(text, cls) {
+    const line = document.createElement("div");
+    line.className = cls;
+    line.textContent = text;
+    logEl.prepend(line);
+  }
+
+  // é isso: nenhuma lógica de reconexão, parsing ou Last-Event-ID escrita à
+  // mão — o browser cuida de tudo isso sozinho por trás dessa única linha
+  const source = new EventSource("/events");
+
+  source.onopen = () => {
+    statusEl.textContent = "conectado";
+    statusEl.className = "open";
+  };
+
+  source.onerror = () => {
+    statusEl.textContent = "erro / reconectando...";
+    statusEl.className = "error";
+  };
+
+  source.onmessage = (event) => {
+    lastIdEl.textContent = event.lastEventId || "—";
+    const data = JSON.parse(event.data);
+    logLine(
+      `[id=${event.lastEventId}] ${data.type} — value=${data.payload.value} — ${data.timestamp}`,
+      "evt"
+    );
+  };
+
+  document.getElementById("sendBtn").addEventListener("click", () => {
+    const input = document.getElementById("msgInput");
+    const text = input.value.trim();
+    if (!text) return;
+
+    fetch("/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ from: "browser", text, at: new Date().toISOString() }),
+    }).then(() => logLine(`[enviado] "${text}"`, "msg"));
+
+    input.value = "";
+  });
+</script>
+</body>
+</html>

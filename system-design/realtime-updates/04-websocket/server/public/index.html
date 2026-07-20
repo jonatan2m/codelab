@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>04-websocket — chat (instância __INSTANCE_ID__)</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, system-ui, "Segoe UI", sans-serif;
+    max-width: 720px;
+    margin: 32px auto;
+    padding: 0 16px;
+    background: #0e0e10;
+    color: #e4e4e7;
+  }
+  h1 { font-size: 1.3rem; margin-bottom: 4px; }
+  .badge {
+    display: inline-block;
+    background: #3b82f6;
+    color: white;
+    border-radius: 4px;
+    padding: 1px 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+  .sub { color: #9ca3af; font-size: 0.9rem; margin: 8px 0 20px; }
+  .panel {
+    background: #18181b;
+    border: 1px solid #27272a;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  #status.open { color: #4ade80; }
+  #status.closed { color: #f87171; }
+  #status.connecting { color: #facc15; }
+  #messages {
+    height: 340px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.88rem;
+    margin-bottom: 12px;
+  }
+  #messages .msg { padding: 6px 10px; border-radius: 6px; background: #27272a; }
+  #messages .msg .meta { color: #9ca3af; font-size: 0.75rem; margin-bottom: 2px; }
+  #messages .msg.local-instance .meta { color: #4ade80; }
+  #messages .msg.other-instance .meta { color: #facc15; }
+  #messages .system { color: #71717a; font-style: italic; font-size: 0.8rem; }
+  form { display: flex; gap: 8px; }
+  input[type=text] {
+    flex: 1;
+    background: #27272a;
+    border: 1px solid #3f3f46;
+    color: #e4e4e7;
+    border-radius: 6px;
+    padding: 8px 10px;
+    font-size: 0.9rem;
+  }
+  button {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+  button:hover { background: #2563eb; }
+  .hint { color: #71717a; font-size: 0.82rem; }
+  code { background: #27272a; padding: 1px 5px; border-radius: 4px; }
+</style>
+</head>
+<body>
+  <h1>04-websocket — chat <span class="badge">instância __INSTANCE_ID__</span></h1>
+  <p class="sub">
+    Status: <span id="status" class="connecting">conectando...</span> —
+    Mensagens em <span style="color:#4ade80">verde</span> vieram desta instância,
+    em <span style="color:#facc15">amarelo</span> vieram de outra instância via Redis Pub/Sub.
+  </p>
+
+  <div class="panel">
+    <div id="messages"></div>
+    <form id="chatForm">
+      <input type="text" id="msgInput" placeholder="Digite uma mensagem..." autocomplete="off" />
+      <button type="submit">Enviar</button>
+    </form>
+  </div>
+
+  <p class="hint">
+    Abra essa mesma página em outra aba, mas na outra instância (<code>:3005</code> ou <code>:3006</code>),
+    e mande uma mensagem — ela deve chegar na outra aba com o rótulo "amarelo", provando que o Redis
+    Pub/Sub está propagando entre servidores diferentes.
+  </p>
+
+<script>
+  const statusEl = document.getElementById("status");
+  const messagesEl = document.getElementById("messages");
+  const form = document.getElementById("chatForm");
+  const input = document.getElementById("msgInput");
+  const myInstance = "__INSTANCE_ID__";
+  const myName = "browser-" + Math.random().toString(36).slice(2, 6);
+
+  function addMessage(text, cls) {
+    const div = document.createElement("div");
+    div.className = "msg " + (cls || "");
+    div.innerHTML = text;
+    messagesEl.appendChild(div);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  function addSystem(text) {
+    const div = document.createElement("div");
+    div.className = "system";
+    div.textContent = text;
+    messagesEl.appendChild(div);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  let socket;
+  let reconnectDelay = 1000;
+
+  // ao contrário do EventSource, o WebSocket nativo NÃO reconecta sozinho —
+  // essa lógica de retry com backoff é responsabilidade da aplicação
+  function connect() {
+    statusEl.textContent = "conectando...";
+    statusEl.className = "connecting";
+
+    const protocol = location.protocol === "https:" ? "wss:" : "ws:";
+    socket = new WebSocket(protocol + "//" + location.host);
+
+    socket.onopen = () => {
+      statusEl.textContent = "conectado";
+      statusEl.className = "open";
+      reconnectDelay = 1000;
+      addSystem("conectado à instância " + myInstance);
+    };
+
+    socket.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      const cls = data.instance === myInstance ? "local-instance" : "other-instance";
+      addMessage(
+        `<div class="meta">${data.from} · via instância ${data.instance} · ${new Date(data.at).toLocaleTimeString()}</div>${data.text}`,
+        cls
+      );
+    };
+
+    socket.onclose = () => {
+      statusEl.textContent = "desconectado — reconectando em " + Math.round(reconnectDelay / 1000) + "s";
+      statusEl.className = "closed";
+      setTimeout(connect, reconnectDelay);
+      reconnectDelay = Math.min(reconnectDelay * 2, 10_000); // backoff exponencial
+    };
+
+    socket.onerror = () => socket.close();
+  }
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const text = input.value.trim();
+    if (!text || socket.readyState !== WebSocket.OPEN) return;
+    socket.send(JSON.stringify({ from: myName, text }));
+    input.value = "";
+  });
+
+  connect();
+</script>
+</body>
+</html>
